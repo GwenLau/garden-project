@@ -44,10 +44,10 @@ class DefaultController extends Controller
 			} else {
 
 				// Echec de la connexion
-				$this->show('default/login', ['error' => true]);
+				$this->show('users/login', ['error' => true]);
 			}
 		} else {
-			$this->show('default/login');
+			$this->show('users/login');
 		}
 	}
 
