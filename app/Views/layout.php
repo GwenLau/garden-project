@@ -11,11 +11,11 @@
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>">
 
 	<!-- CDN jQuery -->
-	<link rel="stylesheet" href="https://code.jquery.com/jquery-3.1.1.min.js"
-	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous">
+	<script src ="https://code.jquery.com/jquery-3.1.1.min.js"
+	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 
-	<link rel="stylesheet" href="<?= $this->assetUrl('js/bootstrap.min.js" defer') ?>" >
-	<link rel="stylesheet" href="<?= $this->assetUrl('js/script.js" defer></script') ?>" >
+	<script src ="<?= $this->assetUrl('js/bootstrap.min.js') ?>" defer></script> 
+	<script src ="<?= $this->assetUrl('js/script.js') ?>" defer></script> 
 </head>
 <body>
 	<div class="container">
