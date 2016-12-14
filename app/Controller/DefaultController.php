@@ -31,13 +31,16 @@ class DefaultController extends Controller
 			// L'id d'un utilisateur
 			$userId = $authModel->isValidLoginInfo($_POST['mail'], $_POST['pass']);
 
+		/*	var_dump($userId);
+			exit;*/
+
 			if($userId > 0) {
 				// Connexion
 				$user = $userModel->find($userId);
 
 				// Placer user en session : $_SESSION['user'] = $user
 				$authModel->logUserIn($user);
-				$this->redirectToRoute('account_all_default');
+				$this->redirectToRoute('default_home');
 			} else {
 
 				// Echec de la connexion
