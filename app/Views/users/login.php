@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'Connexion']) ?>
+<?php $this->layout('layout', ['title' => 'login']) ?>
 
 <?php $this->start('messages') ?>
 	<?php if(isset($error)) : ?>
