@@ -4,40 +4,72 @@ namespace Controller;
 
 use Model\PicturesModel;
 use \W\Controller\Controller;
-//http://localhost/revisions/demousers/public/login#
+
 
 class PictureController extends Controller
 {
-	// Affichage de la liste des comptes
+	// Affichage de la liste des images
 	public function displayAll($mode = 'name')
 	{
-		$this->allowTo(['user', 'admin']);
-		// $mode : soit sort-name, soit sort-balance
+		//$this->allowTo(['user', 'admin']);
+		// $mode : soit sort-City, soit sort-city
 
-		// Récupère les comptes
+		// Récupère les images
 		// Il nous faut le modèle pour cela :
 		$picturesModel = new PicturesModel();
 
-		if($mode == 'name') {
-			$pictures = $picturesModel->findAll('owner');
-		} else {
-			$pictures = $picturesModel->findAll('balance');
-		}
 
-		$role = $this->getUser()['role'];
+			$pictures = $picturesModel->findAll('Description');
+		
 
-		$this->show('picture/all', ['allPictures' => $pictures, 'role' => $role]);
+		//$role = $this->getUser()['role'];
+
+		$this->show('picture/all', ['allPictures' => $pictures]);
 	}
 
-	// Détails d'un compte
+	// Détails d'une image
 	public function details($id)
 	{
 		$this->allowTo(['user', 'admin']);
-		// $id contient l'ID entré dans l'url (ex: /accounts/details/35)
+		// $id contient l'ID entré dans l'url 
 		$picturesModel = new PicturesModel();
 		$picture = $picturesModel->find($id); // Va cibler automatiquement la colonne `id` de la base de données
 		$this->show('picture/details', ['picture' => $picture]);
 	}
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	// Créditer ou débiter le compte
 	/*
