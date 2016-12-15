@@ -1,9 +1,8 @@
 <?php $this->layout('layout', ['title' => 'Liste des Photos']) ?>
 
 <?php $this->start('main_content') ?>
-	<h2>Let's code.</h2>
-	<p>Vous avez atteint la page des photos. Bravo.</p>
-	<p>Et maintenant, RTFM dans <strong><a href="../docs/tuto/" title="Documentation de W">docs/tuto</a></strong>.</p>
+	<h2>Liste des jardins à partager</h2>
+	<p>Retrouvez l'ensemble des détails ci-dessous et contactez le propriétaire</p>
 	
 		<?php foreach($allPictures as $Pic) : ?>
 		<div class="row">
@@ -12,9 +11,9 @@
 		      <?= '<img src="' .
 		      $this->assetUrl('uploads/' . $Pic['URL']) ?>" alt="<?= $Pic['ALT'] ?>">
 		      <div class="caption">
-		        <h3>Thumbnail label</h3>
-		        <p>...</p>
-		        <p><a href="#" class="btn btn-primary" role="button">Contacter</a> <a href="#" class="btn btn-default" role="button">Plus...</a></p>
+		        <h3><?= $Pic['Name'] ?></h3>
+		        <p><?= $Pic['Description'] ?></p>
+		        <p><a href="#Form_contact" class="btn btn-primary" role="button">Contacter</a> <a href="#details.php" class="btn btn-default" role="button">Détails...</a></p>
 		      </div>
 		    </div>
 		  </div>
