@@ -9,7 +9,7 @@ use \W\Controller\Controller;
 class PictureController extends Controller
 {
 	// Affichage de la liste des images
-	public function displayAll($mode = 'name')
+	public function displayAll()
 	{
 		//$this->allowTo(['user', 'admin']);
 		// $mode : soit sort-City, soit sort-city
@@ -19,7 +19,7 @@ class PictureController extends Controller
 		$picturesModel = new PicturesModel();
 
 
-			$pictures = $picturesModel->findAll('Description');
+		$pictures = $picturesModel->findAll('Description');
 		
 
 		//$role = $this->getUser()['role'];

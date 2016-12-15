@@ -92,7 +92,7 @@ EOT;
 				$this->sendMail($user['mail'], $user['lastname'] . ' ' . $user['firstname'], 'Réinitialisation du mot de passe', $messageHtml, $messagePlain);
 			}
 		} else {
-			$this->show('default/password-recovery');
+			$this->show('users/password-recovery');
 		}
 	}
 
@@ -148,7 +148,7 @@ EOT;
 			}
 
 			// Sinon
-			$this->show('default/reset-password');
+			$this->show('users/reset-password');
 		} else {
 			$this->redirectToRoute('default_login');
 		}
