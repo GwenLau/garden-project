@@ -4,7 +4,6 @@
 
 	<!-- Formulaire d'ajout de photo -->
 
-	<h2>Télécharger une image</h2>
 	<form enctype="multipart/form-data" action="#" method="POST">
 		<div class="form-group">
 		<?php if(isset($errors['title']['empty'])) : ?>
