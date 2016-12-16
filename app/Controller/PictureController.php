@@ -2,9 +2,10 @@
 
 namespace Controller;
 
-use Model\PicturesModel;
+
 use \W\Controller\Controller;
 use Service\ImageManagerService;
+use Model\PicturesModel;
 
 class PictureController extends Controller
 {
@@ -111,6 +112,12 @@ class PictureController extends Controller
 		}
 		$this->show('pictures/add-picture', ['errors' => $errors]);
 	}
-}
 
-	
+	public function details($id)
+
+	{
+		$picturesModel = new PicturesModel();
+		$picture = $picturesModel->find($id); // Va cibler la colonne `id` de la base de données
+		$this->show('picture/details', ['picture' => $picture]);
+	}
+}
