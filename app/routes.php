@@ -7,5 +7,6 @@
 		['GET|POST',	'/users/password-recovery',					'Default#passwordRecovery',	'default_password_recovery'],
 		['GET|POST',	'/users/reset-password/[:token]',			'Default#resetPassword',	'default_reset_password'],
 		['GET|POST',	'/users/add',								'Default#insertUser',		'default_add'],
+		['GET',			'/pictures/details/[i:id]',					'Picture#details',			'picture_details'],
 
 	);

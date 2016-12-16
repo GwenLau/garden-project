@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title'=>"Ajout d'un utilisateur"]) ?>
+<!-- <?php $this->layout('layout', ['title'=>"Ajout d'un utilisateur"]) ?> -->
 
 <?php $this->start('main_content') ?>
 
@@ -75,4 +75,4 @@ else: ?> -->
     </form>
 <?php endif; ?>
 
-<?php $this->stop('main_content') ?>
+<?php $this->stop('main_content') ?> --> --> --> -->
