@@ -7,56 +7,45 @@
 			<div class="container">
 		    <div class="row profile">
 				<div class="col-md-3">
-					<div class="profile-sidebar">
-						<!-- SIDEBAR USERPIC -->
-						<div class="profile-userpic">
-							<img src="http://keenthemes.com/preview/metronic/theme/assets/admin/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">
-						</div>
-						<!-- END SIDEBAR USERPIC -->
-						<!-- SIDEBAR USER TITLE -->
-						<div class="profile-usertitle">
-							<div class="profile-usertitle-name">
-								Nom de l'user "David Jankovic"
-							</div>
-						</div>
-						<!-- END SIDEBAR USER TITLE -->
-						<!-- SIDEBAR BUTTONS -->
-						<div class="profile-userbuttons">
-							<button type="button" class="btn btn-danger btn-sm">Messagerie</button>
-						</div>
-						<!-- END SIDEBAR BUTTONS -->
-						<!-- SIDEBAR MENU -->
-						<div class="profile-usermenu">
-							<ul class="nav">
-								<li>
-									<a href="#">
-									<i class="glyphicon glyphicon-user"></i>
-									Votre compte </a>
-								</li>
-								<li>
-									<a href="#" target="_blank">
-									<i class="glyphicon glyphicon-tree-deciduous"></i>
-									Proposer un jardin </a>
-								</li>
-								<li>
-									<a href="#">
-									<i class="glyphicon glyphicon-search"></i>
-									Rechercher un jardin </a>
-								</li>
-								<li>
-									<a href="#">
-									<i class="glyphicon glyphicon-off"></i>
-									Se deconnecter </a>
-								</li>
-							</ul>
-						</div>
-						<!-- END MENU -->
-					</div>
+					<?= $this->insert('users/sidebardashboard', ['user' => $user]) ?>
 				</div>
 				<div class="col-md-9">
 		            <div class="profile-content">
-					   Bienvenue "Nom du profil"
+					   
+							Proposer un jardin ...
+
+							<form enctype="multipart/form-data" action="#" method="POST">
+								<div class="form-group">
+								<?php if(isset($errors['title']['emptyorshort'])) : ?>
+								<p>Le titre de l'image est vide ou comporte moins de 10 caractères.</p>
+								<?php endif ?>
+						    		<label for="title" hidden>Titre de l'image</label>
+						    		<input name="title" type="text" class="form-control" placeholder="Titre de l'image">
+						  		</div>
+						  		<div class="form-group">
+						  		<?php if(isset($errors['description']['emptyorshort'])) : ?>
+								<p>La description de l'image est vide ou comporte moins de 10 caractères.</p>
+								<?php endif ?>
+						    		<label for="description" hidden>Description</label>
+						    		<textarea name="description" class="form-control" placeholder="Description"></textarea>
+						  		</div>
+								<div class="form-group">
+								<?php if(isset($errors['my-file']['empty'])) : ?>
+								<p>Aucun fichier n'est téléchargé.</p>
+								<?php endif ?>
+								    <label for="my-file">Image : </label>
+								    <input type="file" name="my-file" value="Parcourir...">
+								    
+								</div>
+								<div class="form-group">
+						    		<label for="localisation" hidden>Emplacement géographique</label>
+						    		<input name="localisation" class="form-control" placeholder="Emplacement géographique">
+						  		</div>
+								<button name="add-image" type="submit" class="btn btn-default ">Ajouter le jardin</button>
+							</form>
+
 		            </div>
+
 				</div>
 			</div>
 		</div>

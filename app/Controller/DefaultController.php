@@ -161,8 +161,19 @@ EOT;
 		// $id contient l'ID entré dans l'url 
 /*		$picturesModel = new PicturesModel();
 		$picture = $picturesModel->find($id); // Va cibler automatiquement la colonne `id` de la base de données*/
-		$this->show('users/dashboard');
+		$this->show('users/dashboard', ['user' => $this->getUser()]);
 	}
+		
+	public function profildashboard()
+		{
+			$this->allowTo(['user', 'admin']);
+			// $id contient l'ID entré dans l'url 
+	/*		$picturesModel = new PicturesModel();
+			$picture = $picturesModel->find($id); // Va cibler automatiquement la colonne `id` de la base de données*/
+			$this->show('users/profil', ['user' => $this->getUser()]);
+		}
+
+
 		// Créer et insérer un nouvel utilisateur 
 	public function insertUser()
 	{
