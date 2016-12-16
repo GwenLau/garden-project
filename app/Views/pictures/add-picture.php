@@ -6,15 +6,15 @@
 
 	<form enctype="multipart/form-data" action="#" method="POST">
 		<div class="form-group">
-		<?php if(isset($errors['title']['empty'])) : ?>
-		<p>Le titre de l'image est vide</p>
+		<?php if(isset($errors['title']['emptyorshort'])) : ?>
+		<p>Le titre de l'image est vide ou comporte moins de 10 caractères.</p>
 		<?php endif ?>
     		<label for="title" hidden>Titre de l'image</label>
     		<input name="title" type="text" class="form-control" placeholder="Titre de l'image">
   		</div>
   		<div class="form-group">
-  		<?php if(isset($errors['description']['empty'])) : ?>
-		<p>La description de l'image est vide</p>
+  		<?php if(isset($errors['description']['emptyorshort'])) : ?>
+		<p>La description de l'image est vide ou comporte moins de 10 caractères.</p>
 		<?php endif ?>
     		<label for="description" hidden>Description</label>
     		<textarea name="description" class="form-control" placeholder="Description"></textarea>
@@ -28,9 +28,6 @@
 		    
 		</div>
 		<div class="form-group">
-		<?php if(isset($errors['localisation']['empty'])) : ?>
-		<p>Aucun emplacement n'est spécifié.</p>
-		<?php endif ?>
     		<label for="localisation" hidden>Emplacement géographique</label>
     		<input name="localisation" class="form-control" placeholder="Emplacement géographique">
   		</div>
