@@ -113,11 +113,12 @@ class PictureController extends Controller
 		$this->show('pictures/add-picture', ['errors' => $errors]);
 	}
 
-	public function details($id)
+	    public function like()
+    {
+ 
+        $sql = 'INSERT INTO VALUES(:nbVotes)';
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':nbVotes', $row->getIdOrder(), \PDO::PARAM_INT);
 
-	{
-		$picturesModel = new PicturesModel();
-		$picture = $picturesModel->find($id); // Va cibler la colonne `id` de la base de données
-		$this->show('picture/details', ['picture' => $picture]);
-	}
+    }
 }

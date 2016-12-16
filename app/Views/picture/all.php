@@ -7,13 +7,17 @@
 		<?php foreach($allPictures as $Pic) : ?>
 		<div class="row">
 		  <div class="col-sm-6 col-md-4">
-		    <div class="thumbnail">
+		    <div class="thumbnail">S
 		      <?= '<img src="' .
 		      $this->assetUrl('uploads/' . $Pic['URL']) ?>" alt="<?= $Pic['ALT'] ?>">
 		      <div class="caption">
 		        <h3><?= $Pic['Name'] ?></h3>
 		        <p><?= $Pic['Description'] ?></p>
 		        <p><a href="#Form_contact" class="btn btn-primary" role="button">Contacter</a> <a href="#details.php" class="btn btn-default" role="button">Détails...</a></p>
+		        <form action="<?= $this->pictures('users_login') ?>" method="POST">
+			    <button class="glyphicon glyphicon-leaf" type="submit" name="name">J'aime</button>
+
+				</form>
 		      </div>
 		    </div>
 		  </div>

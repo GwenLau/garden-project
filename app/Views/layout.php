@@ -20,7 +20,7 @@
 <body>
 	<div class="container">
 		<header>
-<<<<<<< HEAD
+
 							<nav class="bg-success">
 				  <div class="container-fluid">
 				    <!-- Brand and toggle get grouped for better mobile display -->
@@ -38,7 +38,7 @@
 				    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				      <ul class="nav navbar-nav">
 				        <li class="active"><a href="#">Inscription <span class="sr-only">(current)</span></a></li>
-				        <li><a href="login">Connexion</a></li>
+				        <li><a href="<?= $this->url('users_login') ?>">Connexion</a></li>
 				        <!-- <li class="dropdown">
 				          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
 				          <ul class="dropdown-menu">
@@ -74,9 +74,9 @@
 				    </div><!-- /.navbar-collapse -->
 				  </div><!-- /.container-fluid -->
 				</nav>
-=======
+
 			<h1><?= $this->e($title) ?></h1>
->>>>>>> gwendo
+
 		</header>
 
 		<section>

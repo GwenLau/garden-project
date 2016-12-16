@@ -73,7 +73,7 @@ class DefaultController extends Controller
 				]);
 
 				// Envoyer un mail
-				$resetUrl = $this->generateUrl('default_reset_password', ['token' => $token]);
+				$resetUrl = "http://localhost/" . $this->generateUrl('default_reset_password', ['token' => $token]);
 
 				$messageHtml =<<< EOT
 <h1>Réinitialisation de votre mot de passe</h1>
