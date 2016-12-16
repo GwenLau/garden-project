@@ -20,7 +20,7 @@
 <body>
 	<div class="container">
 		<header>
-<<<<<<< HEAD
+
 							<nav class="bg-success">
 				  <div class="container-fluid">
 				    <!-- Brand and toggle get grouped for better mobile display -->
@@ -74,9 +74,9 @@
 				    </div><!-- /.navbar-collapse -->
 				  </div><!-- /.container-fluid -->
 				</nav>
-=======
+
 			<h1><?= $this->e($title) ?></h1>
->>>>>>> gwendo
+
 		</header>
 
 		<section>

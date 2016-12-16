@@ -143,14 +143,14 @@ EOT;
 
 					$tokenModel->delete($myToken['id']);
 
-					$this->redirectToRoute('default_login');
+					$this->redirectToRoute('users_login');
 				}
 			}
 
 			// Sinon
 			$this->show('users/reset-password');
 		} else {
-			$this->redirectToRoute('default_login');
+			$this->redirectToRoute('users_login');
 		}
 	}
 
