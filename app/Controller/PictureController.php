@@ -4,7 +4,7 @@ namespace Controller;
 
 use Model\PicturesModel;
 use \W\Controller\Controller;
-
+use Service\ImageManagerService;
 
 class PictureController extends Controller
 {
@@ -38,145 +38,79 @@ class PictureController extends Controller
 	}
 
 	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	// Créditer ou débiter le compte
-	/*
-	 * Fait 2 choses :
-	 * - Affiche le formulaire de modification
-	 * - Prend en compte les modifications quand on a cliqué sur `submit`
-	 */
-/*	public function change($id)
+	public function addPicture()
 	{
-		$this->allowTo('admin');
+		// $this->allowTo('admin');
 		$picturesModel = new PicturesModel();
+		$imageManagerService = new ImageManagerService();
 
-		// Si on a reçu la soumission du formulaire
-		if(isset($_POST['send'])) {
-			// Modifier le solde en fonction du type d'opération
-			$account = $accountsModel->find($id);
-			$newBalance = 0;
-			if($_POST['operation'] == 'credit') {
-				$newBalance = $account['balance'] + $_POST['amount'];
-			} elseif($_POST['operation'] == 'debit') {
-				$newBalance = $account['balance'] - $_POST['amount'];
+		$errors = [];
+
+		if(isset($_POST['add-image'])) {
+		
+
+			if(empty($_POST['title']) || strlen($_POST['title']) < 10) {
+				$errors['title']['emptyorshort'] = true;
 			}
-
-			$accountsModel->update(['balance' => $newBalance], $id);
-			// Rediriger vers la liste
-			$this->redirectToRoute('account_all_default');
-		}
-		// Sinon, on affiche le formulaire
-		else {
-			// $id contient l'ID entré dans l'url (ex: /accounts/details/35)
-			$account = $accountsModel->find($id);
-			$this->show('account/change', ['account' => $account]);
-		}
-	}
-
-	public function add()
-	{
-		$this->allowTo('admin');
-		$accountsModel = new AccountsModel();
-
-		if(isset($_POST['add-user'])) {
-			$errors = [];
-
-			if(empty($_POST['owner'])) {
-				$errors['owner']['empty'] = true;
+			if(empty($_POST['description']) || strlen($_POST['description']) < 10) {
+				$errors['description']['emptyorshort'] = true;
 			}
-			if(empty($_POST['balance'])) {
-				$errors['balance']['empty'] = true;
-			}
-			if(empty($_POST['currency'])) {
-				$errors['currency']['empty'] = true;
-			}
+			// Vérification du fichier uploadé
+			if ($_FILES['my-file']['error'] != UPLOAD_ERR_OK) {
+        
+        		$errors['my-file'] = 'Merci de choisir un fichier';
+    		} else {
+	        	$finfo = new \finfo(FILEINFO_MIME_TYPE);
+	        	// Récupération du Mime
+	        	$mimeType = $finfo->file($_FILES['my-file']['tmp_name']);
+	        	$extFoundInArray = array_search(
+	            	$mimeType, array(
+		                'jpg' => 'image/jpeg',
+		                'png' => 'image/png',
+		                'gif' => 'image/gif',
+	            	)
+	        	);
+	        	if ($extFoundInArray === false) {
+	            	$errors['my-file'] =  'Le fichier n\'est pas une image';
+	        	} else {
+	            // Renommer nom du fichier
+		            $shaFile = sha1_file($_FILES['my-file']['tmp_name']);
+		            $nbFiles = 0;
+		            $path = './assets/uploads/';
+		            $fileName = ''; // Le nom du fichier, sans le dossier
+		            do {
+		                $fileName = $shaFile . $nbFiles . '.' . $extFoundInArray;
+		                $fullPath = $path . $fileName;
+		                $nbFiles++;
+	            	} while(file_exists($fullPath));
 
+		            if(count($errors) === 0) {
+		            
+		                $moved = move_uploaded_file($_FILES['my-file']['tmp_name'], $fullPath);
+		                if (!$moved) {
+		                    $errors['my-file'] = 'Erreur lors de l\'enregistrement';
+		                } else {			
+
+			                $imageManagerService->resize($fullPath, null, 200, 200, true, $path . 'min/' . $fileName, false);	
+		            	}
+		            }
+        		}
+    		}
+			
 			if(count($errors) === 0) {
-				// Ajouter si OK
-				$accountsModel->insert([
-					'owner' 	=> $_POST['owner'],
-					'balance' 	=> $_POST['balance'],
-					'currency' 	=> $_POST['currency'],
+				$picturesModel->insert([
+					'id_user'		=> '1', // à remplacer par $_SESSION['user_id']
+					'Name' 			=> $_POST['title'],
+					'Description' 	=> $_POST['description'],
+					'URL'			=> $fileName,
+					'City' 			=> $_POST['localisation'],
 				]);
-				$this->redirectToRoute('account_all_default');
-			} else {
-				$this->show('account/add', ['errors' => $errors]);
+
+	
 			}
 		}
-
-		else {
-			// Sinon, afficher le formulaire
-			$this->show('account/add');
-		}
+		$this->show('pictures/add-picture', ['errors' => $errors]);
 	}
-
-	// Suppression d'un compte
-	public function delete($id)
-	{
-		$this->allowTo('admin');
-
-		$accountsModel = new AccountsModel();
-		$accountsModel->delete($id);
-		$this->redirectToRoute('account_all_default');
-	}
-
-	// Modification du solde en AJAX
-	public function ajaxOperation()
-	{
-		$this->allowTo('admin');
-
-		$accountsModel = new AccountsModel();
-		if(isset($_POST['accountId']) && ctype_digit($_POST['accountId'])) {
-			$accountId = $_POST['accountId'];
-			if(!empty($_POST['amount']) && filter_var($_POST['amount'], FILTER_VALIDATE_FLOAT)) {
-				$amount = $_POST['amount'];
-			} else {
-				$this->showJson(['errorAmount' => true]);
-			}
-
-			// Modifier le solde en fonction du type d'opération
-			$account = $accountsModel->find($accountId);
-			$newBalance = 0;
-			if($_POST['operation'] == 'credit') {
-				$newBalance = $account['balance'] + $amount;
-			} elseif($_POST['operation'] == 'debit') {
-				$newBalance = $account['balance'] - $amount;
-			}
-
-			$accountsModel->update(['balance' => $newBalance], $accountId);
-			$this->showJson(['success' => true, 'newBalance' => $newBalance]);
-		}
-	}*/
 }
+
+	
