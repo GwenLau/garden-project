@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'Dashboard']) ?>
+<?php $this->layout('layout', ['title' => 'Dashboard', 'user' => $user]) ?>
 
 <?php $this->start('main_content') ?>
 	<h2>Gérer ou trouver un jardin</h2>

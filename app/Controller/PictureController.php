@@ -25,7 +25,7 @@ class PictureController extends Controller
 
 		//$role = $this->getUser()['role'];
 
-		$this->show('picture/all', ['allPictures' => $pictures]);
+		$this->show('picture/all', ['allPictures' => $pictures, 'user' => $this->getUser()]);
 	}
 
 	// Détails d'une image
