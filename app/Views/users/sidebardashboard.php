@@ -13,9 +13,9 @@
 		</div>
 		<!-- END SIDEBAR USER TITLE -->
 		<!-- SIDEBAR BUTTONS -->
-		<div class="profile-userbuttons">
+		<!-- <div class="profile-userbuttons">
 			<button type="button" class="btn btn-danger btn-sm">Messagerie</button>
-		</div>
+		</div> -->
 		<!-- END SIDEBAR BUTTONS -->
 		<!-- SIDEBAR MENU -->
 		<div class="profile-usermenu">
@@ -24,6 +24,11 @@
 					<a href="<?= $this->url('default_profil') ?>">
 					<i class="glyphicon glyphicon-user"></i>
 					Votre compte </a>
+				</li>
+				<li>
+					<a href="<?= $this->url('default_profil') ?>">
+					<i class="glyphicon glyphicon-envelope"></i>
+					Messagerie </a>
 				</li>
 				<li>
 					<a href="<?= $this->url('default_dashboard') ?>">
