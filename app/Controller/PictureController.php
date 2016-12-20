@@ -128,4 +128,18 @@ class PictureController extends Controller
 		$this->show('pictures/add-picture', ['errors' => $errors]);
 	}
 
+	public function iLike()
+	{
+		if(isset($_POST['like'])) {
+
+			$picturesModel = new PicturesModel();
+
+			
+
+
+
+		}
+
+	}
+
 }
