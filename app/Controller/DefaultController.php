@@ -173,13 +173,13 @@ EOT;
 			$this->show('users/profil', ['user' => $this->getUser()]);
 		}
 
-	public function profilmessagerie()
+	public function messagerie()
 		{
 			$this->allowTo(['user', 'admin']);
 			// $id contient l'ID entré dans l'url 
 	/*		$picturesModel = new PicturesModel();
 			$picture = $picturesModel->find($id); // Va cibler automatiquement la colonne `id` de la base de données*/
-			$this->show('users/messagerie', ['user' => $this->getUser()]);
+			$this->show('users/messagerieprivate', ['user' => $this->getUser()]);
 		}
 
 		// Créer et insérer un nouvel utilisateur 

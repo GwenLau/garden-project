@@ -12,5 +12,5 @@
 		['GET|POST',	'/users/add',								'Default#insertUser',		'default_add'],
 		['GET',			'/pictures/details/[i:id]',					'Picture#details',			'picture_details'],
 		['GET|POST',	'/users/profil',							'Default#profildashboard',	'default_profil'],
-		['GET|POST',	'/users/messagerie',						'Default#profilmessagerie',	'default_messagerie'],
+		['GET|POST',	'/users/messagerie',						'Default#messagerie',	'default_messagerie'],
 	);

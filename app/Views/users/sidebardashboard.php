@@ -26,7 +26,7 @@
 					Votre compte </a>
 				</li>
 				<li>
-					<a href="<?= $this->url('default_profil') ?>">
+					<a href="<?= $this->url('default_messagerie') ?>">
 					<i class="glyphicon glyphicon-envelope"></i>
 					Messagerie </a>
 				</li>
