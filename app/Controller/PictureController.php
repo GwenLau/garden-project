@@ -20,7 +20,7 @@ class PictureController extends Controller
 		$picturesModel = new PicturesModel();
 
 
-		$pictures = $picturesModel->findAll('Description');
+		$pictures = $picturesModel->findAll();
 		
 
 		//$role = $this->getUser()['role'];
@@ -101,16 +101,16 @@ class PictureController extends Controller
 			if(count($errors) === 0) {
 				$picturesModel->insert([
 					'id_user'		=> '1', // à remplacer par $_SESSION['user_id']
-					'Name' 			=> $_POST['title'],
+					'Title' 		=> $_POST['title'],
 					'Description' 	=> $_POST['description'],
 					'URL'			=> $fileName,
-					'City' 			=> $_POST['localisation'],
+					/*'City' 			=> $_POST['localisation'],*/
 				]);
 
 	
 			}
 		}
-		$this->show('pictures/add-picture', ['errors' => $errors]);
+		$this->show('picture/add_picture', ['errors' => $errors]);
 	}
 
 	    public function like()

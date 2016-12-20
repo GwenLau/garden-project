@@ -7,7 +7,7 @@
 			<div class="container">
 		    <div class="row profile">
 				<div class="col-md-3">
-					<?= $this->insert('users/sidebardashboard', ['user' => $user]) ?>
+					<?= $this->insert('users/sidebar_dashboard', ['user' => $user]) ?>
 				</div>
 				<div class="col-md-9">
 		            <div class="profile-content">
@@ -15,14 +15,23 @@
 							Ma messagerie interne ...
 					
 						<title>Envoi de messages</title>
-						<form method="POST" ></form>
-						<label>Destinataires</label>
+						<form method="POST" action="#">
+						<label>Destinataire : </label>
+						<!-- <?php print_r($dests) ?> -->
 						<select name="destinataire">
-							<option > Boucle</option>	
+							<?php foreach($dests as $user) : ?>
+    						<option value=<?= $user['id'] ?>> 
+    						<?= $user['lastname'] ?>
+							</option>
+							<?php endforeach ?>
 						</select>
 						<br /><br />
-						<textarea placeholder="Votre message"></textarea>
-
+						<textarea placeholder="Votre message" name="message"></textarea>
+						<br /><br />
+						<input type="submit" value="Envoyer" name="envoi_message">
+						<br /><br />
+						<?php if(isset($error)) { echo $error; } ?>
+						</form>
 		            </div>
 
 				</div>

@@ -10,7 +10,7 @@
 		      <?= '<img src="' .
 		      $this->assetUrl('uploads/' . $Pic['URL']) ?>" alt="<?= $Pic['ALT'] ?>">
 		      <div class="caption">
-		        <h3><?= $Pic['Name'] ?></h3>
+		        <h3><?= $Pic['Title'] ?></h3>
 		        <p><?= $Pic['Description'] ?></p>
 		        <p><a href="#Form_contact" class="btn btn-primary" role="button">Contacter</a> <a href="#details.php" class="btn btn-default" role="button">Détails...</a></p>
 		        

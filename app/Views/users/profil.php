@@ -7,7 +7,7 @@
 			<div class="container">
 		    <div class="row profile">
 				<div class="col-md-3">
-					<?= $this->insert('users/sidebardashboard', ['user' => $user]) ?>
+					<?= $this->insert('users/sidebar_dashboard', ['user' => $user]) ?>
 				</div>
 				<div class="col-md-9">
 		            <div class="profile-content">
