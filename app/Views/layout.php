@@ -62,7 +62,7 @@
 		        <button type="submit" class="btn btn-default">Rechercher</button> -->
 		      </form>
 		      <ul class="nav navbar-nav navbar-right">
-		        <li><a href="#">A propos</a></li>
+		        <!-- <li><a href="#">A propos</a></li> -->
 		        <li class="dropdown">
 		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profil de :<?= $user['firstname'] ?> <span class="caret"></span></a>
 		          <ul class="dropdown-menu">
@@ -84,11 +84,32 @@
 <main>
 	<?= $this->section('main_content') ?>
 </main>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <div class="wrapper-footer">
 	<footer>
-		<div class="container">
-			
-		</div>
+    <div class="footer">
+      <div class="container">
+              <a href='#'><i class="fa fa-twitch fa-3x fa-fw"></i></a>
+              <a href='#'><i class="fa fa-facebook fa-3x fa-fw"></i></a>
+              <a href='#'><i class="fa fa-twitter fa-3x fa-fw"></i></a>
+              <a href='#'><i class="fa fa-youtube-play fa-3x fa-fw"></i></a>
+              <a href='#'><i class="fa fa-rss fa-3x fa-fw"></i></a>
+              <a href='#'><i class="fa fa-vine fa-3x fa-fw"></i></a>
+              <a href='#'><i class="fa fa-flickr fa-3x fa-fw"></i></a>
+              <a href='#'><i class="fa fa-linkedin fa-3x fa-fw"></i></a>
+            </span>
+      </div>
+    </div>
 	</footer>
 </div>
 </body>
