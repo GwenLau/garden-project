@@ -125,3 +125,4 @@ class PictureController extends Controller
 		}
 		$this->show('picture/add_picture', ['errors' => $errors]);
 	}
+}

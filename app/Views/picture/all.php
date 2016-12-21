@@ -9,14 +9,14 @@
 		<?php foreach($allPictures as $Pic) : ?>
 
 		  <div class="col-sm-6 col-md-4">
-		    <div class="thumbnail">S
+		    <div class="thumbnail">
 		      <?= '<img src="' .
 		      $this->assetUrl('uploads/' . $Pic['URL']) ?>" alt="<?= $Pic['ALT'] ?>">
 		      <div class="caption">
 		        <h3><?= $Pic['Title'] ?></h3>
 		        <p><?= $Pic['Description'] ?></p>
 		        <p><a href="#Form_contact" class="btn btn-primary" role="button">Contacter</a> <a href="#details.php" class="btn btn-default" role="button">Détails...</a>
-		        <a href="#details.php" class="btn btn-default like" role="button"><span class="glyphicon glyphicon-leaf" aria-hidden="true"></span> J'aime</a></p>
+		        </p>
 
 		      </div>
 		    </div>

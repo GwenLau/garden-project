@@ -27,8 +27,13 @@
 				</li>
 				<li>
 					<a href="<?= $this->url('default_messagerie') ?>">
+					<i class="glyphicon glyphicon-send"></i>
+					Contacter </a>
+				</li>
+				<li>
+					<a href="<?= $this->url('default_messagerie') ?>">
 					<i class="glyphicon glyphicon-envelope"></i>
-					Messagerie </a>
+					Demandes reçues </a>
 				</li>
 				<li>
 					<a href="<?= $this->url('default_dashboard') ?>">
