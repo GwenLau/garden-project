@@ -16,6 +16,9 @@
 
 	<script src ="<?= $this->assetUrl('js/bootstrap.min.js') ?>" defer></script> 
 	<script src ="<?= $this->assetUrl('js/script.js') ?>" defer></script> 
+	<!-- Google Maps -->
+	<script src="https://maps.googleapis.com/maps/api/js?callback=initMap&key=AIzaSyCAbFi6X_yxNJEkoPPrsb3GFbP-_7Mpglc" async defer></script>
+  
 </head>
 <body>
 

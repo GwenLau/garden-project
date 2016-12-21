@@ -15,16 +15,20 @@
 </section>
 
 <section class="container">
-	
+
+
+<!-- GL = Section Google Maps -->
 	<div class="row">
 		<div class="col-md-5">
 			texte blabla
 		</div>
 		<div class="col-md-7">
-			google map
+			<div id="map">
+			</div>
+    
 		</div>
 	</div>
-	<!-- google -->
+
 </section>
 
 <?php $this->stop('main_content') ?>
