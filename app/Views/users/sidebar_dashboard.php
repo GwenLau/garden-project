@@ -8,7 +8,7 @@
 		<!-- SIDEBAR USER TITLE -->
 		<div class="profile-usertitle">
 			<div class="profile-usertitle-name">
-				<?= $user['firstname'] ?>
+				<?= $user['pseudo'] ?>
 			</div>
 		</div>
 		<!-- END SIDEBAR USER TITLE -->
