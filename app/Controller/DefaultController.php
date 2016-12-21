@@ -164,7 +164,7 @@ EOT;
 		$this->show('users/dashboard', ['user' => $this->getUser()]);
 	}
 		
-	public function profildashboard()
+	public function profilDashboard()
 		{
 			$this->allowTo(['user', 'admin']);
 			// $id contient l'ID entré dans l'url 
@@ -183,9 +183,9 @@ EOT;
 						&& !empty($_POST['destinataire']) && !empty($_POST['message'])) {
 					$messagesModel = new \Model\MessagesModel();
 					$messagesModel->insert([
-						'id_expediteur' => $this->getUser()['id'],
-						'id_destinataire' => $_POST['destinataire'],
-						'message' => $_POST['message'],
+						'id_send' => $this->getUser()['id'],
+						'id_receive' => $_POST['destinataire'],
+						'Message' => $_POST['message'],
 					]);
 				} else {
 					$error = "Veuillez compléter tous les champs";
