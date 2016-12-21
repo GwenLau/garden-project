@@ -216,8 +216,8 @@ EOT;
 		if(isset($_POST['insert-user'])) {
 			$errors = [];
 
-			if(empty($_POST['mail'])) {
-				$errors['mail']['empty'] = true;
+			if(empty($_POST['email'])) {
+				$errors['email']['empty'] = true;
 			}
 			if(empty($_POST['pass1'])) {
 				$errors['pass1']['empty'] = true;
@@ -228,14 +228,18 @@ EOT;
 			if(empty($_POST['lastname'])) {
 				$errors['lastname']['empty'] = true;
 			}
+			if(empty($_POST['pseudo'])) {
+				$errors['pseudo']['empty'] = true;
+			}
 			
 			if(count($errors) === 0) {
 				// Ajouter si OK
 				$UsersModel->insert([
-					'mail' 		=> $_POST['mail'],
+					'email' 	=> $_POST['email'],
 					'password' 	=> $authModel->hashPassword($_POST['pass1']),
 					'firstname' => $_POST['firstname'],
 					'lastname' 	=> $_POST['lastname'],
+					'pseudo' 	=> $_POST['pseudo'],
 					'nb_tries' 	=> 0,
 
 				]);

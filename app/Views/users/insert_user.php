@@ -69,6 +69,16 @@ else: ?> -->
             <?php endif; ?>
         </div>
 
+        <!-- <div class="field">
+            <input type="text" name="pseudo" value="<?php if (isset($pseudo)) echo $pseudo ?>"
+                   placeholder="Pseudo"><br>
+            <?php if (isset($errors['pseudo'])) :
+                if (isset($errors['pseudo']['empty'])) : ?>
+                    <div class="error">Entrez votre Pseudo</div>
+                <?php endif; ?>
+            <?php endif; ?>
+        </div> -->
+
         <div class="field">
             <input type="submit" name="insert-user" value="Ajouter un utilisateur">
         </div>

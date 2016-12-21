@@ -21,7 +21,7 @@
 						<select name="destinataire">
 							<?php foreach($dests as $user) : ?>
     						<option value=<?= $user['id'] ?>> 
-    						<?= $user['lastname'] ?>
+    						<?= $user['pseudo'] ?>
 							</option>
 							<?php endforeach ?>
 						</select>
