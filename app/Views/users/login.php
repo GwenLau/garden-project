@@ -8,23 +8,26 @@
 
 <?php $this->start('main_content') ?>
 
+<div class="container">
+        
+        
 <!-- a effacer -->
 
-<!-- 	<section class="login">
-	<form action="#" method="post">
-		<fieldset>
-			<input type="text" name="mail" placeholder="E-mail">
-			<input type="password" name="pass" placeholder="Mot de passe">
-		</fieldset>
-		<a href="<?= $this->url('default_password_recovery') ?>">Mot de passe oublié ?</a>
-		<button type="submit" name="login">Connexion</button>
-	</form>
+<!--    <section class="login">
+    <form action="#" method="post">
+        <fieldset>
+            <input type="text" name="mail" placeholder="E-mail">
+            <input type="password" name="pass" placeholder="Mot de passe">
+        </fieldset>
+        <a href="<?= $this->url('default_password_recovery') ?>">Mot de passe oublié ?</a>
+        <button type="submit" name="login">Connexion</button>
+    </form>
 </section> -->
 
-	<!-- a effacer -->
+    <!-- a effacer -->
 
 
-	 <div class="container">    
+     
         <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
             <div class="panel panel-info" >
                     <div class="panel-heading">
@@ -160,6 +163,6 @@
                
                 
          </div>  -->
-    </div>
-
+   
+</div>
 <?php $this->stop('main_content') ?>
