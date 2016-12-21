@@ -92,7 +92,7 @@ EOT;
 				$this->sendMail($user['mail'], $user['lastname'] . ' ' . $user['firstname'], 'Réinitialisation du mot de passe', $messageHtml, $messagePlain);
 			}
 		} else {
-			$this->show('users/password-recovery');
+			$this->show('users/password_recovery');
 		}
 	}
 
@@ -148,7 +148,7 @@ EOT;
 			}
 
 			// Sinon
-			$this->show('users/reset-password');
+			$this->show('users/reset_password');
 		} else {
 			$this->redirectToRoute('default_login');
 		}
@@ -164,7 +164,8 @@ EOT;
 		$this->show('users/dashboard', ['user' => $this->getUser()]);
 	}
 		
-	public function profildashboard()
+
+	public function profilDashboard()
 		{
 			$this->allowTo(['user', 'admin']);
 			// $id contient l'ID entré dans l'url 
@@ -176,11 +177,34 @@ EOT;
 	public function messagerie()
 		{
 			$this->allowTo(['user', 'admin']);
+			$error = null;
+
+			if(isset($_POST['envoi_message'])) {		
+				if(isset($_POST['destinataire']) && isset($_POST['message'])
+						&& !empty($_POST['destinataire']) && !empty($_POST['message'])) {
+					$messagesModel = new \Model\MessagesModel();
+					$messagesModel->insert([
+						'id_send' => $this->getUser()['id'],
+						'id_receive' => $_POST['destinataire'],
+						'Message' => $_POST['message'],
+					]);
+				} else {
+					$error = "Veuillez compléter tous les champs";
+				}
+			}
+
 			// $id contient l'ID entré dans l'url 
 	/*		$picturesModel = new PicturesModel();
 			$picture = $picturesModel->find($id); // Va cibler automatiquement la colonne `id` de la base de données*/
-			$this->show('users/messagerieprivate', ['user' => $this->getUser()]);
+			$usersModel = new \W\Model\UsersModel();
+			$users = $usersModel->findAll();
+			$this->show('users/messagerie_private', [
+				'user' => $this->getUser(),
+				'dests' => $users,
+				'error' => $error
+			]);
 		}
+
 
 		// Créer et insérer un nouvel utilisateur 
 	public function insertUser()

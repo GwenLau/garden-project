@@ -20,12 +20,12 @@ class PictureController extends Controller
 		$picturesModel = new PicturesModel();
 
 
-		$pictures = $picturesModel->findAll('Description');
+		$pictures = $picturesModel->findAll();
 		
 
 		//$role = $this->getUser()['role'];
 
-		$this->show('picture/all', ['allPictures' => $pictures]);
+		$this->show('picture/all', ['allPictures' => $pictures, 'user' => $this->getUser()]);
 	}
 
 	// Détails d'une image
@@ -114,32 +114,14 @@ class PictureController extends Controller
 
 				$picturesModel->insert([
 					'id_user'		=> '1', // à remplacer par $_SESSION['user_id']
-					'Name' 			=> $_POST['title'],
+					'Title' 		=> $_POST['title'],
 					'Description' 	=> $_POST['description'],
 					'URL'			=> $fileName,
-					'City' 			=> $_POST['localisation'],
-					'LAT'			=> $lat,
-					'LON'			=> $lng,
+
 				]);
 
 	
 			}
 		}
-		$this->show('pictures/add-picture', ['errors' => $errors]);
+		$this->show('picture/add_picture', ['errors' => $errors]);
 	}
-
-	public function iLike()
-	{
-		if(isset($_POST['like'])) {
-
-			$picturesModel = new PicturesModel();
-
-			
-
-
-
-		}
-
-	}
-
-}
