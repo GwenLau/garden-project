@@ -10,6 +10,9 @@ body {
   background: #F1F3FA;
 }
 
+nav {
+  width: 1180px;
+}
 /* Profile container */
 .profile {
   margin: 20px 0;

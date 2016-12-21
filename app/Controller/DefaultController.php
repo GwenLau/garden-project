@@ -164,6 +164,7 @@ EOT;
 		$this->show('users/dashboard', ['user' => $this->getUser()]);
 	}
 		
+
 	public function profilDashboard()
 		{
 			$this->allowTo(['user', 'admin']);
@@ -203,7 +204,6 @@ EOT;
 				'error' => $error
 			]);
 		}
-
 
 
 		// Créer et insérer un nouvel utilisateur 

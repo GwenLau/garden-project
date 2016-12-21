@@ -35,7 +35,7 @@ class PictureController extends Controller
 		// $id contient l'ID entré dans l'url 
 		$picturesModel = new PicturesModel();
 		$picture = $picturesModel->find($id); // Va cibler automatiquement la colonne `id` de la base de données
-		$this->show('picture/details', ['picture' => $picture]);
+		$this->show('picture_details', ['picture' => $picture]);
 	}
 
 	
@@ -99,12 +99,25 @@ class PictureController extends Controller
     		}
 			
 			if(count($errors) === 0) {
+				$url = 'https://maps.googleapis.com/maps/api/geocode/json?';
+
+				$urlParams = http_build_query([
+				    'address' => $_POST['localisation'],
+				    'key' => 'AIzaSyB7NXsssmw5516Js0-eL_oznUQZA3CEU-U',
+				]);
+
+				$responseJSON = file_get_contents($url . $urlParams);
+				$response = json_decode($responseJSON);
+
+				$lat = $response->results[0]->geometry->location->lat;
+				$lng = $response->results[0]->geometry->location->lng;
+
 				$picturesModel->insert([
 					'id_user'		=> '1', // à remplacer par $_SESSION['user_id']
 					'Title' 		=> $_POST['title'],
 					'Description' 	=> $_POST['description'],
 					'URL'			=> $fileName,
-					/*'City' 			=> $_POST['localisation'],*/
+
 				]);
 
 	
@@ -112,13 +125,3 @@ class PictureController extends Controller
 		}
 		$this->show('picture/add_picture', ['errors' => $errors]);
 	}
-
-	    public function like()
-    {
- 
-        $sql = 'INSERT INTO VALUES(:nbVotes)';
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':nbVotes', $row->getIdOrder(), \PDO::PARAM_INT);
-
-    }
-}
