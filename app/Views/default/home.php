@@ -1,7 +1,30 @@
 <?php $this->layout('layout', ['title' => 'Accueil']) ?>
 
 <?php $this->start('main_content') ?>
-	<h2>Let's code.</h2>
-	<p>Vous avez atteint la page d'accueil. Bravo.</p>
-	<p>Et maintenant, RTFM dans <strong><a href="../docs/tuto/" title="Documentation de W">docs/tuto</a></strong>.</p>
+<section class="wrapper-hero">
+<!-- slider image -->
+	<div class="container">
+		<!-- form -->
+	</div>
+</section>
+<section class="wrapper-video">
+	<h1>Youpi Garden</h1>
+	<div class="container">
+		<!-- video -->
+	</div>
+</section>
+
+<section class="container">
+	
+	<div class="row">
+		<div class="col-md-5">
+			texte blabla
+		</div>
+		<div class="col-md-7">
+			google map
+		</div>
+	</div>
+	<!-- google -->
+</section>
+
 <?php $this->stop('main_content') ?>
