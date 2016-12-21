@@ -73,7 +73,7 @@ class DefaultController extends Controller
 				]);
 
 				// Envoyer un mail
-				$resetUrl = $this->generateUrl('default_reset_password', ['token' => $token]);
+				$resetUrl = "http://localhost/" . $this->generateUrl('default_reset_password', ['token' => $token]);
 
 				$messageHtml =<<< EOT
 <h1>Réinitialisation de votre mot de passe</h1>
@@ -143,14 +143,14 @@ EOT;
 
 					$tokenModel->delete($myToken['id']);
 
-					$this->redirectToRoute('users_login');
+					$this->redirectToRoute('default_login');
 				}
 			}
 
 			// Sinon
 			$this->show('users/reset-password');
 		} else {
-			$this->redirectToRoute('users_login');
+			$this->redirectToRoute('default_login');
 		}
 	}
 
@@ -161,8 +161,27 @@ EOT;
 		// $id contient l'ID entré dans l'url 
 /*		$picturesModel = new PicturesModel();
 		$picture = $picturesModel->find($id); // Va cibler automatiquement la colonne `id` de la base de données*/
-		$this->show('users/dashboard');
+		$this->show('users/dashboard', ['user' => $this->getUser()]);
 	}
+		
+	public function profildashboard()
+		{
+			$this->allowTo(['user', 'admin']);
+			// $id contient l'ID entré dans l'url 
+	/*		$picturesModel = new PicturesModel();
+			$picture = $picturesModel->find($id); // Va cibler automatiquement la colonne `id` de la base de données*/
+			$this->show('users/profil', ['user' => $this->getUser()]);
+		}
+
+	public function messagerie()
+		{
+			$this->allowTo(['user', 'admin']);
+			// $id contient l'ID entré dans l'url 
+	/*		$picturesModel = new PicturesModel();
+			$picture = $picturesModel->find($id); // Va cibler automatiquement la colonne `id` de la base de données*/
+			$this->show('users/messagerieprivate', ['user' => $this->getUser()]);
+		}
+
 		// Créer et insérer un nouvel utilisateur 
 	public function insertUser()
 	{

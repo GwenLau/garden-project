@@ -7,7 +7,7 @@
 <!-- 1/ Insérer le code de la fiche produit en html / bootstrap responsive -->
 <!-- 2/ Insérer le code de la fiche produit en php par rapport à la fonction décrite dans la fonction du controller -->
 
-  <?= $picture['Name'] ?>
+  <?= $picture['Title'] ?>
   <?= $picture['Author'] ?>
   <?= $picture['ALT'] ?>
   <?= $picture['Description'] ?>
