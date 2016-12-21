@@ -46,7 +46,7 @@
 					Rechercher un jardin </a>
 				</li>
 				<li>
-					<a href="#">
+					<a href="<?= $this->url('default_logout') ?>">
 					<i class="glyphicon glyphicon-off"></i>
 					Se deconnecter </a>
 				</li>
