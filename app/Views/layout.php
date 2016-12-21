@@ -3,17 +3,19 @@
 <head>
 	<meta charset="UTF-8">
 	<title><?= $this->e($title) ?></title>
+	
 	<!-- Bootstrap -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
 	crossorigin="anonymous">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="<?= $this->assetUrl('css/normalize.css') ?>">
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>">
 
 	<!-- CDN jQuery -->
 	<script src ="https://code.jquery.com/jquery-3.1.1.min.js"
 	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-
+	<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 	<script src ="<?= $this->assetUrl('js/bootstrap.min.js') ?>" defer></script> 
 	<script src ="<?= $this->assetUrl('js/script.js') ?>" defer></script> 
 </head>
@@ -32,7 +34,7 @@
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 		      </button>
-		      <a class="navbar-brand" href="#">YoupiGarden</a>
+		      <a class="navbar-brand" href="<?= $this->url('default_home') ?>">YoupiGarden</a>
 		    </div>
 
 		    <!-- Collect the nav links, forms, and other content for toggling -->
@@ -64,8 +66,8 @@
 		        <li class="dropdown">
 		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profil de :<?= $user['firstname'] ?> <span class="caret"></span></a>
 		          <ul class="dropdown-menu">
-		            <li><a href="#">Dashboard</a></li>
-		            <li><a href="#">Déconnection</a></li>
+		            <li><a href="<?= $this->url('default_dashboard') ?>">Dashboard</a></li>
+		            <li><a href="<?= $this->url('default_logout') ?>">Déconnection</a></li>
 		  
 		          </ul>
 		        </li>
