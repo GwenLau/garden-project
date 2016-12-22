@@ -4,7 +4,7 @@ namespace Model;
 
 use \W\Model\Model;
 
-class PicturesModel extends Model
+class GardensModel extends Model
 {	
 
 }

@@ -1,5 +1,16 @@
+/* HOMEPAGE */
 
+/***
+GoogleMaps section
+***/
 
+#map {
+  height: 200px;
+  width: 100%;
+  margin: 20px;
+}
+
+/* DASHBOARD */
 /***
 Sidebar dashboard
 A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themeforest: http://j.mp/metronictheme

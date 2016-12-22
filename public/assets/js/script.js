@@ -48,11 +48,3 @@ var mapHandler = (function() {
     return self;
 })();
 
-function initMap() {
-    var coords = {lat: 45.058, lng: 5.285};
-
-    mapHandler.showMap('map', coords, 4);
-    mapHandler.addMarker({lat: 45, lng: 4}, 'Marker 1');
-    mapHandler.addMarker({lat: 46, lng: 5}, 'Marker 2');
-    mapHandler.addMarker({lat: 40, lng: 3}, 'Marker 3');
-}
