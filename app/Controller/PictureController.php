@@ -34,6 +34,7 @@ class PictureController extends Controller
 		$this->allowTo(['user', 'admin']);
 		// $id contient l'ID entré dans l'url 
 		$picturesModel = new PicturesModel();
+		
 		$picture = $picturesModel->find($id); // Va cibler automatiquement la colonne `id` de la base de données
 		$this->show('picture_details', ['picture' => $picture]);
 	}
