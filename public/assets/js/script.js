@@ -6,6 +6,13 @@ function initMap()
         zoom : 5
     });
 
+    makeRequest('GardensController.php', function(data) {
+        var data = JSON.parse(data.responseText);         
+        for (var i = 0; i < data.length; i++) {
+            displayLocation(data[i]);
+        }
+    });
+
     var marker = new google.maps.Marker({
         position: {lat:45, lng:5},
         map: map,

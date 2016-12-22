@@ -13,4 +13,5 @@
 		['GET',			'/gardens/details/[i:id]',					'Gardens#details',			'garden_details'],
 		['GET|POST',	'/users/profil',							'Default#profilDashboard',	'default_profil'],
 		['GET|POST',	'/users/messagerie',						'Default#messagerie',	'default_messagerie'],
+		['GET|POST',	'/dashboard/gardens',						'Gardens#addGarden',	'users/dashboard_mesjardins'],
 	);
