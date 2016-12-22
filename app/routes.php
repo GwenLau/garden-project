@@ -14,6 +14,7 @@
 		['GET|POST',	'/users/profil',							'Default#profilDashboard',	'default_profil'],
 		['GET|POST',	'/users/messagerie',						'Default#messagerie',	'default_messagerie'],
 		['GET|POST',	'/users/contact',						'Default#contact',	'default_contact'],
+		['GET|POST',	'/users/received',						'Default#received',	'default_received'],
 		//AJAX David
 		['GET' 		,	'/places/search'						,	'Place#search' 			,	'places_search'				],
 

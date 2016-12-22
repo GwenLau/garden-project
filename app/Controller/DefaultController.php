@@ -255,6 +255,7 @@ EOT;
 			$this->show('users/add');
 	}
 
+//david function contact proprio jardin
 	public function contact()
 		{
 			$this->allowTo(['user', 'admin']);
@@ -285,5 +286,38 @@ EOT;
 				'error' => $error
 			]);
 		}
+
+//david function messagerie received
+	public function received()
+		{
+			$this->allowTo(['user', 'admin']);
+			$error = null;
+
+			if(isset($_POST['envoi_message'])) {		
+				if(isset($_POST['destinataire']) && isset($_POST['message'])
+						&& !empty($_POST['destinataire']) && !empty($_POST['message'])) {
+					$messagesModel = new \Model\MessagesModel();
+					$messagesModel->insert([
+						'id_send' => $this->getUser()['id'],
+						'id_receive' => $_POST['destinataire'],
+						'Message' => $_POST['message'],
+					]);
+				} else {
+					$error = "Veuillez compléter tous les champs";
+				}
+			}
+
+			// $id contient l'ID entré dans l'url 
+	/*		$picturesModel = new PicturesModel();
+			$picture = $picturesModel->find($id); // Va cibler automatiquement la colonne `id` de la base de données*/
+			$usersModel = new \W\Model\UsersModel();
+			$users = $usersModel->findAll();
+			$this->show('users/messagerie_received', [
+				'user' => $this->getUser(),
+				'dests' => $users,
+				'error' => $error
+			]);
+		}
+
 
 }

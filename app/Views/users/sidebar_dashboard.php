@@ -18,7 +18,7 @@
 		</div> -->
 		<!-- END SIDEBAR BUTTONS -->
 		<!-- SIDEBAR MENU -->
-		<div class="profile-usermenu">
+		<div class="panel panel-info">
 			<ul class="nav">
 				<li>
 					<a href="<?= $this->url('default_profil') ?>">
@@ -31,7 +31,7 @@
 					Contacter </a>
 				</li>
 				<li>
-					<a href="<?= $this->url('default_messagerie') ?>">
+					<a href="<?= $this->url('default_received') ?>">
 					<i class="glyphicon glyphicon-envelope"></i>
 					Demandes reçues </a>
 				</li>
