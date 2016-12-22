@@ -8,7 +8,7 @@
 		<!-- SIDEBAR USER TITLE -->
 		<div class="profile-usertitle">
 			<div class="profile-usertitle-name">
-				<?= $user['firstname'] ?>
+				<?= $user['pseudo'] ?>
 			</div>
 		</div>
 		<!-- END SIDEBAR USER TITLE -->
@@ -18,7 +18,7 @@
 		</div> -->
 		<!-- END SIDEBAR BUTTONS -->
 		<!-- SIDEBAR MENU -->
-		<div class="profile-usermenu">
+		<div class="panel panel-info">
 			<ul class="nav">
 				<li>
 					<a href="<?= $this->url('default_profil') ?>">
@@ -27,8 +27,13 @@
 				</li>
 				<li>
 					<a href="<?= $this->url('default_messagerie') ?>">
+					<i class="glyphicon glyphicon-send"></i>
+					Contacter </a>
+				</li>
+				<li>
+					<a href="<?= $this->url('default_received') ?>">
 					<i class="glyphicon glyphicon-envelope"></i>
-					Messagerie </a>
+					Demandes reçues </a>
 				</li>
 				<li>
 					<a href="<?= $this->url('default_dashboard') ?>">
@@ -41,7 +46,7 @@
 					Rechercher un jardin </a>
 				</li>
 				<li>
-					<a href="#">
+					<a href="<?= $this->url('default_logout') ?>">
 					<i class="glyphicon glyphicon-off"></i>
 					Se deconnecter </a>
 				</li>

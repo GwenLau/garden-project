@@ -216,8 +216,8 @@ EOT;
 		if(isset($_POST['insert-user'])) {
 			$errors = [];
 
-			if(empty($_POST['mail'])) {
-				$errors['mail']['empty'] = true;
+			if(empty($_POST['email'])) {
+				$errors['email']['empty'] = true;
 			}
 			if(empty($_POST['pass1'])) {
 				$errors['pass1']['empty'] = true;
@@ -228,14 +228,18 @@ EOT;
 			if(empty($_POST['lastname'])) {
 				$errors['lastname']['empty'] = true;
 			}
+			if(empty($_POST['pseudo'])) {
+				$errors['pseudo']['empty'] = true;
+			}
 			
 			if(count($errors) === 0) {
 				// Ajouter si OK
 				$UsersModel->insert([
-					'mail' 		=> $_POST['mail'],
+					'email' 	=> $_POST['email'],
 					'password' 	=> $authModel->hashPassword($_POST['pass1']),
 					'firstname' => $_POST['firstname'],
 					'lastname' 	=> $_POST['lastname'],
+					'pseudo' 	=> $_POST['pseudo'],
 					'nb_tries' 	=> 0,
 
 				]);
@@ -250,5 +254,51 @@ EOT;
 		}
 			$this->show('users/add');
 	}
+
+//david function contact proprio jardin
+	public function contact()
+		{
+			$this->allowTo(['user', 'admin']);
+			$error = null;
+
+			if(isset($_POST['envoi_message'])) {		
+				if(isset($_POST['destinataire']) && isset($_POST['message'])
+						&& !empty($_POST['destinataire']) && !empty($_POST['message'])) {
+					$messagesModel = new \Model\MessagesModel();
+					$messagesModel->insert([
+						'id_send' => $this->getUser()['id'],
+						'id_receive' => $_POST['destinataire'],
+						'Message' => $_POST['message'],
+					]);
+				} else {
+					$error = "Veuillez compléter tous les champs";
+				}
+			}
+
+			// $id contient l'ID entré dans l'url 
+	/*		$picturesModel = new PicturesModel();
+			$picture = $picturesModel->find($id); // Va cibler automatiquement la colonne `id` de la base de données*/
+			$usersModel = new \W\Model\UsersModel();
+			$users = $usersModel->findAll();
+			$this->show('users/contact_private', [
+				'user' => $this->getUser(),
+				'dests' => $users,
+				'error' => $error
+			]);
+		}
+
+//david function messagerie received
+	public function received()
+		{
+			$this->allowTo(['user', 'admin']);
+			//Récupère les messages
+			//il nous faut le modèle pour cela :
+			
+			$receivedModel = new ReceivedModel();
+
+			$received = $receivedModel->findAll();
+
+			$this->show('users/messagerie_received', ['allReceived' => $received, 'user' => $this->getUser()]);
+		}
 
 }

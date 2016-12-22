@@ -1,6 +1,10 @@
 <?php $this->layout('layout', ['title' => 'Liste des Photos']) ?>
 <?php $this->start('main_content') ?>
+<<<<<<< .merge_file_Tx2Wj3
   
+=======
+
+>>>>>>> .merge_file_AbMs0o
   <h2>Détails des jardins sélectionné</h2>
   <p>Retrouvez l'ensemble des détails ci-dessous et contactez le propriétaire</p>
 
