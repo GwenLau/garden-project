@@ -29,9 +29,12 @@
         </thead>
         <tbody>
             <tr>
-                <td>Tiger Nixon</td>
+            <?php foreach($dests2 as $user) : ?>
+  			 <?php endforeach ?>				
+                <td>mon pseudo</td>
                 <td>System Architect</td>
                 <td>Edinburgh</td>
+           
             </tr>
             <tr>
                 <td>Garrett Winters</td>

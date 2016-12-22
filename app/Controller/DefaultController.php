@@ -291,14 +291,19 @@ EOT;
 	public function received()
 		{
 			$this->allowTo(['user', 'admin']);
+			$error = null;
 			//Récupère les messages
 			//il nous faut le modèle pour cela :
 			
-			$receivedModel = new ReceivedModel();
+			$receivedModel = new \Model\MessagesModel();
 
 			$received = $receivedModel->findAll();
 
-			$this->show('users/messagerie_received', ['allReceived' => $received, 'user' => $this->getUser()]);
+			$this->show('users/messagerie_received', [
+				'user' => $this->getUser(),
+				'dests2' => $received,
+				'error' => $error
+			]);
 		}
 
 }
