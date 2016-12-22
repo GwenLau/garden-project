@@ -291,33 +291,14 @@ EOT;
 	public function received()
 		{
 			$this->allowTo(['user', 'admin']);
-			$error = null;
+			//Récupère les messages
+			//il nous faut le modèle pour cela :
+			
+			$receivedModel = new ReceivedModel();
 
-			if(isset($_POST['envoi_message'])) {		
-				if(isset($_POST['destinataire']) && isset($_POST['message'])
-						&& !empty($_POST['destinataire']) && !empty($_POST['message'])) {
-					$messagesModel = new \Model\MessagesModel();
-					$messagesModel->insert([
-						'id_send' => $this->getUser()['id'],
-						'id_receive' => $_POST['destinataire'],
-						'Message' => $_POST['message'],
-					]);
-				} else {
-					$error = "Veuillez compléter tous les champs";
-				}
-			}
+			$received = $receivedModel->findAll();
 
-			// $id contient l'ID entré dans l'url 
-	/*		$picturesModel = new PicturesModel();
-			$picture = $picturesModel->find($id); // Va cibler automatiquement la colonne `id` de la base de données*/
-			$usersModel = new \W\Model\UsersModel();
-			$users = $usersModel->findAll();
-			$this->show('users/messagerie_received', [
-				'user' => $this->getUser(),
-				'dests' => $users,
-				'error' => $error
-			]);
+			$this->show('users/messagerie_received', ['allReceived' => $received, 'user' => $this->getUser()]);
 		}
-
 
 }

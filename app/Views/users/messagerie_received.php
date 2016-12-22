@@ -58,10 +58,10 @@
 
 
 
-
+<!-- 
 						<form method="POST" action="#">
 						<label>Destinataire : </label>
-						<!-- <?php print_r($dests) ?> -->
+						<?php print_r($dests) ?>
 						<select name="destinataire">
 							<?php foreach($dests as $user) : ?>
     						<option value=<?= $user['id'] ?>> 
@@ -75,7 +75,7 @@
 						<input class="btn btn-success" type="submit" value="Envoyer" name="envoi_message">
 						<br /><br />
 						<?php if(isset($error)) { echo $error; } ?>
-						</form>
+						</form> -->
 		            </div>
 
 				</div>

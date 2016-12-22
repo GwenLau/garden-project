@@ -12,16 +12,19 @@ class PictureController extends Controller
 	// Affichage de la liste des images
 	public function displayAll()
 	{
-		//$this->allowTo(['user', 'admin']);
-		// $mode : soit sort-City, soit sort-city
-
-		// Récupère les images
-		// Il nous faut le modèle pour cela :
+	
 		$picturesModel = new PicturesModel();
 
+		if(isset($_GET['s'])) {
+			$pictures = $picturesModel->searchAllAndChilds([
+				'City' 			=> $_GET['s'],
+				'Description' 	=> $_GET['s'],
+				'Streetname'	=> $_GET['s'],
+			]);
+		} else {
+			$pictures = $picturesModel->findAllAndChilds();
+		}
 
-		$pictures = $picturesModel->findAll();
-		
 
 		//$role = $this->getUser()['role'];
 
