@@ -13,6 +13,7 @@
 		['GET',			'/pictures/details/[i:id]',					'Picture#details',			'picture_details'],
 		['GET|POST',	'/users/profil',							'Default#profilDashboard',	'default_profil'],
 		['GET|POST',	'/users/messagerie',						'Default#messagerie',	'default_messagerie'],
+		['GET|POST',	'/users/contact',						'Default#contact',	'default_contact'],
 		//AJAX David
 		['GET' 		,	'/places/search'						,	'Place#search' 			,	'places_search'				],
 
