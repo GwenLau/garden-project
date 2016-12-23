@@ -6,6 +6,7 @@ use \W\Controller\Controller;
 use \W\Security\AuthentificationModel;
 use \W\Model\UsersModel;
 use Model\RecoverytokensModel;
+use Model\GardensModel;
 
 class DefaultController extends Controller
 {
@@ -256,7 +257,7 @@ EOT;
 	}
 
 //david function contact proprio jardin
-	public function contact()
+	public function contact($idGarden)
 		{
 			$this->allowTo(['user', 'admin']);
 			$error = null;
@@ -268,6 +269,7 @@ EOT;
 					$messagesModel->insert([
 						'id_send' => $this->getUser()['id'],
 						'id_receive' => $_POST['destinataire'],
+						'id_garden' => $idGarden,
 						'Message' => $_POST['message'],
 					]);
 				} else {
@@ -275,12 +277,14 @@ EOT;
 				}
 			}
 
-			$usersModel = new \W\Model\UsersModel();
-			$users = $usersModel->findAll();
+			$gardenModel = new GardensModel();
+			$garden = $gardenModel->find($idGarden);
+			$ownerId = $garden['id_user'];
+			
 			$this->show('users/contact_private', [
 				'user' => $this->getUser(),
-				'dests' => $users,
-				'error' => $error
+				'error' => $error,
+				'destinataire' => $ownerId,
 			]);
 		}
 

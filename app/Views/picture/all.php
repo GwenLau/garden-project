@@ -16,7 +16,7 @@
 		        <h3><?= $Pic['City'] ?></h3>
 		        <p><?= $Pic['Name'] ?></p>
 		        <p><?= $Pic['Description'] ?></p>
-		        <p><a href="<?= $this->url('default_contact') ?>" class="btn btn-primary" role="button">Contacter</a> <a href="#details.php" class="btn btn-default" role="button">Détails...</a>
+		        <p><a href="<?= $this->url('default_contact', ['id' => $Pic['gardenId']]) ?>" class="btn btn-primary" role="button">Contacter</a> <a href="#details.php" class="btn btn-default" role="button">Détails...</a>
 		        </p>
 
 		      </div>
