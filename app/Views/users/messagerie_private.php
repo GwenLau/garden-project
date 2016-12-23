@@ -32,6 +32,19 @@
 						<br /><br />
 						<?php if(isset($error)) { echo $error; } ?>
 						</form>
+
+
+					<!-- <form class="form-inline" action="<?= $this->url('picture_all') ?>">
+					  <div class="form-group">
+					    <label class="sr-only" for="exampleInputEmail3">Recherche:</label>
+					    
+					    <input type="search"  value="<?php if(isset($_GET['s'])) echo $this->e($_GET['s']) ?>" class="form-control" id="s" name="s" placeholder="Rechercher un jardin">
+					
+					  </div>
+								  		  <button type="submit" class="btn btn-primary">Rechercher</button>
+					</form> -->
+
+
 		            </div>
 
 				</div>

@@ -29,23 +29,14 @@
         </thead>
         <tbody>
             <tr>
-            <?php foreach($dests2 as $user) : ?>
-  			 <?php endforeach ?>				
-                <td>mon pseudo</td>
-                <td>System Architect</td>
-                <td>Edinburgh</td>
-           
-            </tr>
-            <tr>
-                <td>Garrett Winters</td>
-                <td>Accountant</td>
-                <td>Tokyo</td>
-            </tr>
-            <tr>
-                <td>Ashton Cox</td>
-                <td>Junior Technical Author</td>
-                <td>San Francisco</td>
-            </tr>
+            <?php foreach($received as $recei) : ?>
+  			 			
+                <td><?= $recei['pseudo'] ?></td>
+                <td><?= $recei['firstname'] ?></td>
+                <td><?= $recei['Message'] ?></td>
+          
+            </tr><?php endforeach ?>	
+         
 
         </tbody>
     </table>

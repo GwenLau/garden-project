@@ -287,22 +287,15 @@ EOT;
 			]);
 		}
 
-//david function messagerie received
 	public function received()
 		{
 			$this->allowTo(['user', 'admin']);
-			$error = null;
-			//Récupère les messages
-			//il nous faut le modèle pour cela :
-			
-			$receivedModel = new \Model\MessagesModel();
 
-			$received = $receivedModel->findAll();
-
+			$messagesModel = new \Model\MessagesModel();
+			$messages = $messagesModel->findAllMessages($this->getUser()['id']);
 			$this->show('users/messagerie_received', [
 				'user' => $this->getUser(),
-				'dests2' => $received,
-				'error' => $error
+				'received' => $messages,
 			]);
 		}
 
