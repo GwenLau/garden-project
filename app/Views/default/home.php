@@ -24,6 +24,9 @@
 			<p>Avec des centaines de jardins proposés, vous trouverez forcément celui qui vous permettra de reconnecter avec la nature, de partager un moment entre passionnés de jardinage ou simplement de profiter d'un cadre vert en ville.</p>
 		</div>
 		<div class="col-md-7">
+			<?php foreach($gardens as $garden) : ?>
+				<input type="hidden" data-lat="<?= $garden['lat'] ?>" data-lng="<?= $garden['lng'] ?>">
+			<?php endforeach ?>
 			<div id="map"></div>
 
     		<script async defer

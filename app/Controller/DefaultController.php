@@ -5,7 +5,8 @@ namespace Controller;
 use \W\Controller\Controller;
 use \W\Security\AuthentificationModel;
 use \W\Model\UsersModel;
-use Model\RecoverytokensModel;
+use \Model\RecoverytokensModel;
+use \Model\GardensModel;
 
 class DefaultController extends Controller
 {
@@ -15,9 +16,11 @@ class DefaultController extends Controller
 	 */
 	public function home()
 	{
+		$gardensModel = new GardensModel();
+		$gardens = $gardensModel->findAll();
 		/*$this->redirectToRoute('default_home');*/
 		// Idem : 	$this->redirectToRoute('account_all_default');
-		$this->show('default/home');
+		$this->show('default/home', ['gardens' => $gardens]);
 	}
 
 	public function login()
@@ -249,6 +252,14 @@ EOT;
 				
 		}
 			$this->show('users/add');
+	}
+
+	public function myAccount(){
+		$UsersModel = new UsersModel();
+
+		$users = $UsersModel->displayMyAccount();
+		
+		$this->show('users/my_account');
 	}
 
 }

@@ -24,7 +24,9 @@
 		<p>Aucun fichier n'est téléchargé.</p>
 		<?php endif ?>
 		    <label for="my-file">Image : </label>
-		    <input type="file" name="my-file" value="Parcourir...">
+		    <input type="file" name="my-file[]" value="Parcourir...">
+		    <input type="file" name="my-file[]" value="Parcourir...">
+		    <input type="file" name="my-file[]" value="Parcourir...">
 		    
 		</div>
 		<div class="form-group">

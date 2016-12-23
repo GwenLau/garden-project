@@ -6,52 +6,45 @@ function initMap()
         zoom : 5
     });
 
-    makeRequest('GardensController.php', function(data) {
-        var data = JSON.parse(data.responseText);         
-        for (var i = 0; i < data.length; i++) {
-            displayLocation(data[i]);
-        }
-    });
-
-    var marker = new google.maps.Marker({
-        position: {lat:45, lng:5},
-        map: map,
-        title: "La France"
-    });
-    var marker = new google.maps.Marker({
-        position: {lat:42, lng:5},
-        map: map,
-        title: "La France"
+    $('input[type="hidden"]').each(function(key, elt) {
+        var marker = new google.maps.Marker({
+            position: {
+                lat: parseFloat($(elt).attr('data-lat')),
+                lng: parseFloat($(elt).attr('data-lng'))
+            },
+            map: map,
+            title: "France"
+        });        
     });
 }
 
 
-// Pattern "Module"
-var mapHandler = (function() {
-    var self = {};
-    self.markers = [];
+// // Pattern "Module"
+// var mapHandler = (function() {
+//     var self = {};
+//     self.markers = [];
 
-    self.addMarker = function(position, title) {
-        var marker = new google.maps.Marker({
-            position: position,
-            map: self.map,
-            title: title
-        });
-        self.markers.push(marker);
-    }
+//     self.addMarker = function(position, title) {
+//         var marker = new google.maps.Marker({
+//             position: position,
+//             map: self.map,
+//             title: title
+//         });
+//         self.markers.push(marker);
+//     }
 
-    self.getMarkers = function() {
-        return self.markers;
-    }
+//     self.getMarkers = function() {
+//         return self.markers;
+//     }
 
-    self.showMap = function (container, coords, zoom) {
-        var mapContainer = document.getElementById(container);
+//     self.showMap = function (container, coords, zoom) {
+//         var mapContainer = document.getElementById(container);
 
-        self.map = new google.maps.Map(mapContainer, {
-            center: coords,
-            zoom: zoom
-        });
-    };
-    return self;
-})();
+//         self.map = new google.maps.Map(mapContainer, {
+//             center: coords,
+//             zoom: zoom
+//         });
+//     };
+//     return self;
+// })();
 
