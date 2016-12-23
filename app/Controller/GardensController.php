@@ -58,11 +58,11 @@ class GardensController extends Controller
 		$picturesGardensModel = new PicturesGardensModel();
 		$imageManagerService = new ImageManagerService();
 
-		$errors = [];
-		$fileNames = [];
+		
 
 		if(isset($_POST['add-garden'])) {
-		
+			$errors = [];
+			$fileNames = [];
 
 			if(empty($_POST['name']) || strlen($_POST['name']) < 5) {
 				$errors['name']['emptyorshort'] = true;
@@ -110,7 +110,7 @@ class GardensController extends Controller
 				            // $fileNames = '';
 				            // boucle pour récupérer chaque image téléchargée
 				            do {
-				                $fileNames []= $shaFile . $nbFiles . '.' . $extFoundInArray;
+				                $fileNames [$i]= $shaFile . $nbFiles . '.' . $extFoundInArray;
 				                $fullPath = $path . $fileNames[$i];
 				                $nbFiles++;
 			            	} while(file_exists($fullPath));
@@ -136,9 +136,11 @@ class GardensController extends Controller
 	    		// Supprimer les images qui viennent d'etre uploadees
 	    		foreach($fileNames as $fileName) {
 	    			$path = './assets/uploads/';
-	    			@unlink($path . $fileName);
+	    			unlink($path . $fileName);
 	    		}
 	    	}
+
+	    	print_r($errors);
 			
 			if(count($errors) === 0) {
 				$url = 'https://maps.googleapis.com/maps/api/geocode/json?';
@@ -155,12 +157,12 @@ class GardensController extends Controller
 				$lng = $response->results[0]->geometry->location->lng;
 
 				$gardensModel->insert([
-					'id_user'		=> $_SESSION['user_id'],
+					'id_user'		=> 1, //$_SESSION['user']['id'],
 					'Name'	 		=> $_POST['name'],
 					'Description' 	=> $_POST['description'],
 					'Streetnumber'	=> $_POST['streetnumber'],
 					'Streetname'	=> $_POST['streetname'],
-					'CityCode	'	=> $_POST['citycode'],
+					'CityCode'		=> $_POST['citycode'],
 					'City'			=> $_POST['city'],					
 					'Name'	 		=> $_POST['name'],
 					'lat'			=> $lat,
@@ -169,11 +171,14 @@ class GardensController extends Controller
 				$gardenId = $gardensModel->lastInsertId();
 
 				foreach($fileNames as $fileName) {
+
+
 					$picturesModel->insert([
-						'id_user'		=> $_SESSION['user_id'],
-						'URL'			=> $fileName,			
+						'id_user'		=> 1,
+						'URL'			=> $fileName,	
 					]);
 					$pictureId = $picturesModel->lastInsertId();
+
 					$picturesGardensModel->insert([
 						'id_picture'	=> $pictureId,
 						'id_garden'		=> $gardenId,
