@@ -38,7 +38,7 @@
 
 	<div id="search" class="container">
 		<!-- form -->
-		<form class="form-inline" action="<?= $this->url('picture_all') ?>">
+		<form class="form-inline" action="<?= $this->url('garden_all') ?>">
 		  <div class="form-group">
 		    <label class="sr-only" for="exampleInputEmail3">Recherche:</label>
 		    <input type="search"  value="<?php if(isset($_GET['s'])) echo $this->e($_GET['s']) ?>" class="form-control" id="s" name="s" placeholder="Rechercher un jardin">
