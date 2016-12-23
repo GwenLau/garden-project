@@ -7,7 +7,7 @@ use \W\Controller\Controller;
 use Service\ImageManagerService;
 use Model\PicturesModel;
 
-class PictureController extends Controller
+class PicturesController extends Controller
 {
 	// Affichage de la liste des images
 	public function displayAll()

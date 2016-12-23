@@ -52,11 +52,9 @@
 	<h1>Youpi Garden</h1>
 	<div class="container">
 		<!-- video -->
-<<<<<<< HEAD
-		ma video
-=======
+
 		<iframe width="560" height="315" src="https://www.youtube.com/embed/VtpzTp9PfKY" frameborder="0" allowfullscreen></iframe>
->>>>>>> e6dc06758489d8da16222bd30f0871fba0ad2168
+
 	</div>
 </section>
 

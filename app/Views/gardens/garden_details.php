@@ -1,10 +1,6 @@
 <?php $this->layout('layout', ['title' => 'Liste des Photos']) ?>
 <?php $this->start('main_content') ?>
-<<<<<<< .merge_file_Tx2Wj3
-  
-=======
 
->>>>>>> .merge_file_AbMs0o
   <h2>Détails des jardins sélectionné</h2>
   <p>Retrouvez l'ensemble des détails ci-dessous et contactez le propriétaire</p>
 
@@ -30,3 +26,6 @@
 <?php $this->stop('main_content') ?>
 
 
+select * from pictures_gardens
+inner join pictures on pictures.id = pictures_gardens.id_picture
+where pictures_gardens.id_garden = 1
