@@ -14,6 +14,7 @@
 		      $this->assetUrl('uploads/' . $Pic['URL']) ?>" alt="<?= $Pic['ALT'] ?>">
 		      <div class="caption">
 		        <h3><?= $Pic['City'] ?></h3>
+		        <p><?= $Pic['Name'] ?></p>
 		        <p><?= $Pic['Description'] ?></p>
 		        <p><a href="<?= $this->url('default_contact') ?>" class="btn btn-primary" role="button">Contacter</a> <a href="#details.php" class="btn btn-default" role="button">Détails...</a>
 		        </p>

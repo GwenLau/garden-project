@@ -9,7 +9,7 @@ class PicturesModel extends Model
 	public function findAllAndChilds()
 	{
 		$sql =<<< EOT
-SELECT gardens.id AS gardenId, Description, Streetname, CityCode, Streetnumber, City, id_user
+SELECT gardens.id AS gardenId, Description, Streetname, CityCode, Streetnumber, City, Name, id_user
 FROM gardens
 LEFT JOIN users ON users.id = gardens.id_user
 GROUP BY gardens.id
@@ -28,7 +28,7 @@ EOT;
 		$where = substr($where, 0, -3);
 
 		$sql =<<<EOT
-SELECT gardens.id AS gardenId, Description, Streetname, CityCode, Streetnumber, City, id_user
+SELECT gardens.id AS gardenId, Description, Streetname, CityCode, Streetnumber, City, Name, id_user
 FROM gardens
 LEFT JOIN users ON users.id = gardens.id_user
 WHERE $where

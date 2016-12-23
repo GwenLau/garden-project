@@ -261,7 +261,7 @@ EOT;
 			$this->allowTo(['user', 'admin']);
 			$error = null;
 
-			if(isset($_POST['envoi_message'])) {		
+			if(isset($_POST['contact'])) {		
 				if(isset($_POST['destinataire']) && isset($_POST['message'])
 						&& !empty($_POST['destinataire']) && !empty($_POST['message'])) {
 					$messagesModel = new \Model\MessagesModel();
@@ -275,9 +275,6 @@ EOT;
 				}
 			}
 
-			// $id contient l'ID entré dans l'url 
-	/*		$picturesModel = new PicturesModel();
-			$picture = $picturesModel->find($id); // Va cibler automatiquement la colonne `id` de la base de données*/
 			$usersModel = new \W\Model\UsersModel();
 			$users = $usersModel->findAll();
 			$this->show('users/contact_private', [

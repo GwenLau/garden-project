@@ -20,6 +20,7 @@ class PictureController extends Controller
 				'City' 			=> $_GET['s'],
 				'Description' 	=> $_GET['s'],
 				'Streetname'	=> $_GET['s'],
+				'Name'			=> $_GET['s'],
 			]);
 		} else {
 			$pictures = $picturesModel->findAllAndChilds();

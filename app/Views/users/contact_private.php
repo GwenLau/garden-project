@@ -32,7 +32,7 @@
 												<br /><br />
 												<textarea placeholder="Votre message" name="message"></textarea>
 												<br /><br />
-												<input class="btn btn-success" type="submit" value="Envoyer" name="envoi_message">
+												<input class="btn btn-success" type="submit" value="Envoyer" name="contact">
 												<br /><br />
 												<?php if(isset($error)) { echo $error; } ?>
 												</form>
