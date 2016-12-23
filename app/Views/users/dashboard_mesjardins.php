@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'Mes jardins', 'user' => $user]) ?>
+<?php $this->layout('layout', ['title' => 'Proposer un jardin', 'user' => $user]) ?>
 
 <?php $this->start('main_content') ?>
 	
@@ -9,8 +9,6 @@
 				</div>
 				<div class="col-md-9">
 		            <div class="add-garden">
-					   
-						<h2>Proposer un jardin</h2>
 
 						<form enctype="multipart/form-data" action="#" method="POST">
 							<div class="form-group">
@@ -39,13 +37,13 @@
 						    	<label for="streetname" hidden>Rue</label>
 						    	<textarea name="streetname" class="form-control" placeholder="Rue"></textarea>
 
-							  	<?php if(isset($errors['citycode']['empty'])) : ?>
-									<p>Un code postal est requis.</p>
+							  	<?php if(isset($errors['citycode']['emptyorfalse'])) : ?>
+									<p>Un code postal valide est requis.</p>
 								<?php endif ?>
 						    	<label for="citycode" hidden>Rue</label>
 						    	<textarea name="citycode" class="form-control" placeholder="Code postal"></textarea>
 
-							  	<?php if(isset($errors['city']['empty'])) : ?>
+							  	<?php if(isset($errors['city']['emptyorshort'])) : ?>
 									<p>Veuillez renseigner la ville.</p>
 								<?php endif ?>
 						    	<label for="city" hidden>Ville</label>
@@ -62,7 +60,7 @@
 								<input type="file" name="my-file[]" value="Parcourir...">   
 							</div>
 							
-							<button name="add-garden" type="submit" class="btn btn-primary ">Ajouter le jardin</button>
+							<button name="add-garden" type="submit" class="btn btn-success ">Ajouter le jardin</button>
 						</form>
 					</div>
 					<div class="update-garden">

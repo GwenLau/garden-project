@@ -80,55 +80,65 @@ class GardensController extends Controller
 				$errors['city']['emptyorshort'] = true;
 			}
 
-			// begin loop
-			for($i = 0; $i < count($_FILES['my-file']['name']) ; $i++) {
+			if(empty($errors)) {
 
-				// Vérification du fichier uploadé
-				if ($_FILES['my-file']['error'][$i] != UPLOAD_ERR_OK) {
-	        
-	        		$errors['my-file'][$i] = 'Merci de choisir un fichier';
-	    		} else {
-		        	$finfo = new \finfo(FILEINFO_MIME_TYPE);
-		        	// Récupération du Mime
-		        	$mimeType = $finfo->file($_FILES['my-file']['tmp_name'][$i]);
-		        	$extFoundInArray = array_search(
-		            	$mimeType, array(
-			                'jpg' => 'image/jpeg',
-			                'png' => 'image/png',
-			                'gif' => 'image/gif',
-		            	)
-		        	);
-		        	if ($extFoundInArray === false) {
-		            	$errors['my-file'][$i] =  'Le fichier n\'est pas une image';
-		        	} else {
-		            // Renommer nom du fichier
-			            $shaFile = sha1_file($_FILES['my-file']['tmp_name'][$i]);
-			            $nbFiles = 0;
-			            $path = './assets/uploads/';
-			            // $fileNames = '';
-			            // boucle pour récupérer chaque image téléchargée
-			            foreach ($fileNames as $fileName){
+				// begin loop
+				for($i = 0; $i < count($_FILES['my-file']['name']) ; $i++) {
+
+					// Vérification du fichier uploadé
+					if ($_FILES['my-file']['error'][$i] != UPLOAD_ERR_OK) {
+		        
+		        		$errors['my-file'][$i] = 'Merci de choisir un fichier';
+		    		} else {
+			        	$finfo = new \finfo(FILEINFO_MIME_TYPE);
+			        	// Récupération du Mime
+			        	$mimeType = $finfo->file($_FILES['my-file']['tmp_name'][$i]);
+			        	$extFoundInArray = array_search(
+			            	$mimeType, array(
+				                'jpg' => 'image/jpeg',
+				                'png' => 'image/png',
+				                'gif' => 'image/gif',
+			            	)
+			        	);
+			        	if ($extFoundInArray === false) {
+			            	$errors['my-file'][$i] =  'Le fichier n\'est pas une image';
+			        	} else {
+			            // Renommer nom du fichier
+				            $shaFile = sha1_file($_FILES['my-file']['tmp_name'][$i]);
+				            $nbFiles = 0;
+				            $path = './assets/uploads/';
+				            // $fileNames = '';
+				            // boucle pour récupérer chaque image téléchargée
 				            do {
-				                $fileName = $shaFile . $nbFiles . '.' . $extFoundInArray;
-				                $fullPath = $path . $fileName;
+				                $fileNames []= $shaFile . $nbFiles . '.' . $extFoundInArray;
+				                $fullPath = $path . $fileNames[$i];
 				                $nbFiles++;
 			            	} while(file_exists($fullPath));
-		            	}
 
-			            if(count($errors) === 0) {
-			            
-			                $moved = move_uploaded_file($_FILES['my-file']['tmp_name'][$i], $fullPath);
-			                if (!$moved) {
-			                    $errors['my-file'][$i] = 'Erreur lors de l\'enregistrement';
-			                } else {			
+				            if(count($errors) === 0) {
+				            
+				                $moved = move_uploaded_file($_FILES['my-file']['tmp_name'][$i], $fullPath);
+				                if (!$moved) {
+				                    $errors['my-file'][$i] = 'Erreur lors de l\'enregistrement';
+				                } else {			
 
-				                $imageManagerService->resize($fullPath, null, 200, 200, true, $path . 'min/' . $fileName, false);	
-			            	}
-			            }
-	        		}
-	    		} // fin si fichier present
-    		}
-    		// end loop
+					                $imageManagerService->resize($fullPath, null, 200, 200, true, $path . 'min/' . $fileNames[$i], false);	
+				            	}
+				            }
+		        		}
+		    		} // fin si fichier present
+	    		}
+	    		// end loop
+	    	}
+
+	    	// Si une erreur sur un des fichiers
+	    	if(!empty($errors['my-file'])) {
+	    		// Supprimer les images qui viennent d'etre uploadees
+	    		foreach($fileNames as $fileName) {
+	    			$path = './assets/uploads/';
+	    			@unlink($path . $fileName);
+	    		}
+	    	}
 			
 			if(count($errors) === 0) {
 				$url = 'https://maps.googleapis.com/maps/api/geocode/json?';
@@ -156,19 +166,19 @@ class GardensController extends Controller
 					'lat'			=> $lat,
 					'lng'			=> $lng,
 				]);
+				$gardenId = $gardensModel->lastInsertId();
 
 				foreach($fileNames as $fileName) {
 					$picturesModel->insert([
 						'id_user'		=> $_SESSION['user_id'],
 						'URL'			=> $fileName,			
 					]);
-
+					$pictureId = $picturesModel->lastInsertId();
 					$picturesGardensModel->insert([
-						'id_picture'	=> 'id_picture',
-						'id_garden'		=> 'id_garden',
+						'id_picture'	=> $pictureId,
+						'id_garden'		=> $gardenId,
 					]);
 				}
-	
 			}
 		}
 		$this->show('users/dashboard_mesjardins', ['errors' => $errors]);
