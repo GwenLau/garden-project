@@ -1,7 +1,7 @@
-<?php $this->layout('layout', ['title' => 'Demande', 'user' => $user]) ?>
+<?php $this->layout('layout', ['title' => '', 'user' => $user]) ?>
 
 <?php $this->start('main_content') ?>
-	<h2>Contacter le proprietaire du jardin</h2>
+	<!-- <h2>Contacter le proprietaire du jardin</h2> -->
 
 <!-- new version -->
             <form action="#" id="contact-user" method="POST">

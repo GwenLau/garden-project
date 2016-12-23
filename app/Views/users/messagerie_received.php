@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'Dashboard', 'user' => $user]) ?>
+<?php $this->layout('layout', ['title' => '', 'user' => $user]) ?>
 
 <?php $this->start('main_content') ?>
 <!-- 	<h2>Gérer vos demandes de reservations de jardins</h2> -->
@@ -33,6 +33,9 @@
 				                        <th>
 				                            Message
 				                        </th>
+				                        <th>
+				                            Date
+				                        </th>
 				                    </tr>
 				                </thead>
 				                <tbody>
@@ -46,6 +49,9 @@
 				                        </td>
 				                        <td>
 				                            <?= $recei['Message'] ?>
+				                        </td>
+				                        <td>
+				                            <?= $recei['Date'] ?>
 				                        </td>
 				                    </tr>
 				                    </tr><?php endforeach ?>
