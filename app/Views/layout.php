@@ -11,6 +11,7 @@
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css">
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/normalize.css') ?>">
+	<link href="https://fonts.googleapis.com/css?family=Lobster|Roboto+Condensed:400,400i,700,700i" rel="stylesheet">
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>">
 
 	<!-- CDN jQuery -->
@@ -35,7 +36,7 @@
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 		      </button>
-		      <a class="navbar-brand" href="<?= $this->url('default_home') ?>">YoupiGarden</a>
+		      <a class="navbar-brand" href="<?= $this->url('default_home') ?>"> YoupiGarden</a>
 		    </div>
 
 		    <!-- Collect the nav links, forms, and other content for toggling -->
@@ -96,7 +97,16 @@
 <br>
 <br>
 <br>
-<div class="wrapper-footer">
+<footer class="main-footer">
+		<h4>YoupiGarden !</h4>
+		<a href='#'><i class="fa fa-facebook fa-3x fa-fw"></i></a>
+              <a href='#'><i class="fa fa-twitter fa-3x fa-fw"></i></a>
+              <a href='#'><i class="fa fa-youtube-play fa-3x fa-fw"></i></a>
+		<p>13, Rue des Ecluses Saint-martin<br />
+		75010, Paris<br />
+		0 805 62 23 45</p>
+	</footer>
+<!-- <div class="wrapper-footer">
 	<footer>
     <div class="footer">
       <div class="container">
@@ -112,6 +122,6 @@
       </div>
     </div>
 	</footer>
-</div>
+</div> -->
 </body>
 </html>

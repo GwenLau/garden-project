@@ -2,10 +2,6 @@
 
 <?php $this->start('main_content') ?>
 
-
-
-
-
 <!-- new version -->
             <form action="#" id="insert-user" method="POST">
                 <div class="container">    

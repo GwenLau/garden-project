@@ -1,17 +1,25 @@
 
 
-/***
-Sidebar dashboard
-A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themeforest: http://j.mp/metronictheme
-Licensed under MIT
-***/
-
 body {
-  background: #FFFFFF;
+/*   background: #FFFFFF; */
+}
+
+* {
+  box-sizing: border-box;
 }
 
 nav {
   width: 100%;
+}
+
+nav.bg-success {
+  background-color: #16a085;
+}
+
+a.navbar-brand {
+    font-family: 'Lobster', cursive;
+    color: #FFF;
+    float: left;
 }
 /* Profile container */
 .profile {
@@ -186,5 +194,19 @@ body,
     background: #E46653;
 } */
 
-/*footer */
+/*==============================
+=            footer            =
+==============================*/
 
+footer.main-footer {
+  padding: 30px 0px;
+  background-color: #16a085;
+  text-align: center;
+}
+
+.main-footer h4 {
+  color: #FFF;
+  font-size: 24px;
+  margin: 0px 0px 15px;
+  font-family: 'Lobster', cursive;
+}

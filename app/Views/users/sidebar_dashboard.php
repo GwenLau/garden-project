@@ -41,7 +41,7 @@
 					Proposer un jardin </a>
 				</li>
 				<li>
-					<a href="#">
+					<a href="<?= $this->url('default_search') ?>"">
 					<i class="glyphicon glyphicon-search"></i>
 					Rechercher un jardin </a>
 				</li>

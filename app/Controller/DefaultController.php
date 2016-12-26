@@ -250,7 +250,6 @@ EOT;
 			else {
 				$this->show('users/add', ['errors' => $errors]);
 			}
-
 				
 		}
 			$this->show('users/add');
@@ -299,5 +298,26 @@ EOT;
 				'received' => $messages,
 			]);
 		}
+
+	public function dashDisplayAll()
+	{
+	
+		$gardensModel = new GardensModel();
+
+		if(isset($_GET['s'])) {
+			$gardens = $gardensModel->searchAllAndChilds([
+				'City' 			=> $_GET['s'],
+				'Description' 	=> $_GET['s'],
+				'Streetname'	=> $_GET['s'],
+				'Name'			=> $_GET['s'],
+			]);
+		} else {
+			$gardens = $gardensModel->findAllAndChilds();
+		}
+
+		//$role = $this->getUser()['role'];
+
+		$this->show('users/search', ['allGardens' => $gardens, 'user' => $this->getUser()]);
+	}
 
 }

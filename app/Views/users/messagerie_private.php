@@ -12,9 +12,14 @@
 				<div class="col-md-9">
 		            <div class="profile-content">
 					   
-							
-					
-						<title>Envoi de messages</title>
+
+            <form action="#" method="POST">
+                <div class="container">    
+                        <div id="loginbox" style="margin-top:50px;" class="col-md-6">                    
+                            <div class="panel panel-info" >
+                                    <div class="panel-heading">
+                                        <div class="panel-title"></div>
+<!-- <title>Envoi de messages</title> -->
 						<form method="POST" action="#">
 						<label>Destinataire : </label>
 						<!-- <?php print_r($dests) ?> -->
@@ -32,18 +37,37 @@
 						<br /><br />
 						<?php if(isset($error)) { echo $error; } ?>
 						</form>
+          
+
+           <script>
+          $( function() {
+          var availableTags = [
+                        <?php foreach($dests as $user) : ?>
+                          
+                           <?= '"' . $user['pseudo'] . '"' . ',' ?>
+                        
+                        <?php endforeach ?>];
+                   
+              $( "#tags" ).autocomplete({
+                source: availableTags
+              });
+            } );
+           </script>
+
+      <form method="POST" action="#">
+          <div class="ui-widget">
+            <label for="tags">Destinataire (pseudo): </label> 
+            <input id="tags" >
+          </div>
+            <br /><br />
+          <textarea placeholder="Votre message" name="message"></textarea>
+            <br /><br />
+            <input class="btn btn-success" type="submit" value="Envoyer" name="envoi_message">
+            <br /><br />
+            
+      </form>
 
 
 
-
-		            </div>
-
-				</div>
-			</div>
-		</div>
-		<center>
-		</center>
-		<br>
-		<br>
 
 <?php $this->stop('main_content') ?>
