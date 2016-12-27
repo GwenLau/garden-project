@@ -1,18 +1,20 @@
-<?php $this->layout('layout', ['title' => 'Liste des Photos']) ?>
+<?php $this->layout('layout', ['title' => 'Détails']) ?>
+
 <?php $this->start('main_content') ?>
 
-  <h2>Détails des jardins sélectionné</h2>
+<?= $this->insert('users/sidebar_dashboard' ['user' => $user]) ?>
+
+  <h2>Détails des jardins sélectionnés</h2>
   <p>Retrouvez l'ensemble des détails ci-dessous et contactez le propriétaire</p>
 
 <!-- 1/ Insérer le code de la fiche produit en html / bootstrap responsive -->
 <!-- 2/ Insérer le code de la fiche produit en php par rapport à la fonction décrite dans la fonction du controller -->
+<img src="<?= $this->assetUrl('/img/' . $ownerInfos['URL']) ?>">
+<?= $ownerInfos['pseudo'] ?>
+<?= $garden['Name'] ?>
+<?= $garden['Description'] ?>
 
-  <?= $picture['Title'] ?>
-  <?= $picture['Author'] ?>
-  <?= $picture['ALT'] ?>
-  <?= $picture['Description'] ?>
-
-  <img src="<?= $this->assetUrl('/img/' . $picture['URL']) ?>">
+  <img src="<?= $this->assetUrl('/img/' . $pictures['URL']) ?>">
 
 <div class="row">
   <div class="col-xs-6 col-md-3">
@@ -26,6 +28,3 @@
 <?php $this->stop('main_content') ?>
 
 
-select * from pictures_gardens
-inner join pictures on pictures.id = pictures_gardens.id_picture
-where pictures_gardens.id_garden = 1

@@ -7,17 +7,23 @@ use \W\Controller\Controller;
 use Service\ImageManagerService;
 use Model\GardensModel;
 
-class PicturesController extends Controller
+class GardensController extends Controller
 {
 
-	// Détails d'une image
+	// Détails d'un jardin
 	public function details($id)
 	{
-		$this->allowTo(['user', 'admin']);
-		// $id contient l'ID entré dans l'url 
+
 		$gardensModel = new GardensModel();
-		
-		$garden = $gardensModel->find($id); // Va cibler automatiquement la colonne `id` de la base de données
-		$this->show('picture_details', ['picture' => $picture]);
+		$picturesGardensModel = new PicturesGardensModel();
+		$usersModel = new UsersModel();
+
+		$garden = $gardensModel->find(); // Va cibler automatiquement la colonne `id` de la base de données
+		$pictures = $picturesGardensModel->findPictures();
+		$ownerInfos = $usersModel()->findOwnerInfos();
+		$this->show('garden_details', [
+			'pictures' => $pictures,
+			'garden' => $garden,
+			'ownerInfos' => $ownerInfos,]);
 	}
 }
