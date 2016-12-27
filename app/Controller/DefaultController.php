@@ -161,9 +161,7 @@ EOT;
 	public function dashboard()
 	{
 		$this->allowTo(['user', 'admin']);
-		// $id contient l'ID entré dans l'url 
-/*		$picturesModel = new PicturesModel();
-		$picture = $picturesModel->find($id); // Va cibler automatiquement la colonne `id` de la base de données*/
+
 		$this->show('users/dashboard', ['user' => $this->getUser()]);
 	}
 		
@@ -171,9 +169,7 @@ EOT;
 	public function profilDashboard()
 		{
 			$this->allowTo(['user', 'admin']);
-			// $id contient l'ID entré dans l'url 
-	/*		$picturesModel = new PicturesModel();
-			$picture = $picturesModel->find($id); // Va cibler automatiquement la colonne `id` de la base de données*/
+
 			$this->show('users/profil', ['user' => $this->getUser()]);
 		}
 
@@ -252,14 +248,6 @@ EOT;
 				
 		}
 			$this->show('users/add');
-	}
-
-	public function myAccount(){
-		$UsersModel = new UsersModel();
-
-		$users = $UsersModel->displayMyAccount();
-		
-		$this->show('users/my_account');
 	}
 
 }
