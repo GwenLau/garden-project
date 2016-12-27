@@ -7,12 +7,10 @@
 <!-- 1/ Insérer le code de la fiche produit en html / bootstrap responsive -->
 <!-- 2/ Insérer le code de la fiche produit en php par rapport à la fonction décrite dans la fonction du controller -->
 
-  <?= $picture['Title'] ?>
-  <?= $picture['Author'] ?>
-  <?= $picture['ALT'] ?>
-  <?= $picture['Description'] ?>
+  <?= $pictures['Title'] ?>
+  <?= $pictures['ALT'] ?>
 
-  <img src="<?= $this->assetUrl('/img/' . $picture['URL']) ?>">
+  <img src="<?= $this->assetUrl('/img/' . $pictures['URL']) ?>">
 
 <div class="row">
   <div class="col-xs-6 col-md-3">

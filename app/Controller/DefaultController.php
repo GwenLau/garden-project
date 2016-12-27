@@ -56,6 +56,8 @@ class DefaultController extends Controller
 	{
 		$authModel = new AuthentificationModel();
 		$authModel->logUserOut();
+		header('Location: login');
+        exit;
 	}
 
 	// Affichage du formulaire de demande de nouveau mot de passe
@@ -64,7 +66,7 @@ class DefaultController extends Controller
 		$tokenModel = new RecoverytokensModel();
 		$userModel = new UsersModel();
 		if(isset($_POST['send-mail'])) {
-			$user = $userModel->getUserByUsernameOrEmail($_POST['mail']);
+			$user = $userModel->getUserByUsernameOrEmail($_POST['email']);
 			if(!empty($user)) {
 				// Ajouter un token de reset de mot de passe
 				$token = \W\Security\StringUtils::randomString(32);
@@ -90,7 +92,7 @@ Accédez à $resetUrl pour finaliser l'opération
 Si vous n'êtes pas à l'origine de ce mail, bla bla bla..
 EOT;
 
-				$this->sendMail($user['mail'], $user['lastname'] . ' ' . $user['firstname'], 'Réinitialisation du mot de passe', $messageHtml, $messagePlain);
+				$this->sendMail($user['email'], $user['lastname'] . ' ' . $user['firstname'], 'Réinitialisation du mot de passe', $messageHtml, $messagePlain);
 			}
 		} else {
 			$this->show('users/password_recovery');
@@ -159,16 +161,24 @@ EOT;
 	public function dashboard()
 	{
 		$this->allowTo(['user', 'admin']);
-		// $id contient l'ID entré dans l'url 
-/*		$picturesModel = new PicturesModel();
-		$picture = $picturesModel->find($id); // Va cibler automatiquement la colonne `id` de la base de données*/
+
 		$this->show('users/dashboard', ['user' => $this->getUser()]);
+
 	}
-		
+		/*if ($authModel->getLoggedUser() == null) $this->redirectToRoute('login');
+			$this->allowTo(['user', 'admin']);
+			if($authModel == isValidLoginInfo) {
+			$this->show('users/dashboard', ['user' => $this->getUser()]);
+		}*/
+
+		/*$this->allowTo(['user', 'admin']);
+
+		$this->show('users/dashboard', ['user' => $this->getUser()]);*/
 
 	public function profilDashboard()
 		{
 			$this->allowTo(['user', 'admin']);
+
 			// $id contient l'ID entré dans l'url 
 	/*		$picturesModel = new PicturesModel();
 			$picture = $picturesModel->find($id); // Va cibler automatiquement la colonne `id` de la base de données*/

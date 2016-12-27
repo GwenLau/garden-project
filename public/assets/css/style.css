@@ -127,6 +127,9 @@ a.navbar-brand {
 
 .wrapper-hero {
   position: relative;
+  padding: 0px;
+  margin-top: 0px;
+  width: 100%;
 }
 
 .wrapper-hero #search {
@@ -140,59 +143,20 @@ a.navbar-brand {
 }
 
 /* Carrousel */
-.carousel-fade {
-    .carousel-inner {
-        .item {
-            transition-property: opacity;
-        }
-        
-        .item,
-        .active.left,
-        .active.right {
-            opacity: 0;
-        }
-
-        .active,
-        .next.left,
-        .prev.right {
-            opacity: 1;
-        }
-
-        .next,
-        .prev,
-        .active.left,
-        .active.right {
-            left: 0;
-            transform: translate3d(0, 0, 0);
-        }
-    }
-
-    .carousel-control {
-        z-index: 2;
-    }
+div#carousel.carousel.slide.carousel-fade {
+  padding: 0px;
 }
 
-
-
-html, 
-body, 
-.carousel, 
-.carousel-inner, 
-.carousel-inner .item {
-    height: 100%;
-}
-
-/* .item:nth-child(1) {
-    background: #74C390;
-}
-
-.item:nth-child(2) {
-    background: #51BCE8;
-}
-
-.item:nth-child(3) {
-    background: #E46653;
+/* .carousel-inner {
+  padding: 0px;
+  width: 120%;
+  margin-left: 0;
+  margin-right: -10%;
+  margin-top: -10%;
 } */
+
+
+
 
 /*==============================
 =            footer            =

@@ -9,7 +9,7 @@ use Model\PicturesModel;
 
 class PictureController extends Controller
 {
-	// Affichage de la liste des images
+/*	// Affichage de la liste des images
 	public function displayAll()
 	{
 	
@@ -30,7 +30,7 @@ class PictureController extends Controller
 		//$role = $this->getUser()['role'];
 
 		$this->show('picture/all', ['allPictures' => $pictures, 'user' => $this->getUser()]);
-	}
+	}*/
 
 	// Détails d'une image
 	public function details($id)
@@ -39,10 +39,10 @@ class PictureController extends Controller
 		// $id contient l'ID entré dans l'url 
 		$picturesModel = new PicturesModel();
 		$picture = $picturesModel->find($id); // Va cibler automatiquement la colonne `id` de la base de données
-		$this->show('picture_details', ['picture' => $picture]);
+		$this->show('picture_details', ['picture' => $picture, 'user' => $this->getUser()]);
 	}
 
-	
+	/*
 	public function addPicture()
 	{
 		// $this->allowTo('admin');
@@ -128,5 +128,5 @@ class PictureController extends Controller
 			}
 		}
 		$this->show('picture/add_picture', ['errors' => $errors]);
-	}
+	}*/
 }
