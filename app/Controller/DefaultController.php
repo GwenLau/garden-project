@@ -252,6 +252,7 @@ EOT;
 					'lastname' 	=> $_POST['lastname'],
 					'pseudo' 	=> $_POST['pseudo'],
 					'nb_tries' 	=> 0,
+					'role'		=> user,
 
 				]);
 				
