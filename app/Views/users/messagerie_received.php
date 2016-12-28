@@ -39,7 +39,7 @@
 				                    </tr>
 				                </thead>
 				                <tbody>
-				                    <tr class="warning">
+				                    <tr>
 				                    <?php foreach($received as $recei) : ?>
 				                        <td>
 				                            <?= $recei['pseudo'] ?>

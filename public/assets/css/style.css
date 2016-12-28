@@ -18,28 +18,24 @@ GoogleMaps section
 }
 
 
-body {
-/*   background: #FFFFFF; */
-}
-
 * {
   box-sizing: border-box;
+}
 
 /* DASHBOARD */
-/***
-Sidebar dashboard
-A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themeforest: http://j.mp/metronictheme
-Licensed under MIT
-***/
 
 body {
-  background: #FFFFFF;
+  background-color: #FFF;
 
 }
 
 nav {
   width: 100%;
 
+}
+
+.nav.navbar-nav a {
+  color: #084F40;
 }
 
 nav.bg-success {
@@ -50,6 +46,7 @@ a.navbar-brand {
     font-family: 'Lobster', cursive;
     color: #FFF;
     float: left;
+    font-size: 30px;
 
 }
 /* Profile container */

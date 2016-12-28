@@ -40,22 +40,7 @@ class GardensController extends Controller
 
 //fonction david recherche
 
-}
 
-		//$this->allowTo(['user', 'admin']);
-		// $mode : soit sort-City, soit sort-city
-
-		// Récupère les jardins
-		// Il nous faut le modèle pour cela :
-		$gardensModel = new GardensModel();
-
-		$gardens = $gardensModel->findAll();
-		
-
-		//$role = $this->getUser()['role'];
-
-		$this->show('gardens/all', ['allGardens' => $gardens, 'user' => $this->getUser()]);
-	}
 
 	// Détails d'une image
 	public function details($id)

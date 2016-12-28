@@ -1,8 +1,8 @@
-<?php $this->layout('layout', ['title' => 'Dashboard']) ?>
+<?php $this->layout('layout', ['title' => 'Votre compte']) ?>
 
 <?php $this->start('main_content') ?>
-	<h2>Gérer ou trouver un jardin</h2>
-	<p>Retrouvez l'ensemble des détails de votre profil et gérer vos jardins à partager</p>
+	<!-- <h2>Gérer ou trouver un jardin</h2>
+	<p>Retrouvez l'ensemble des détails de votre profil et gérer vos jardins à partager</p> -->
 	
 			<div class="container">
 		    <div class="row profile">
