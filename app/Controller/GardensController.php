@@ -6,6 +6,8 @@ namespace Controller;
 use \W\Controller\Controller;
 use Service\ImageManagerService;
 use Model\GardensModel;
+use Model\PicturesModel;
+use Model\PicturesGardensModel;
 
 class GardensController extends Controller
 {
