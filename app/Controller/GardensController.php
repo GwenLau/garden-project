@@ -44,21 +44,17 @@ class GardensController extends Controller
 
 		$gardens = $gardensModel->findAll();
 
-		echo json_encode($gardens);
 	}
 
 	
 	public function addGarden()
 	{
 
-		print_r($_FILES);
-		// $this->allowTo('admin');
+		$this->allowTo(['user', 'admin']);
 		$gardensModel = new GardensModel();
 		$picturesModel = new PicturesModel();
 		$picturesGardensModel = new PicturesGardensModel();
-		$imageManagerService = new ImageManagerService();
-
-		
+		$imageManagerService = new ImageManagerService();	
 
 		if(isset($_POST['add-garden'])) {
 			$errors = [];
@@ -157,7 +153,7 @@ class GardensController extends Controller
 				$lng = $response->results[0]->geometry->location->lng;
 
 				$gardensModel->insert([
-					'id_user'		=> 1, //$_SESSION['user']['id'],
+					'id_user'		=> $_SESSION['user']['id'],
 					'Name'	 		=> $_POST['name'],
 					'Description' 	=> $_POST['description'],
 					'Streetnumber'	=> $_POST['streetnumber'],
@@ -174,7 +170,7 @@ class GardensController extends Controller
 
 
 					$picturesModel->insert([
-						'id_user'		=> 1,
+						'id_user'		=> $_SESSION['user']['id'],
 						'URL'			=> $fileName,	
 					]);
 					$pictureId = $picturesModel->lastInsertId();

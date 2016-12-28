@@ -250,4 +250,10 @@ EOT;
 			$this->show('users/add');
 	}
 
+	public function updateProfile()
+	{
+		
+		
+	}
+
 }
