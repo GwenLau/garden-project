@@ -20,6 +20,8 @@
 	<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 	<script src ="<?= $this->assetUrl('js/bootstrap.min.js') ?>" defer></script> 
 	<script src ="<?= $this->assetUrl('js/script.js') ?>" defer></script> 
+
+  
 </head>
 <body>
 

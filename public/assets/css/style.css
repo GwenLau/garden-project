@@ -1,3 +1,21 @@
+/* GLOBAL */
+
+header h1 {
+  margin-left: 30px;
+}
+
+
+/* HOMEPAGE */
+
+/***
+GoogleMaps section
+***/
+
+#map {
+  height: 300px;
+  width: 100%;
+  margin: 20px;
+}
 
 
 body {
@@ -6,10 +24,22 @@ body {
 
 * {
   box-sizing: border-box;
+
+/* DASHBOARD */
+/***
+Sidebar dashboard
+A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themeforest: http://j.mp/metronictheme
+Licensed under MIT
+***/
+
+body {
+  background: #FFFFFF;
+
 }
 
 nav {
   width: 100%;
+
 }
 
 nav.bg-success {
@@ -20,6 +50,7 @@ a.navbar-brand {
     font-family: 'Lobster', cursive;
     color: #FFF;
     float: left;
+
 }
 /* Profile container */
 .profile {

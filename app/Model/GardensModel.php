@@ -5,6 +5,7 @@ namespace Model;
 use \W\Model\Model;
 
 class GardensModel extends Model
+
 {
 		public function findAllAndChilds()
 	{
@@ -44,5 +45,8 @@ EOT;
 		$stmt->execute();
 		return $stmt->fetchAll();
 	}
+
+{	
+
 
 }

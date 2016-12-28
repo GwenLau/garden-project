@@ -8,6 +8,7 @@ use \W\Model\UsersModel;
 use Model\RecoverytokensModel;
 use Model\GardensModel;
 
+
 class DefaultController extends Controller
 {
 
@@ -16,9 +17,11 @@ class DefaultController extends Controller
 	 */
 	public function home()
 	{
+		$gardensModel = new GardensModel();
+		$gardens = $gardensModel->findAll();
 		/*$this->redirectToRoute('default_home');*/
 		// Idem : 	$this->redirectToRoute('account_all_default');
-		$this->show('default/home');
+		$this->show('default/home', ['gardens' => $gardens]);
 	}
 
 	public function login()
@@ -179,9 +182,6 @@ EOT;
 		{
 			$this->allowTo(['user', 'admin']);
 
-			// $id contient l'ID entré dans l'url 
-	/*		$picturesModel = new PicturesModel();
-			$picture = $picturesModel->find($id); // Va cibler automatiquement la colonne `id` de la base de données*/
 			$this->show('users/profil', ['user' => $this->getUser()]);
 		}
 
