@@ -6,7 +6,7 @@
 		Pour réinitialiser votre mot de passe, entrez votre adresse mail :
 		<form action="#" method="post">
 			<fieldset>
-				<input type="text" name="mail" placeholder="E-mail">
+				<input type="text" name="email" placeholder="E-mail">
 			</fieldset>
 			<button type="submit" name="send-mail">Envoyer un mail de réinitialisation</button>
 		</form>

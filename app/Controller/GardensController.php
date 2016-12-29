@@ -2,31 +2,45 @@
 
 namespace Controller;
 
+
+
 use \W\Controller\Controller;
 use Service\ImageManagerService;
 use Model\GardensModel;
 use Model\PicturesModel;
 use Model\PicturesGardensModel;
+//fonction david recherche
+
 
 class GardensController extends Controller
 {
 	// Affichage de la liste des images
 	public function displayAll()
 	{
-		//$this->allowTo(['user', 'admin']);
-		// $mode : soit sort-City, soit sort-city
 
-		// Récupère les jardins
-		// Il nous faut le modèle pour cela :
+	
 		$gardensModel = new GardensModel();
 
-		$gardens = $gardensModel->findAll();
-		
+		if(isset($_GET['s'])) {
+			$gardens = $gardensModel->searchAllAndChilds([
+				'City' 			=> $_GET['s'],
+				'Description' 	=> $_GET['s'],
+				'Streetname'	=> $_GET['s'],
+				'Name'			=> $_GET['s'],
+			]);
+		} else {
+			$gardens = $gardensModel->findAllAndChilds();
+		}
+
 
 		//$role = $this->getUser()['role'];
 
-		$this->show('gardens/all', ['allGardens' => $gardens, 'user' => $this->getUser()]);
+		$this->show('garden/all', ['allGardens' => $gardens, 'user' => $this->getUser()]);
 	}
+
+//fonction david recherche
+
+
 
 	// Détails d'une image
 	public function details($id)
@@ -188,3 +202,4 @@ class GardensController extends Controller
 	
 
 	
+

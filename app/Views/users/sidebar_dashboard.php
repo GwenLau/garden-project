@@ -8,9 +8,11 @@
 		<!-- SIDEBAR USER TITLE -->
 		<div class="profile-usertitle">
 			<div class="profile-usertitle-name">
+
 			
 				<div id="avatar"><img src="<?= $this->assetUrl('uploads/users/' . $user['avatar']) ?>" alt="avatar"></div>
-				<div><?= $user['firstname'] ?></div>
+				<div><?= $user['pseudo'] ?></div>
+
 			</div>
 		</div>
 		<!-- END SIDEBAR USER TITLE -->
@@ -20,17 +22,22 @@
 		</div> -->
 		<!-- END SIDEBAR BUTTONS -->
 		<!-- SIDEBAR MENU -->
-		<div class="profile-usermenu">
+		<div class="panel panel-info">
 			<ul class="nav">
 				<li>
 					<a href="<?= $this->url('default_profil') ?>">
-					<i class="glyphicon glyphicon-user"></i>
+					<i class="glyphicon glyphicon-user"></i> 
 					Votre compte </a>
 				</li>
 				<li>
 					<a href="<?= $this->url('default_messagerie') ?>">
+					<i class="glyphicon glyphicon-send"></i> 
+					Contacter </a>
+				</li>
+				<li>
+					<a href="<?= $this->url('default_received') ?>">
 					<i class="glyphicon glyphicon-envelope"></i>
-					Messagerie </a>
+					Demandes reçues </a>
 				</li>
 				<li>
 					<a href="<?= $this->url('users/dashboard_mesjardins') ?>">
@@ -38,12 +45,12 @@
 					Proposer un jardin </a>
 				</li>
 				<li>
-					<a href="#">
+					<a href="<?= $this->url('default_search') ?>"">
 					<i class="glyphicon glyphicon-search"></i>
 					Rechercher un jardin </a>
 				</li>
 				<li>
-					<a href="#">
+					<a href="<?= $this->url('default_logout') ?>">
 					<i class="glyphicon glyphicon-off"></i>
 					Se deconnecter </a>
 				</li>

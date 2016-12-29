@@ -1,3 +1,4 @@
+
 <?php $this->layout('layout', ['title' => 'Liste des Photos']) ?>
 <?php $this->start('main_content') ?>
 
@@ -24,5 +25,6 @@
 </div>
 
 <?php $this->stop('main_content') ?>
+
 
 

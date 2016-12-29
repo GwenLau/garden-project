@@ -5,8 +5,10 @@ namespace Controller;
 use \W\Controller\Controller;
 use \W\Security\AuthentificationModel;
 use \W\Model\UsersModel;
-use \Model\RecoverytokensModel;
-use \Model\GardensModel;
+use Model\RecoverytokensModel;
+use Model\GardensModel;
+use Service\ImageManagerService;
+
 
 class DefaultController extends Controller
 {
@@ -18,8 +20,7 @@ class DefaultController extends Controller
 	{
 		$gardensModel = new GardensModel();
 		$gardens = $gardensModel->findAll();
-		/*$this->redirectToRoute('default_home');*/
-		// Idem : 	$this->redirectToRoute('account_all_default');
+
 		$this->show('default/home', ['gardens' => $gardens]);
 	}
 
@@ -58,6 +59,8 @@ class DefaultController extends Controller
 	{
 		$authModel = new AuthentificationModel();
 		$authModel->logUserOut();
+		header('Location: login');
+        exit;
 	}
 
 	// Affichage du formulaire de demande de nouveau mot de passe
@@ -66,7 +69,7 @@ class DefaultController extends Controller
 		$tokenModel = new RecoverytokensModel();
 		$userModel = new UsersModel();
 		if(isset($_POST['send-mail'])) {
-			$user = $userModel->getUserByUsernameOrEmail($_POST['mail']);
+			$user = $userModel->getUserByUsernameOrEmail($_POST['email']);
 			if(!empty($user)) {
 				// Ajouter un token de reset de mot de passe
 				$token = \W\Security\StringUtils::randomString(32);
@@ -92,7 +95,7 @@ Accédez à $resetUrl pour finaliser l'opération
 Si vous n'êtes pas à l'origine de ce mail, bla bla bla..
 EOT;
 
-				$this->sendMail($user['mail'], $user['lastname'] . ' ' . $user['firstname'], 'Réinitialisation du mot de passe', $messageHtml, $messagePlain);
+				$this->sendMail($user['email'], $user['lastname'] . ' ' . $user['firstname'], 'Réinitialisation du mot de passe', $messageHtml, $messagePlain);
 			}
 		} else {
 			$this->show('users/password_recovery');
@@ -163,9 +166,9 @@ EOT;
 		$this->allowTo(['user', 'admin']);
 
 		$this->show('users/dashboard', ['user' => $this->getUser()]);
+
 	}
 		
-
 	public function profilDashboard()
 		{
 			$this->allowTo(['user', 'admin']);
@@ -215,8 +218,8 @@ EOT;
 		if(isset($_POST['insert-user'])) {
 			$errors = [];
 
-			if(empty($_POST['mail'])) {
-				$errors['mail']['empty'] = true;
+			if(empty($_POST['email'])) {
+				$errors['email']['empty'] = true;
 			}
 			if(empty($_POST['pass1'])) {
 				$errors['pass1']['empty'] = true;
@@ -227,15 +230,20 @@ EOT;
 			if(empty($_POST['lastname'])) {
 				$errors['lastname']['empty'] = true;
 			}
+			if(empty($_POST['pseudo'])) {
+				$errors['pseudo']['empty'] = true;
+			}
 			
 			if(count($errors) === 0) {
 				// Ajouter si OK
 				$UsersModel->insert([
-					'mail' 		=> $_POST['mail'],
+					'email' 	=> $_POST['email'],
 					'password' 	=> $authModel->hashPassword($_POST['pass1']),
 					'firstname' => $_POST['firstname'],
 					'lastname' 	=> $_POST['lastname'],
+					'pseudo' 	=> $_POST['pseudo'],
 					'nb_tries' 	=> 0,
+					'role'		=> user,
 
 				]);
 				
@@ -244,16 +252,135 @@ EOT;
 			else {
 				$this->show('users/add', ['errors' => $errors]);
 			}
-
 				
 		}
 			$this->show('users/add');
 	}
 
-	public function updateProfile()
+// Fonction pour ajouter un avatar (Dashboard > Mon compte)
+	public function addAvatar()
 	{
 		
-		
+		$UsersModel = new UsersModel();
+		$ImageManagerService = new ImageManagerService();
+
+		$this->allowTo(['user', 'admin']);
+
+		// Insertion d'un avatar
+		if(isset($_POST['save-new-avatar'])){
+			// Vérifier si le téléchargement du fichier n'a pas été interrompu
+		    if ($_FILES['my-file']['error'] != UPLOAD_ERR_OK) {
+		        echo 'Erreur lors du téléchargement.';
+		    } else {
+		        // Objet FileInfo
+		        $finfo = new finfo(FILEINFO_MIME_TYPE);
+
+		        // Récupération du Mime
+		        $mimeType = $finfo->file($_FILES['my-file']['tmp_name']);
+
+		        $extFoundInArray = array_search(
+		            $mimeType, array(
+		                'jpg' => 'image/jpeg',
+		                'png' => 'image/png',
+		                'gif' => 'image/gif',
+		            )
+		        );
+		        if ($extFoundInArray === false) {
+		            echo 'Le fichier n\'est pas une image';
+		        } else {
+		            // Renommer nom du fichier
+		            $shaFile = sha1_file($_FILES['my-file']['tmp_name']);
+		            $nbFiles = 0;
+		            $fileName = ''; // Le nom du fichier, sans le dossier
+		            do {
+		                $fileName = $shaFile . $nbFiles . '.' . $extFoundInArray;
+		                $path = './assets/uploads/users/' . $fileName;
+		                $nbFiles++;
+		            } while(file_exists($path));
+
+		            if(count($errors) === 0) {
+
+		            $moved = move_uploaded_file($_FILES['my-file']['tmp_name'], $path);
+		            if (!$moved) {
+		                echo 'Erreur lors de l\'enregistrement';
+		            } else {
+		            	$imageManagerService->resize($fullPath, null, 200, 200, true, $path . 'min/' . $fileNames, false);	
+		            	$usersModel->updateAvatar([
+		            			'avatar' => $fileName,
+		            		]);
+		            	}
+		        	}
+		    	}
+    		}
+    	}
+
+	} // Fin de la fonction addAvatar
+
+
+//david function contact proprio jardin
+	public function contact($idGarden)
+		{
+			$this->allowTo(['user', 'admin']);
+			$error = null;
+
+			if(isset($_POST['contact'])) {		
+				if(isset($_POST['destinataire']) && isset($_POST['message'])
+						&& !empty($_POST['destinataire']) && !empty($_POST['message'])) {
+					$messagesModel = new \Model\MessagesModel();
+					$messagesModel->insert([
+						'id_send' => $this->getUser()['id'],
+						'id_receive' => $_POST['destinataire'],
+						'id_garden' => $idGarden,
+						'Message' => $_POST['message'],
+					]);
+				} else {
+					$error = "Veuillez compléter tous les champs";
+				}
+			}
+
+			$gardenModel = new GardensModel();
+			$garden = $gardenModel->find($idGarden);
+			$ownerId = $garden['id_user'];
+			
+			$this->show('users/contact_private', [
+				'user' => $this->getUser(),
+				'error' => $error,
+				'destinataire' => $ownerId,
+			]);
+		}
+
+	public function received()
+		{
+			$this->allowTo(['user', 'admin']);
+
+			$messagesModel = new \Model\MessagesModel();
+			$messages = $messagesModel->findAllMessages($this->getUser()['id']);
+			$this->show('users/messagerie_received', [
+				'user' => $this->getUser(),
+				'received' => $messages,
+			]);
+		}
+
+	public function dashDisplayAll()
+	{
+	
+		$gardensModel = new GardensModel();
+
+		if(isset($_GET['s'])) {
+			$gardens = $gardensModel->searchAllAndChilds([
+				'City' 			=> $_GET['s'],
+				'Description' 	=> $_GET['s'],
+				'Streetname'	=> $_GET['s'],
+				'Name'			=> $_GET['s'],
+			]);
+		} else {
+			$gardens = $gardensModel->findAllAndChilds();
+		}
+
+		//$role = $this->getUser()['role'];
+
+		$this->show('users/search', ['allGardens' => $gardens, 'user' => $this->getUser()]);
+
 	}
 
 }

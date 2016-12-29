@@ -2,10 +2,6 @@
 
 <?php $this->start('main_content') ?>
 
-
-
-
-
 <!-- new version -->
             <form action="#" id="insert-user" method="POST">
                 <div class="container">    
@@ -22,8 +18,8 @@
                                         <form id="loginform" method="post" class="form-horizontal" role="form">
 
                                         <div style="margin-bottom: 25px" class="input-group">
-                                                            <span class="input-group-addon"><i class="glyphicon glyphicon"></i></span>
-                                                            <input type="text" name="lastname" value="<?php if (isset($lastname)) echo $lastname ?>" placeholder="Nom de famille">
+                                                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                                            <input type="text" class="form-control" name="lastname" value="<?php if (isset($lastname)) echo $lastname ?>" placeholder="Nom de famille">
                                                              <?php if (isset($errors['lastname'])) :
                                                             if (isset($errors['lastname']['empty'])) : ?>
                                                                 <div class="error">Entrez votre nom</div>
@@ -34,8 +30,8 @@
 
 
                                                             <div style="margin-bottom: 25px" class="input-group">
-                                                            <span class="input-group-addon"><i class="glyphicon glyphicon"></i></span>
-                                                            <input type="text" name="firstname" value="<?php if (isset($firstname)) echo $firstname ?>"
+                                                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                                            <input type="text" class="form-control" name="firstname" value="<?php if (isset($firstname)) echo $firstname ?>"
                                                                 placeholder="Prénom"">
                                                              <?php if (isset($errors['firstname'])) :
                                                             if (isset($errors['firstname']['empty'])) : ?>
@@ -43,18 +39,29 @@
                                                             <?php endif; ?>
                                                         <?php endif; ?>
                                                     </div>
+
+                                                    <div style="margin-bottom: 25px" class="input-group">
+                                                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                                            <input type="text" class="form-control" name="pseudo" value="<?php if (isset($pseudo)) echo $pseudo ?>"
+                                                                placeholder="Pseudo"">
+                                                             <?php if (isset($errors['pseudo'])) :
+                                                            if (isset($errors['pseudo']['empty'])) : ?>
+                                                                <div class="error">Entrez votre Pseudo</div>
+                                                            <?php endif; ?>
+                                                        <?php endif; ?>
+                                                    </div>
                                                     
                                             <div style="margin-bottom: 25px" class="input-group">
                                                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                                        <input  error type="text" id="login-username" type="text" class="form-control" name="mail" value="<?php if (isset($mail)) echo $mail ?>" placeholder="E-mail"> 
-                                                        <?php if (isset($errors['mail'])) :
-                                                        if (isset($errors['mail']['empty'])) : ?>
+                                                        <input  error type="text" id="login-username" type="text" class="form-control" name="email" value="<?php if (isset($email)) echo $email ?>" placeholder="E-mail"> 
+                                                        <?php if (isset($errors['email'])) :
+                                                        if (isset($errors['email']['empty'])) : ?>
                                                             <div class="error">Le mail doit être rempli</div>
                                                         <?php endif;
-                                                        if (isset($errors['mail']['invalid'])) : ?>
+                                                        if (isset($errors['email']['invalid'])) : ?>
                                                             <div class="error">Le mail n'est pas valide</div>
                                                         <?php endif;
-                                                        if (isset($errors['mail']['exists'])) : ?>
+                                                        if (isset($errors['email']['exists'])) : ?>
                                                             <div class="error">Un compte est déjà enregistré avec cette adresse</div>
                                                         <?php endif; ?>
                                                     <?php endif; ?>                                       

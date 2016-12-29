@@ -1,11 +1,21 @@
-/* GLOBAL */
+/*====================================== 
+================ GLOBAL ================
+======================================*/
 
-header h1 {
-  margin-left: 30px;
+
+* {
+  box-sizing: border-box;
+  font-family: 'Lato';
 }
 
+h1 {
+  text-align: center;
+}
 
-/* HOMEPAGE */
+/*====================================== 
+=============== HOMEPAGE ===============
+======================================*/
+
 
 /***
 GoogleMaps section
@@ -17,19 +27,53 @@ GoogleMaps section
   margin: 20px;
 }
 
-/* DASHBOARD */
-/***
-Sidebar dashboard
-A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themeforest: http://j.mp/metronictheme
-Licensed under MIT
-***/
+iframe {
+  margin-left: 25%;
+}
+
+.presentation {
+  text-align: center;
+}
+
+p.presentation {
+  font-size: 20px;
+}
+
+
+/*======================================
+=============== DASHBOARD ==============
+======================================*/
+
 
 body {
-  background: #FFFFFF;
+  background-color: #FFF;
+
 }
 
 nav {
   width: 100%;
+
+}
+
+.nav.navbar-nav a {
+  color: #084F40;
+  font-size: 15px;
+}
+
+.nav.navbar-nav a:hover {
+  background-color: #A2DED0;
+}
+
+nav.bg-success {
+  background-color: #16a085;
+}
+
+a.navbar-brand {
+    font-family: 'Lobster', cursive;
+    color: #FFF;
+    float: left;
+    font-size: 30px;
+
 }
 /* Profile container */
 .profile {
@@ -40,21 +84,15 @@ nav {
 .profile-sidebar {
   padding: 20px 0 10px 0;
   background: #fff;
+  border-color: #084F40;
 }
 
-.profile-userpic img {
-  float: none;
-  margin: 0 auto;
-  width: 50%;
-  height: 50%;
-  -webkit-border-radius: 50% !important;
-  -moz-border-radius: 50% !important;
-  border-radius: 50% !important;
-}
+
 
 .profile-usertitle {
   text-align: center;
   margin-top: 20px;
+
 }
 
 .profile-usertitle-name {
@@ -75,6 +113,7 @@ nav {
 .profile-userbuttons {
   text-align: center;
   margin-top: 10px;
+
 }
 
 .profile-userbuttons .btn {
@@ -135,4 +174,64 @@ nav {
   min-height: 460px;
 }
 
-//fin dashboard
+.wrapper-hero {
+  position: relative;
+  padding: 0px;
+  margin-top: 0px;
+  width: 100%;
+}
+
+.wrapper-hero #search {
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  transform: translateY(-50%);
+  text-align: center;
+}
+
+/* Carrousel */
+div#carousel.carousel.slide.carousel-fade {
+  padding: 0px;
+}
+
+/* .carousel-inner {
+  padding: 0px;
+  width: 120%;
+  margin-left: 0;
+  margin-right: -10%;
+  margin-top: -10%;
+} */
+
+
+
+
+/*======================================
+================= FOOTER ===============
+======================================*/
+
+footer.main-footer {
+  padding: 30px 0px;
+  background-color: #16a085;
+  text-align: center;
+}
+
+.main-footer h4 {
+  color: #FFF;
+  font-size: 24px;
+  margin: 0px 0px 15px;
+  font-family: 'Lobster', cursive;
+}
+
+footer>a {
+  color: #FFF;
+}
+
+footer>a:hover {
+  color: #A2DED0;
+}
+
+footer>p {
+  color: #FFF;
+}
