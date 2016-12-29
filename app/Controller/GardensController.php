@@ -65,7 +65,7 @@ class GardensController extends Controller
 	public function addGarden()
 	{
 
-		print_r($_FILES);
+		/*print_r($_FILES);*/
 		// $this->allowTo('admin');
 		$gardensModel = new GardensModel();
 		$picturesModel = new PicturesModel();

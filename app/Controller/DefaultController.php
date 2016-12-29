@@ -164,19 +164,16 @@ EOT;
 	public function dashboard()
 	{
 		$this->allowTo(['user', 'admin']);
-
+	
 		$this->show('users/dashboard', ['user' => $this->getUser()]);
 
 	}
-		/*if ($authModel->getLoggedUser() == null) $this->redirectToRoute('login');
-			$this->allowTo(['user', 'admin']);
-			if($authModel == isValidLoginInfo) {
-			$this->show('users/dashboard', ['user' => $this->getUser()]);
-		}*/
-
 		/*$this->allowTo(['user', 'admin']);
-
-		$this->show('users/dashboard', ['user' => $this->getUser()]);*/
+		
+		$this->show('users/dashboard', ['user' => $this->getUser()]);
+		
+	}*/
+	
 
 	public function profilDashboard()
 		{
