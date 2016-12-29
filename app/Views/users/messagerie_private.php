@@ -20,7 +20,7 @@
                                 <div class="panel-heading">
                                     <div class="panel-title"></div>
                                         <input type="text" class="tags" ><br>
-                                        Chose: <span class="tags_id" name="destinataire"></span>
+                                        Contactez le destinataire (pseudo) <span class="tags_id" name="destinataire"></span>
                                         <input type="hidden" name="destinataire" id="destinataire_message">
                                         <script>
                                             var raw = [
