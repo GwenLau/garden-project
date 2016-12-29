@@ -150,7 +150,6 @@ class GardensController extends Controller
 	    		}
 	    	}
 
-	    	print_r($errors);
 			
 			if(count($errors) === 0) {
 				$url = 'https://maps.googleapis.com/maps/api/geocode/json?';
@@ -180,10 +179,11 @@ class GardensController extends Controller
 				]);
 				$gardenId = $newGarden['id'];
 
+				$i = 1;
 				foreach($fileNames as $fileName) {
 
 
-				$newPicture = $picturesModel->insert([
+					$newPicture = $picturesModel->insert([
 						'id_user'		=> $_SESSION['user']['id'],
 						'URL'			=> $fileName,	
 					]);
@@ -193,7 +193,10 @@ class GardensController extends Controller
 					$picturesGardensModel->insert([
 						'id_picture'	=> $pictureId,
 						'id_garden'		=> $gardenId,
+						'position'		=> $i,
 					]);
+
+					$i++;
 				}
 			}
 		}
