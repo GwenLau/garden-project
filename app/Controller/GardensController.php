@@ -9,7 +9,7 @@ use Service\ImageManagerService;
 use Model\GardensModel;
 use Model\PicturesModel;
 use Model\PicturesGardensModel;
-//fonction david recherche
+
 
 
 class GardensController extends Controller
@@ -166,7 +166,7 @@ class GardensController extends Controller
 				$lat = $response->results[0]->geometry->location->lat;
 				$lng = $response->results[0]->geometry->location->lng;
 
-				$gardensModel->insert([
+				$newGarden = $gardensModel->insert([
 					'id_user'		=> $_SESSION['user']['id'],
 					'Name'	 		=> $_POST['name'],
 					'Description' 	=> $_POST['description'],
@@ -178,16 +178,17 @@ class GardensController extends Controller
 					'lat'			=> $lat,
 					'lng'			=> $lng,
 				]);
-				$gardenId = $gardensModel->lastInsertId();
+				$gardenId = $newGarden['id'];
 
 				foreach($fileNames as $fileName) {
 
 
-					$picturesModel->insert([
+				$newPicture = $picturesModel->insert([
 						'id_user'		=> $_SESSION['user']['id'],
 						'URL'			=> $fileName,	
 					]);
-					$pictureId = $picturesModel->lastInsertId();
+
+					$pictureId = $newPicture['id'];
 
 					$picturesGardensModel->insert([
 						'id_picture'	=> $pictureId,
@@ -199,7 +200,6 @@ class GardensController extends Controller
 		$this->show('users/dashboard_mesjardins', ['errors' => $errors]);
 	}
 }
-	
 
 	
 
