@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'Liste des Photos' , 'user' => $user]) ?>
+<?php $this->layout('layout', ['title' => '' , 'user' => $user]) ?>
 
 <?php $this->start('main_content') ?>
 	<h2>Liste des jardins à partager</h2>
