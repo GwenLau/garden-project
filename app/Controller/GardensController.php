@@ -45,11 +45,11 @@ class GardensController extends Controller
 	// Détails d'une image
 	public function details($id)
 	{
-		$this->allowTo(['user', 'admin']);
+		/*$this->allowTo(['user', 'admin']);*/
 		// $id contient l'ID entré dans l'url 
 		$gardensModel = new GardensModel();
 		$garden = $gardensModel->find($id); // Va cibler automatiquement la colonne `id` de la base de données
-		$this->show('garden_details', ['garden' => $garden]);
+		$this->show('garden/details', ['garden' => $garden]);
 	}
 
 	public function displayAllInMap()
