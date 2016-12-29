@@ -71,6 +71,7 @@ class GardensController extends Controller
 		// $id contient l'ID entré dans l'url 
 		$gardensModel = new GardensModel();
 		$garden = $gardensModel->findGarden($id); // Va cibler automatiquement la colonne `id` de la base de données
+
 		$this->show('garden/details', ['garden' => $garden]);
 	}
 
@@ -87,7 +88,7 @@ class GardensController extends Controller
 	public function addGarden()
 	{
 
-		print_r($_FILES);
+		/*print_r($_FILES);*/
 		// $this->allowTo('admin');
 		$gardensModel = new GardensModel();
 		$picturesModel = new PicturesModel();
