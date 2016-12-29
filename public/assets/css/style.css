@@ -1,17 +1,53 @@
+/* GLOBAL */
 
+header h1 {
+  margin-left: 30px;
+}
+
+
+/* HOMEPAGE */
 
 /***
-Sidebar dashboard
-A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themeforest: http://j.mp/metronictheme
-Licensed under MIT
+GoogleMaps section
 ***/
 
+#map {
+  height: 300px;
+  width: 100%;
+  margin: 20px;
+}
+
+
+* {
+  box-sizing: border-box;
+}
+
+/* DASHBOARD */
+
 body {
-  background: #FFFFFF;
+  background-color: #FFF;
+
 }
 
 nav {
   width: 100%;
+
+}
+
+.nav.navbar-nav a {
+  color: #084F40;
+}
+
+nav.bg-success {
+  background-color: #16a085;
+}
+
+a.navbar-brand {
+    font-family: 'Lobster', cursive;
+    color: #FFF;
+    float: left;
+    font-size: 30px;
+
 }
 /* Profile container */
 .profile {
@@ -119,6 +155,9 @@ nav {
 
 .wrapper-hero {
   position: relative;
+  padding: 0px;
+  margin-top: 0px;
+  width: 100%;
 }
 
 .wrapper-hero #search {
@@ -132,59 +171,34 @@ nav {
 }
 
 /* Carrousel */
-.carousel-fade {
-    .carousel-inner {
-        .item {
-            transition-property: opacity;
-        }
-        
-        .item,
-        .active.left,
-        .active.right {
-            opacity: 0;
-        }
-
-        .active,
-        .next.left,
-        .prev.right {
-            opacity: 1;
-        }
-
-        .next,
-        .prev,
-        .active.left,
-        .active.right {
-            left: 0;
-            transform: translate3d(0, 0, 0);
-        }
-    }
-
-    .carousel-control {
-        z-index: 2;
-    }
+div#carousel.carousel.slide.carousel-fade {
+  padding: 0px;
 }
 
-
-
-html, 
-body, 
-.carousel, 
-.carousel-inner, 
-.carousel-inner .item {
-    height: 100%;
-}
-
-/* .item:nth-child(1) {
-    background: #74C390;
-}
-
-.item:nth-child(2) {
-    background: #51BCE8;
-}
-
-.item:nth-child(3) {
-    background: #E46653;
+/* .carousel-inner {
+  padding: 0px;
+  width: 120%;
+  margin-left: 0;
+  margin-right: -10%;
+  margin-top: -10%;
 } */
 
-/*footer */
 
+
+
+/*==============================
+=            footer            =
+==============================*/
+
+footer.main-footer {
+  padding: 30px 0px;
+  background-color: #16a085;
+  text-align: center;
+}
+
+.main-footer h4 {
+  color: #FFF;
+  font-size: 24px;
+  margin: 0px 0px 15px;
+  font-family: 'Lobster', cursive;
+}

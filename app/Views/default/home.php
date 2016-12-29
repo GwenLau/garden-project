@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'Accueil']) ?>
+<?php $this->layout('layout', ['title' => '']) ?>
 
 <?php $this->start('main_content') ?>
 		<section class="wrapper-hero">
@@ -38,7 +38,7 @@
 
 	<div id="search" class="container">
 		<!-- form -->
-		<form class="form-inline" action="<?= $this->url('picture_all') ?>">
+		<form class="form-inline" action="<?= $this->url('garden_all') ?>">
 		  <div class="form-group">
 		    <label class="sr-only" for="exampleInputEmail3">Recherche:</label>
 		    <input type="search"  value="<?php if(isset($_GET['s'])) echo $this->e($_GET['s']) ?>" class="form-control" id="s" name="s" placeholder="Rechercher un jardin">
@@ -59,16 +59,27 @@
 </section>
 
 <section class="container">
-	
+
+
+<!-- GL = Section Google Maps -->
 	<div class="row">
 		<div class="col-md-5">
-			texte blabla
+			<h3>Trouvez un jardin...</h3>
+			<p>Avec des centaines de jardins proposés, vous trouverez forcément celui qui vous permettra de reconnecter avec la nature, de partager un moment entre passionnés de jardinage ou simplement de profiter d'un cadre vert en ville.</p>
 		</div>
 		<div class="col-md-7">
-			google map
+			<?php foreach($gardens as $garden) : ?>
+				<input type="hidden" data-lat="<?= $garden['lat'] ?>" data-lng="<?= $garden['lng'] ?>">
+			<?php endforeach ?>
+			<div id="map"></div>
+
+    		<script async defer
+    		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAbFi6X_yxNJEkoPPrsb3GFbP-_7Mpglc&callback=initMap">
+    		</script>
+    
 		</div>
 	</div>
-	<!-- google -->
+
 </section>
 
 <?php $this->stop('main_content') ?>

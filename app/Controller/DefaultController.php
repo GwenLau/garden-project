@@ -6,6 +6,8 @@ use \W\Controller\Controller;
 use \W\Security\AuthentificationModel;
 use \W\Model\UsersModel;
 use Model\RecoverytokensModel;
+use Model\GardensModel;
+
 
 class DefaultController extends Controller
 {
@@ -15,9 +17,11 @@ class DefaultController extends Controller
 	 */
 	public function home()
 	{
+		$gardensModel = new GardensModel();
+		$gardens = $gardensModel->findAll();
 		/*$this->redirectToRoute('default_home');*/
 		// Idem : 	$this->redirectToRoute('account_all_default');
-		$this->show('default/home');
+		$this->show('default/home', ['gardens' => $gardens]);
 	}
 
 	public function login()
@@ -55,6 +59,8 @@ class DefaultController extends Controller
 	{
 		$authModel = new AuthentificationModel();
 		$authModel->logUserOut();
+		header('Location: login');
+        exit;
 	}
 
 	// Affichage du formulaire de demande de nouveau mot de passe
@@ -63,7 +69,7 @@ class DefaultController extends Controller
 		$tokenModel = new RecoverytokensModel();
 		$userModel = new UsersModel();
 		if(isset($_POST['send-mail'])) {
-			$user = $userModel->getUserByUsernameOrEmail($_POST['mail']);
+			$user = $userModel->getUserByUsernameOrEmail($_POST['email']);
 			if(!empty($user)) {
 				// Ajouter un token de reset de mot de passe
 				$token = \W\Security\StringUtils::randomString(32);
@@ -89,7 +95,7 @@ Accédez à $resetUrl pour finaliser l'opération
 Si vous n'êtes pas à l'origine de ce mail, bla bla bla..
 EOT;
 
-				$this->sendMail($user['mail'], $user['lastname'] . ' ' . $user['firstname'], 'Réinitialisation du mot de passe', $messageHtml, $messagePlain);
+				$this->sendMail($user['email'], $user['lastname'] . ' ' . $user['firstname'], 'Réinitialisation du mot de passe', $messageHtml, $messagePlain);
 			}
 		} else {
 			$this->show('users/password_recovery');
@@ -158,19 +164,24 @@ EOT;
 	public function dashboard()
 	{
 		$this->allowTo(['user', 'admin']);
-		// $id contient l'ID entré dans l'url 
-/*		$picturesModel = new PicturesModel();
-		$picture = $picturesModel->find($id); // Va cibler automatiquement la colonne `id` de la base de données*/
+
 		$this->show('users/dashboard', ['user' => $this->getUser()]);
+
 	}
-		
+		/*if ($authModel->getLoggedUser() == null) $this->redirectToRoute('login');
+			$this->allowTo(['user', 'admin']);
+			if($authModel == isValidLoginInfo) {
+			$this->show('users/dashboard', ['user' => $this->getUser()]);
+		}*/
+
+		/*$this->allowTo(['user', 'admin']);
+
+		$this->show('users/dashboard', ['user' => $this->getUser()]);*/
 
 	public function profilDashboard()
 		{
 			$this->allowTo(['user', 'admin']);
-			// $id contient l'ID entré dans l'url 
-	/*		$picturesModel = new PicturesModel();
-			$picture = $picturesModel->find($id); // Va cibler automatiquement la colonne `id` de la base de données*/
+
 			$this->show('users/profil', ['user' => $this->getUser()]);
 		}
 
@@ -241,6 +252,7 @@ EOT;
 					'lastname' 	=> $_POST['lastname'],
 					'pseudo' 	=> $_POST['pseudo'],
 					'nb_tries' 	=> 0,
+					'role'		=> user,
 
 				]);
 				
@@ -249,25 +261,25 @@ EOT;
 			else {
 				$this->show('users/add', ['errors' => $errors]);
 			}
-
 				
 		}
 			$this->show('users/add');
 	}
 
 //david function contact proprio jardin
-	public function contact()
+	public function contact($idGarden)
 		{
 			$this->allowTo(['user', 'admin']);
 			$error = null;
 
-			if(isset($_POST['envoi_message'])) {		
+			if(isset($_POST['contact'])) {		
 				if(isset($_POST['destinataire']) && isset($_POST['message'])
 						&& !empty($_POST['destinataire']) && !empty($_POST['message'])) {
 					$messagesModel = new \Model\MessagesModel();
 					$messagesModel->insert([
 						'id_send' => $this->getUser()['id'],
 						'id_receive' => $_POST['destinataire'],
+						'id_garden' => $idGarden,
 						'Message' => $_POST['message'],
 					]);
 				} else {
@@ -275,30 +287,48 @@ EOT;
 				}
 			}
 
-			// $id contient l'ID entré dans l'url 
-	/*		$picturesModel = new PicturesModel();
-			$picture = $picturesModel->find($id); // Va cibler automatiquement la colonne `id` de la base de données*/
-			$usersModel = new \W\Model\UsersModel();
-			$users = $usersModel->findAll();
+			$gardenModel = new GardensModel();
+			$garden = $gardenModel->find($idGarden);
+			$ownerId = $garden['id_user'];
+			
 			$this->show('users/contact_private', [
 				'user' => $this->getUser(),
-				'dests' => $users,
-				'error' => $error
+				'error' => $error,
+				'destinataire' => $ownerId,
 			]);
 		}
 
-//david function messagerie received
 	public function received()
 		{
 			$this->allowTo(['user', 'admin']);
-			//Récupère les messages
-			//il nous faut le modèle pour cela :
-			
-			$receivedModel = new ReceivedModel();
 
-			$received = $receivedModel->findAll();
-
-			$this->show('users/messagerie_received', ['allReceived' => $received, 'user' => $this->getUser()]);
+			$messagesModel = new \Model\MessagesModel();
+			$messages = $messagesModel->findAllMessages($this->getUser()['id']);
+			$this->show('users/messagerie_received', [
+				'user' => $this->getUser(),
+				'received' => $messages,
+			]);
 		}
+
+	public function dashDisplayAll()
+	{
+	
+		$gardensModel = new GardensModel();
+
+		if(isset($_GET['s'])) {
+			$gardens = $gardensModel->searchAllAndChilds([
+				'City' 			=> $_GET['s'],
+				'Description' 	=> $_GET['s'],
+				'Streetname'	=> $_GET['s'],
+				'Name'			=> $_GET['s'],
+			]);
+		} else {
+			$gardens = $gardensModel->findAllAndChilds();
+		}
+
+		//$role = $this->getUser()['role'];
+
+		$this->show('users/search', ['allGardens' => $gardens, 'user' => $this->getUser()]);
+	}
 
 }

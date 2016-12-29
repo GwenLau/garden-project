@@ -1,8 +1,8 @@
-<?php $this->layout('layout', ['title' => 'Télécharger une image']) ?>
+<?php $this->layout('layout', ['title' => 'Mes jardins']) ?>
 
 <?php $this->start('main_content') ?>
 
-	<!-- Formulaire d'ajout de photo -->
+	<!-- Formulaire d'ajout de jardin -->
 
 	<form enctype="multipart/form-data" action="#" method="POST">
 		<div class="form-group">
@@ -24,7 +24,9 @@
 		<p>Aucun fichier n'est téléchargé.</p>
 		<?php endif ?>
 		    <label for="my-file">Image : </label>
-		    <input type="file" name="my-file" value="Parcourir...">
+		    <input type="file" name="my-file[]" value="Parcourir...">
+		    <input type="file" name="my-file[]" value="Parcourir...">
+		    <input type="file" name="my-file[]" value="Parcourir...">
 		    
 		</div>
 		<div class="form-group">

@@ -1,10 +1,11 @@
-<?php $this->layout('layout', ['title' => 'Demande', 'user' => $user]) ?>
+<?php $this->layout('layout', ['title' => '', 'user' => $user]) ?>
 
 <?php $this->start('main_content') ?>
-	<h2>Contacter le proprietaire du jardin</h2>
+	<!-- <h2>Contacter le proprietaire du jardin</h2> -->
 
 <!-- new version -->
             <form action="#" id="contact-user" method="POST">
+            	<input type="hidden" name="destinataire" value="<?= $gardenOwnerId ?>">
                 <div class="container">    
                         <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
                             <div class="panel panel-info" >
@@ -19,23 +20,15 @@
                                         <form id="loginform" method="post" class="form-horizontal" role="form">
 
 
-												<form method="POST" action="#">
-												<label>Destinataire : </label>
-												<!-- <?php print_r($dests) ?> -->
-												<select name="destinataire">
-													<?php foreach($dests as $user) : ?>
-						    						<option value=<?= $user['id'] ?>> 
-						    						<?= $user['pseudo'] ?>
-													</option>
-													<?php endforeach ?>
-												</select>
+												<!-- <form method="POST" action="#"> -->
+												<input type="hidden" name="destinataire" value="<?= $destinataire ?>">
 												<br /><br />
 												<textarea placeholder="Votre message" name="message"></textarea>
 												<br /><br />
-												<input class="btn btn-success" type="submit" value="Envoyer" name="envoi_message">
+												<input class="btn btn-success" type="submit" value="Envoyer" name="contact">
 												<br /><br />
 												<?php if(isset($error)) { echo $error; } ?>
-												</form>
+												<!-- </form> -->
 
                                                     </div>
                                                 </div>

@@ -8,7 +8,13 @@
 		<!-- SIDEBAR USER TITLE -->
 		<div class="profile-usertitle">
 			<div class="profile-usertitle-name">
+
 				<?= $user['pseudo'] ?>
+
+			
+				<div id="avatar"><img src="<?= $this->assetUrl('uploads/users/' . $user['avatar']) ?>" alt="avatar"></div>
+				<div><?= $user['firstname'] ?></div>
+
 			</div>
 		</div>
 		<!-- END SIDEBAR USER TITLE -->
@@ -36,12 +42,12 @@
 					Demandes reçues </a>
 				</li>
 				<li>
-					<a href="<?= $this->url('default_dashboard') ?>">
+					<a href="<?= $this->url('users/dashboard_mesjardins') ?>">
 					<i class="glyphicon glyphicon-tree-deciduous"></i>
 					Proposer un jardin </a>
 				</li>
 				<li>
-					<a href="#">
+					<a href="<?= $this->url('default_search') ?>"">
 					<i class="glyphicon glyphicon-search"></i>
 					Rechercher un jardin </a>
 				</li>

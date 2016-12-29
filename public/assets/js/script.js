@@ -1,74 +1,68 @@
-$(function(){
 
-    // Si on est sur la page d'ajout d'une image
-    if($('form[name=add_picture]').length) {
-        var $place = $('input[name=place]');
-        var $placeId = $('input[name=place-id]');
-        var $lat = $('#lat');
-        var $lng = $('#lng');
+/*$(function(){
+    $('form').submit(function(e){
+        e.preventDefault();
 
-        function refreshMapFromPlace(){
-            var container = document.getElementById('map-place');
-            var latLng;
-            var map;
-            var marker;
+        $.ajax({
+            method: "post",
+            url: 'send-mail.php',
+            data : {
+                formInputs: $(this).serialize(),
+            },
+            dataType: 'json'
+        }).done(function(r){
 
-            $.ajax({
-                url: 'https://maps.googleapis.com/maps/api/geocode/json',
-                data: {
-                    address: $place.val()
-                },
-                dataType: 'json',
-                success: function(r){
-                    if(r.results.length) {
-                        latLng = {lat: r.results[0].geometry.location.lat, lng: r.results[0].geometry.location.lng};
-                        map = new google.maps.Map(container, {
-                            center: latLng,
-                            zoom: 10
-                        });
-                        marker = new google.maps.Marker({
-                            position: latLng,
-                            map: map,
-                            title: $place.val(),
-                        });
+            $('.error').addClass('hide');
+
+            if(typeof r.success !== 'undefined') {
+                $('.mail-sent').removeClass('hide');
+            } else {
+                // J'ai des erreurs
+                if(typeof r.errors.destinataire !== 'undefined') {
+                    // J'ai des erreurs sur la marque
+                    if(r.errors.destinataire == 'empty') {
+                        // La marque était vide
+                        $('.error.destinataire.empty').removeClass('hide');
                     }
                 }
-            })
-        }
 
-        function putCoords(e, ui){
-            e.preventDefault();
-            $place.val(ui.item.label);
-            $placeId.val(ui.item.value);
-            refreshMapFromPlace();
-        }
-
-        if($place.length) {
-            refreshMapFromPlace();
-        }
-
-        $place.autocomplete({
-            source: function (req, response) {
-                $.ajax({
-                    url: $('.route-placeholder.places_search').val(),
-                    data: {s: req.term},
-                    dataType: 'json',
-                    success: response,
-                    error: function () {
-                        response([])
-                    },
-                })
-            },
-            minLength: 2,
-            focus: putCoords,
-            select: putCoords,
-            search: function(){
-                refreshMapFromPlace();
-                $placeId.val('');
+                if(typeof r.errors.message !== 'undefined') {
+                    if(r.errors.message == 'empty') {
+                        $('.error.message.empty').removeClass('hide');
+                    }
+                }
             }
-        });
-    }
 
-    // Si on a une alerte à afficher
-    setTimeout(function(){$('.flash .alert').fadeIn().delay(2000).fadeOut()}, 500)
-});	
+            console.log(r);
+        }).fail(function(r){
+            console.log(r.responseText);
+        });
+
+        return false;
+    });
+});
+ */
+
+function initMap()
+{
+    var container = document.getElementById('map');
+    var map = new google.maps.Map(container, {
+        center : {lat:47, lng:2.40},
+        zoom : 5
+    });
+    var myMarkerImage = new google.maps.MarkerImage('assets/img/jardin-mini.png');
+
+    $('input[type="hidden"]').each(function(key, elt) {
+        var marker = new google.maps.Marker({
+            position: {
+                lat: parseFloat($(elt).attr('data-lat')),
+                lng: parseFloat($(elt).attr('data-lng'))
+            },
+            map: map,
+            icon: myMarkerImage,
+            mapTypeControl: false,
+            title: "France"
+        });        
+    });
+}
+

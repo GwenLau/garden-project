@@ -1,3 +1,4 @@
+<!-- 
 <?php
 
 namespace Controller;
@@ -30,4 +31,4 @@ class PlaceController extends Controller
 			$this->showJson($autocomplete);
 		}
 	}
-}
+} -->
