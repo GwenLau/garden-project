@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
 
 
 /*require_once '../include/dbConnection.php';
@@ -30,4 +30,4 @@ if(empty($errors)) {
     ]);
 } else {
     echo json_encode(['errors' => $errors]);
-}
+} -->

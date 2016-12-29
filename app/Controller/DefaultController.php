@@ -21,7 +21,7 @@ class DefaultController extends Controller
 		$gardens = $gardensModel->findAll();
 		/*$this->redirectToRoute('default_home');*/
 		// Idem : 	$this->redirectToRoute('account_all_default');
-		$this->show('default/home', ['gardens' => $gardens]);
+		$this->show('default/home', ['gardens' => $gardens, 'user' => $this->getUser()]);
 	}
 
 	public function login()
@@ -48,10 +48,10 @@ class DefaultController extends Controller
 			} else {
 
 				// Echec de la connexion
-				$this->show('users/login', ['error' => true]);
+				$this->show('users/login', ['error' => true, 'user' => $this->getUser()]);
 			}
 		} else {
-			$this->show('users/login');
+			$this->show('users/login', ['user' => $this->getUser()]);
 		}
 	}
 
@@ -98,7 +98,7 @@ EOT;
 				$this->sendMail($user['email'], $user['lastname'] . ' ' . $user['firstname'], 'Réinitialisation du mot de passe', $messageHtml, $messagePlain);
 			}
 		} else {
-			$this->show('users/password_recovery');
+			$this->show('users/password_recovery', ['user' => $this->getUser()]);
 		}
 	}
 
@@ -154,7 +154,7 @@ EOT;
 			}
 
 			// Sinon
-			$this->show('users/reset_password');
+			$this->show('users/reset_password', ['user' => $this->getUser()]);
 		} else {
 			$this->redirectToRoute('default_login');
 		}
@@ -256,11 +256,11 @@ EOT;
 				// redirection vers connexion
 			}
 			else {
-				$this->show('users/add', ['errors' => $errors]);
+				$this->show('users/add', ['errors' => $errors, 'user' => $this->getUser()]);
 			}
 				
 		}
-			$this->show('users/add');
+			$this->show('users/add', ['user' => $this->getUser()]);
 	}
 
 //david function contact proprio jardin
