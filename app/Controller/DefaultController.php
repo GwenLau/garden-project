@@ -7,6 +7,9 @@ use \W\Security\AuthentificationModel;
 use \W\Model\UsersModel;
 use Model\RecoverytokensModel;
 use Model\GardensModel;
+use \Twilio\Twilio\autoload;
+use \Twilio\Twilio\Rest\Client;
+
 
 
 class DefaultController extends Controller
@@ -206,10 +209,13 @@ EOT;
 			$picture = $picturesModel->find($id); // Va cibler automatiquement la colonne `id` de la base de données*/
 			$usersModel = new \W\Model\UsersModel();
 			$users = $usersModel->findAll();
+			$messagesModel = new \Model\MessagesModel();
+			$messages2 = $messagesModel->findAllMessages2($this->getUser()['id']);
 			$this->show('users/messagerie_private', [
 				'user' => $this->getUser(),
 				'dests' => $users,
-				'error' => $error
+				'error' => $error,
+				'send'  => $messages2,
 			]);
 		}
 
@@ -287,13 +293,30 @@ EOT;
 			$gardenModel = new GardensModel();
 			$garden = $gardenModel->find($idGarden);
 			$ownerId = $garden['id_user'];
+
 			
-			$this->show('users/contact_private', [
+
+/*$sid = "ACf25767309ce67abfed16cbacaab0a4f3"; // Your Account SID from www.twilio.com/console
+$token = "73c2331465d98fb87b03c4aea6afb761"; // Your Auth Token from www.twilio.com/console
+
+$client = new \Twilio\Twilio\Rest\Client($sid, $token);
+$message = $client->messages->create(
+  '+33677062090', // Text this number
+  array(
+    'from' => '+33644641630', // From a valid Twilio number
+    'body' => 'Hello from Twilio!'
+  )
+);*/
+
+
+ $this->show('users/contact_private', [
 				'user' => $this->getUser(),
 				'error' => $error,
 				'destinataire' => $ownerId,
 			]);
-		}
+
+
+					}
 
 	public function received()
 		{

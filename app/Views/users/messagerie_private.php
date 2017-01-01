@@ -55,5 +55,56 @@
                     </div>
                 </form>
 
+            
+
+<div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="alert alert-info">
+                                Historique de vos messages envoyés</div>
+                            <div class="alert alert-success" style="display:none;">
+                                <span class="glyphicon glyphicon-ok"></span> Drag table row and cange Order</div>
+                            <table class="table" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Pseudo
+                                        </th>
+                                        <th>
+                                            Prénom
+                                        </th>
+                                        <th>
+                                            Message
+                                        </th>
+                                        <th>
+                                            Date
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                    <?php foreach($send as $recei) : ?>
+                                        <td>
+                                            <?= $recei['pseudo'] ?>
+                                        </td>
+                                        <td>
+                                            <?= $recei['firstname'] ?>
+                                        </td>
+                                        <td>
+                                            <?= $recei['Message'] ?>
+                                        </td>
+                                        <td>
+                                            <?= $recei['Date'] ?>
+                                        </td>
+                                    </tr>
+                                    </tr><?php endforeach ?>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+        
                 <?php $this->stop('main_content') ?>
 
