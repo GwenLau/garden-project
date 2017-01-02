@@ -174,20 +174,18 @@ a.navbar-brand {
   text-align: center;
 }
 
-/* Carrousel */
+/*==============================
+=            Carousel           =
+==============================*/
 div#carousel.carousel.slide.carousel-fade {
   padding: 0px;
   
 }
 
-/* .carousel-inner {
-  padding: 0px;
-  width: 120%;
-  margin-left: 0;
-  margin-right: -10%;
-  margin-top: -10%;
-} */
-
+img {
+  width: 100%;
+  height: 100%;
+}
 
 
 

@@ -16,6 +16,6 @@
 		['GET|POST', 	'/users/search', 							'Default#dashDisplayAll', 	'default_search'],
 		['GET', 		'/gardens/list', 							'Gardens#displayAll', 		'gardens_all'],
 		['GET|POST', 	'/add_picture', 							'Picture#addPicture', 		'picture/add_picture'],
-		['GET',			'/gardens/details/[i:id]',					'Gardens#details',			'garden_details'],
+		['GET',			'/garden/details/[i:id]',					'Gardens#details',			'garden_details'],
 		['GET|POST',	'/dashboard/gardens',						'Gardens#addGarden',	'users/dashboard_mesjardins'],
 	);

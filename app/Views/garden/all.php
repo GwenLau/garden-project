@@ -1,8 +1,10 @@
 <?php $this->layout('layout', ['title' => '' , 'user' => $user]) ?>
 
 <?php $this->start('main_content') ?>
-	<h2>Liste des jardins à partager</h2>
-	<p>Retrouvez l'ensemble des détails ci-dessous et contactez le propriétaire</p>
+	<!-- <h2>Liste des jardins à partager</h2> -->
+	<p> <br> 
+	<br>
+	<br> </p>
 
 
 	<div class="row">

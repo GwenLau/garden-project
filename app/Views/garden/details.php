@@ -22,12 +22,12 @@
   <div><?= $pictures['ALT'] ?></div>
 
   <div>
-    <img src="<?= $this->assetUrl('/img/' . $picture['URL']) ?>">
+    <img src="<?= $this->assetUrl('uploads/' . $pictures['URL']) ?>">
   </div>
   
   <div>
-    <img src="<?= $this->assetUrl('/img/' . $picture['URL']) ?>">
-    <img src="<?= $this->assetUrl('/img/' . $picture['URL']) ?>">
+    <img src="<?= $this->assetUrl('/img/' . $pictures['URL']) ?>">
+    <img src="<?= $this->assetUrl('/img/' . $pictures['URL']) ?>">
   </div>
 
 <?php $this->stop('main_content') ?>

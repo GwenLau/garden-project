@@ -37,6 +37,13 @@
 		</div>
 
 
+
+
+
+
+
+
+
 	<div id="search" class="container">
 		<!-- form -->
 		<form class="form-inline" action="<?= $this->url('garden_all') ?>">
