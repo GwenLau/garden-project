@@ -19,7 +19,7 @@
 
 										<div style="margin-bottom: 25px" class="input-group">
 															<span class="input-group-addon"><i class="glyphicon glyphicon"></i></span>
-															<input type="text" name="lastname" value="<?php if (isset($lastname)) echo $lastname ?>" placeholder="Nom de famille">
+															<input type="text" class="form-control" name="lastname" value="<?php if (isset($lastname)) echo $lastname ?>" placeholder="Nom de famille">
 															 <?php if (isset($errors['lastname'])) :
 															if (isset($errors['lastname']['empty'])) : ?>
 																<div class="error">Entrez votre nom</div>
@@ -29,7 +29,7 @@
 
 															<div style="margin-bottom: 25px" class="input-group">
 															<span class="input-group-addon"><i class="glyphicon glyphicon"></i></span>
-															<input type="text" name="firstname" value="<?php if (isset($firstname)) echo $firstname ?>"
+															<input type="text" class="form-control" name="firstname" value="<?php if (isset($firstname)) echo $firstname ?>"
 																placeholder="Prénom"">
 															 <?php if (isset($errors['firstname'])) :
 															if (isset($errors['firstname']['empty'])) : ?>
@@ -40,11 +40,22 @@
 
 													<div style="margin-bottom: 25px" class="input-group">
 															<span class="input-group-addon"><i class="glyphicon glyphicon"></i></span>
-															<input type="text" name="pseudo" value="<?php if (isset($pseudo)) echo $pseudo ?>"
+															<input type="text" class="form-control" name="pseudo" value="<?php if (isset($pseudo)) echo $pseudo ?>"
 																placeholder="Pseudo"">
 															 <?php if (isset($errors['pseudo'])) :
 															if (isset($errors['pseudo']['empty'])) : ?>
 																<div class="error">Entrez votre Pseudo</div>
+															<?php endif; ?>
+														<?php endif; ?>
+													</div>
+
+													<div style="margin-bottom: 25px" class="input-group">
+															<span class="input-group-addon"><i class="glyphicon glyphicon"></i></span>
+															<input type="text" class="form-control" name="num" value="<?php if (isset($num)) echo $num ?>"
+																placeholder="Entrez votre Numéro de portable"">
+															 <?php if (isset($errors['num'])) :
+															if (isset($errors['num']['empty'])) : ?>
+																<div class="error">Entrez votre Numéro de portable</div>
 															<?php endif; ?>
 														<?php endif; ?>
 													</div>

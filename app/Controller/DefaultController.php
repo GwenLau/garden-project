@@ -247,6 +247,10 @@ EOT;
 			if(empty($_POST['pseudo'])) {
 				$errors['pseudo']['empty'] = true;
 			}
+
+			if(empty($_POST['num'])) {
+				$errors['num']['empty'] = true;
+			}
 			
 			if(count($errors) === 0) {
 				// Ajouter si OK
