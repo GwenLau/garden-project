@@ -182,7 +182,7 @@ div#carousel.carousel.slide.carousel-fade {
   
 }
 
-img {
+img.slider {
   width: 100%;
   height: 100%;
 }

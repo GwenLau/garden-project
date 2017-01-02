@@ -15,13 +15,13 @@
 		  <!-- Wrapper for slides -->
 		  <div class="carousel-inner" role="listbox">
 		    <div class="item active">
-		      <img src="<?= $this->assetUrl('img/photo2.jpg') ?>" alt="Slider_1">
+		      <img class="slider" src="<?= $this->assetUrl('img/photo2.jpg') ?>" alt="Slider_1">
 		    </div>
 		    <div class="item">
-		      <img src="<?= $this->assetUrl('img/photo1.jpg') ?>" alt="Slider_2">
+		      <img class="slider" src="<?= $this->assetUrl('img/photo1.jpg') ?>" alt="Slider_2">
 		    </div>
 		   <div class="item">
-		      <img src="<?= $this->assetUrl('img/photo3.jpg') ?>" alt="Slider_3">
+		      <img class="slider" src="<?= $this->assetUrl('img/photo3.jpg') ?>" alt="Slider_3">
 		    </div>
 		  </div>
 
