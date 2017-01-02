@@ -7,8 +7,9 @@ use \W\Security\AuthentificationModel;
 use \W\Model\UsersModel;
 use Model\RecoverytokensModel;
 use Model\GardensModel;
-use \Twilio\Twilio\autoload;
-use \Twilio\Twilio\Rest\Client;
+use \vendor\twilio\sdk\Twilio\SplClassLoader;
+use \vendor\twilio\sdk\Twilio\Rest\Client;
+
 
 
 
@@ -103,6 +104,7 @@ EOT;
 		} else {
 			$this->show('users/password_recovery', ['user' => $this->getUser()]);
 		}
+		
 	}
 
 	private function sendMail($destAddress, $destName, $subject, $messageHtml, $messagePlain)
@@ -299,7 +301,7 @@ EOT;
 /*$sid = "ACf25767309ce67abfed16cbacaab0a4f3"; // Your Account SID from www.twilio.com/console
 $token = "73c2331465d98fb87b03c4aea6afb761"; // Your Auth Token from www.twilio.com/console
 
-$client = new \Twilio\Twilio\Rest\Client($sid, $token);
+$client = new Client($sid, $token);
 $message = $client->messages->create(
   '+33677062090', // Text this number
   array(

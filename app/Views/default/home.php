@@ -1,7 +1,8 @@
 <?php $this->layout('layout', ['title' => '', 'user' => $user]) ?>
 
 <?php $this->start('main_content') ?>
-		<section class="wrapper-hero">
+
+<section class="wrapper-hero">
 		<!-- slider image -->
 		<div id="carousel" class="carousel slide carousel-fade" data-ride="carousel">
 		  <!-- Indicators -->

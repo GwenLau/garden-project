@@ -38,9 +38,13 @@ nav {
   color: #084F40;
 }
 
-nav.bg-success {
+.navbar.navbar-default.navbar-fixed-top {
   background-color: #16a085;
 }
+
+/* nav.bg-success {
+  background-color: #16a085;
+} */
 
 a.navbar-brand {
     font-family: 'Lobster', cursive;
@@ -173,6 +177,7 @@ a.navbar-brand {
 /* Carrousel */
 div#carousel.carousel.slide.carousel-fade {
   padding: 0px;
+  
 }
 
 /* .carousel-inner {

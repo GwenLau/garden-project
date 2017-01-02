@@ -57,7 +57,7 @@
 
             
 
-<div class="container">
+                <div class="container">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="alert alert-info">
@@ -98,7 +98,6 @@
                                         </td>
                                     </tr>
                                     </tr><?php endforeach ?>
-
                                 </tbody>
                             </table>
                         </div>

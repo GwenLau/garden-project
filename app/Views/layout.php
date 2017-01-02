@@ -28,7 +28,7 @@
 
 <div class="wrapper-header">
 	<header>
-		<nav class="navbar navbar-default bg-success">
+		<nav class="navbar navbar-default navbar-fixed-top">
 		  <div class="container">
 		    <!-- Brand and toggle get grouped for better mobile display -->
 		    <div class="navbar-header">
@@ -72,7 +72,6 @@
 		          <ul class="dropdown-menu">
 		            <li><a href="<?= $this->url('default_dashboard') ?>">Dashboard</a></li>
 		            <li><a href="<?= $this->url('default_logout') ?>">Déconnection</a></li>
-		  
 		          </ul>
 		        </li>
 		      </ul>
