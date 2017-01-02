@@ -269,14 +269,14 @@ EOT;
 		// Insertion d'un avatar
 		if(isset($_POST['save-new-avatar'])){
 			// Vérifier si le téléchargement du fichier n'a pas été interrompu
-		    if ($_FILES['my-file']['error'] != UPLOAD_ERR_OK) {
+		    if ($_FILES['my-avatar']['error'] != UPLOAD_ERR_OK) {
 		        echo 'Erreur lors du téléchargement.';
 		    } else {
 		        // Objet FileInfo
 		        $finfo = new finfo(FILEINFO_MIME_TYPE);
 
 		        // Récupération du Mime
-		        $mimeType = $finfo->file($_FILES['my-file']['tmp_name']);
+		        $mimeType = $finfo->file($_FILES['my-avatar']['tmp_name']);
 
 		        $extFoundInArray = array_search(
 		            $mimeType, array(
@@ -285,11 +285,12 @@ EOT;
 		                'gif' => 'image/gif',
 		            )
 		        );
+		        
 		        if ($extFoundInArray === false) {
 		            echo 'Le fichier n\'est pas une image';
 		        } else {
 		            // Renommer nom du fichier
-		            $shaFile = sha1_file($_FILES['my-file']['tmp_name']);
+		            $shaFile = sha1_file($_FILES['my-avatar']['tmp_name']);
 		            $nbFiles = 0;
 		            $fileName = ''; // Le nom du fichier, sans le dossier
 		            do {
@@ -300,12 +301,12 @@ EOT;
 
 		            if(count($errors) === 0) {
 
-		            $moved = move_uploaded_file($_FILES['my-file']['tmp_name'], $path);
+		            $moved = move_uploaded_file($_FILES['my-avatar']['tmp_name'], $path);
 		            if (!$moved) {
 		                echo 'Erreur lors de l\'enregistrement';
 		            } else {
 		            	$imageManagerService->resize($fullPath, null, 200, 200, true, $path . 'min/' . $fileNames, false);	
-		            	$usersModel->updateAvatar([
+		            	$usersModel->insert([
 		            			'avatar' => $fileName,
 		            		]);
 		            	}
@@ -313,9 +314,59 @@ EOT;
 		    	}
     		}
     	}
+    	$this->show('users/profil', ['errors' => $errors]);
 
 	} // Fin de la fonction addAvatar
 
+	public function newEmail()
+	{
+		$this->allowTo(['user', 'admin']);
+		$error = null;
+		$newEmail = $_POST['new-email'];
+		
+
+		// Enregistrement d'un nouvel e-mail
+		if(isset($_POST['save-new-email'])){
+			// Vérifications du nouvel e-mail saisi
+			if(isset($_POST['new-email']) && !empty($_POST['new-email']) && filter_var($newEmail, FILTER_VALIDATE_EMAIL)){
+				$usersModel = new UsersModel();
+				$usersModel->updateEmail([
+					'email' => $newEmail,
+					]);
+			} else {
+				$error = 'L\'e-mail saisi n\'est pas valide';
+			};
+			$this->show('users/profil', [
+				'user' => $this->getUser(),
+				'error' => $error,
+			]);
+		}
+	}
+
+	public function newPwd()
+	{
+		$this->allowTo(['user', 'admin']);
+		$error = null;
+		$newPassword = $_POST['new-password'];
+
+		// Enregistrement d'un nouveau mot-de-passe	
+		if(isset($_POST['save-new-password'])){
+			// Vérifications du mot-de-passe saisi
+			if(isset($_POST['new-password']) && !empty($_POST['new-password']) && strlen($_POST['new-password'] >= 3) && $_POST['new-password'] === $_POST['confirm-new-password']) {
+				$newPassword = hashPassword($_POST['new-password']);
+				$usersModel = new UsersModel();
+				$usersModel->updatePassword([
+					'password' => $newPassword,
+					]);
+			} else {
+				$error = 'Le mot-de-passe saisi n\'est pas valide';
+			}
+			$this->show('users/profil', [
+				'user' => $this->getUser(),
+				'error' => $error,
+			]);
+		}	
+	}
 
 //david function contact proprio jardin
 	public function contact($idGarden)

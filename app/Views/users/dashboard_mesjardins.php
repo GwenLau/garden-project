@@ -63,13 +63,6 @@
 							<button name="add-garden" type="submit" class="btn btn-success ">Ajouter le jardin</button>
 						</form>
 					</div>
-					<div class="update-garden">
-						<h2>Modifier mon jardin</h2>
-					</div>
-					<div class="delete-garden">
-						<h2>Supprimer mon jardin</h2>
-		            </div>
-
 				</div>
 			</div>
 		</div>

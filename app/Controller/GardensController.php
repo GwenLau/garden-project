@@ -149,7 +149,6 @@ class GardensController extends Controller
 	    			unlink($path . $fileName);
 	    		}
 	    	}
-
 			
 			if(count($errors) === 0) {
 				$url = 'https://maps.googleapis.com/maps/api/geocode/json?';
@@ -201,6 +200,16 @@ class GardensController extends Controller
 			}
 		}
 		$this->show('users/dashboard_mesjardins', ['errors' => $errors]);
+	}
+
+	public function displayListOfGardens()
+	{
+		$this->allowTo(['user', 'admin']);
+
+		$gardensModel = new GardensModel();
+		$gardens = $gardensModel->listOfGardens($id);
+
+		$this->show('users/dashboard_mesjardins_manager', ['gardens' => $gardens, 'user' => $this->getUser()]);
 	}
 }
 

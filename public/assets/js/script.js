@@ -305,10 +305,23 @@ map.setOptions({styles: styles});
 }
 
 
-/* Fonction d'affichage pour l'actualisation des informations dans "Dashboard > Mon compte" */
+/* Fonctions d'affichage pour l'actualisation des informations dans "Dashboard > Mon compte" */
 $("#update-avatar").click(function() {
-  $(".add-avatar").removeClass('hidden');
+    $(".avatar").addClass('hidden');
+    $(".add-avatar").removeClass('hidden');
 });
+
+$("#update-email").click(function() {
+    $(".email").addClass('hidden');
+    $(".add-email").removeClass('hidden');
+});
+
+$("#update-password").click(function() {
+    $(".password").addClass('hidden');
+    $(".add-password").removeClass('hidden');
+});
+
+
 
                             
 
