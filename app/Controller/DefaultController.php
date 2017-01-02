@@ -302,18 +302,18 @@ EOT;
 
 			
 
-$sid = "ACf25767309ce67abfed16cbacaab0a4f3"; // Your Account SID from www.twilio.com/console
-$token = "73c2331465d98fb87b03c4aea6afb761"; // Your Auth Token from www.twilio.com/console
+			/*$sid = "ACf25767309ce67abfed16cbacaab0a4f3"; // Your Account SID from www.twilio.com/console
+			$token = "73c2331465d98fb87b03c4aea6afb761"; // Your Auth Token from www.twilio.com/console
 
-$client = new Client($sid, $token);
-$message = $client->messages->create(
-  '+33677062090', // Text this number
-  array(
-    'from' => '+33644641630', // From a valid Twilio number
-    'body' => 'Bonjour vous avez une demande de jardin YoupiGarden!'
-  )
-);
-
+			$client = new Client($sid, $token);
+			$message = $client->messages->create(
+			  '+33677062090', // Text this number
+			  array(
+			    'from' => '+33644641630', // From a valid Twilio number
+			    'body' => 'Bonjour vous avez une demande de jardin YoupiGarden!'
+			  )
+			);
+*/
 
  $this->show('users/contact_private', [
 				'user' => $this->getUser(),
@@ -330,6 +330,17 @@ $message = $client->messages->create(
 
 			$messagesModel = new \Model\MessagesModel();
 			$messages = $messagesModel->findAllMessages($this->getUser()['id']);
+			$sid = "ACf25767309ce67abfed16cbacaab0a4f3"; // Your Account SID from www.twilio.com/console
+			$token = "73c2331465d98fb87b03c4aea6afb761"; // Your Auth Token from www.twilio.com/console
+
+			$client = new Client($sid, $token);
+			$message = $client->messages->create(
+			  '+33677062090', // Text this number
+			  array(
+			    'from' => '+33644641630', // From a valid Twilio number
+			    'body' => 'Bonjour vous avez une demande de jardin YoupiGarden!'
+			  )
+			);
 			$this->show('users/messagerie_received', [
 				'user' => $this->getUser(),
 				'received' => $messages,
