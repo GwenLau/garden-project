@@ -10,9 +10,9 @@
 <!-- 2/ Insérer le code de la fiche produit en php par rapport à la fonction décrite dans la fonction du controller -->
 
 <!-- 3/ choisir le bon code pour insérer la photo du propriétaire du jardin $ownerInfos['URL']) ou -->
-<!--<div id="avatar"><img src="<?= $this->assetUrl('uploads/users/' . $user['avatar']) ?>" alt="avatar"></div>-->
+<div id="avatar"><img src="<?= $this->assetUrl('uploads/users/' . $user['avatar']) ?>" alt="avatar"></div>
 
-<div id="avatar"><img src="<?= $this->assetUrl('/img/' . $ownerInfos['URL']) ?>">
+<div id="avatar"><img src="<?= $this->assetUrl('uploads/img/' . $ownerInfos['URL']) ?>">
 
   <div><?= $ownerInfos['pseudo'] ?></div>
   <div><?= $garden['Name'] ?></div>
@@ -26,6 +26,7 @@
   </div>
   
   <div>
+  
     <img src="<?= $this->assetUrl('/img/' . $pictures['URL']) ?>">
     <img src="<?= $this->assetUrl('/img/' . $pictures['URL']) ?>">
   </div>
