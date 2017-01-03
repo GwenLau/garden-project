@@ -5,7 +5,6 @@ namespace Model;
 use \W\Model\Model;
 
 class GardensModel extends Model
-
 	
 {
 	public function findAllAndChilds()
@@ -55,7 +54,7 @@ EOT;
 	public function findGarden($id)
 	{
 		$sql =<<< EOT
-SELECT gardens.id AS gardenId, Description, Streetname, CityCode, Streetnumber, City, Name, users.id, avatar, URL, ALT, position
+SELECT gardens.id AS gardenId, Description, Streetname, CityCode, Streetnumber, City, Name, users.id, pseudo, avatar, URL, ALT, position
 FROM gardens
 LEFT JOIN users ON users.id = gardens.id_user
 INNER JOIN pictures_gardens ON pictures_gardens.id_garden = gardens.id

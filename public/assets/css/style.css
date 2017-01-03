@@ -7,6 +7,12 @@ header h1 {
 
 /* HOMEPAGE */
 
+/* VIDEO SECTION */
+#concept {
+  background-color: #ecf0f1;
+  padding: 20px 0 10px 0;
+}
+
 /***
 GoogleMaps section
 ***/
@@ -182,9 +188,6 @@ div#carousel.carousel.slide.carousel-fade {
   margin-right: -10%;
   margin-top: -10%;
 } */
-
-
-
 
 /*==============================
 =            footer            =

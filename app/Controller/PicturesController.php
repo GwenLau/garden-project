@@ -30,18 +30,6 @@ class PicturesController extends Controller
 
 		$this->show('picture/all', ['allPictures' => $pictures, 'user' => $this->getUser()]);
 	}
-
-	// Détails d'une image
-	public function details($id)
-	{
-		$this->allowTo(['user', 'admin']);
-		// $id contient l'ID entré dans l'url 
-		$picturesModel = new PicturesModel();
-		
-		$picture = $picturesModel->find($id); // Va cibler automatiquement la colonne `id` de la base de données
-		$this->show('picture_details', ['picture' => $picture]);
-	}
-
 	
 	public function addPicture()
 	{

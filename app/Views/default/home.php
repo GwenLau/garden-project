@@ -48,13 +48,19 @@
 	</div>
 
 </section>
-<section class="wrapper-video">
-	<h1>Youpi Garden</h1>
+<section id="concept" class="wrapper-video">
+	
 	<div class="container">
+		<h1 class="text-center">Une animation pour vous expliquer notre concept</h1>
+		
 		<!-- video -->
-
-		<iframe width="560" height="315" src="https://www.youtube.com/embed/VtpzTp9PfKY" frameborder="0" allowfullscreen></iframe>
-
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+				<div class="embed-responsive embed-responsive-16by9">
+					<iframe width="560" height="315" src="https://www.youtube.com/embed/gxOA3FESAuA" frameborder="0" allowfullscreen></iframe>
+				</div>
+			</div>
+		</div>
 	</div>
 </section>
 
