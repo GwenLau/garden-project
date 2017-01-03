@@ -114,15 +114,15 @@ EOT;
 		$mail->isSMTP();                                      	// On va se servir de SMTP
 		$mail->Host = 'smtp.gmail.com';  						// Serveur SMTP
 		$mail->SMTPAuth = true;                               	// Active l'autentification SMTP
-		$mail->Username = 'wf3.mailer@gmail.com';             	// SMTP username
-		$mail->Password = '$NJ27^^4q7';                   		// SMTP password
+		$mail->Username = 'youpigarden@gmail.com';/*wf3.mailer@gmail.com             	*/// SMTP username
+		$mail->Password = 'YoupiGarden0703';/*'$NJ27^^4q7';                 */  		// SMTP password
 		$mail->SMTPSecure = 'tls';                            	// TLS Mode
 		$mail->Port = 587;                                    	// Port TCP à utiliser
 		$mail->CharSet = 'UTF-8';
 
 		// $mail->SMTPDebug = 2;
-
-		$mail->setFrom('wf3.mail@gmail.com', 'Big Brother Bank Corp. (BBBC)', false);
+/*'wf3.mail@gmail.com', 'Big Brother Bank Corp. (BBBC)', false);*/
+		$mail->setFrom('youpigarden@gmail.com', 'Youpi Garden', false);
 		$mail->addAddress($destAddress, $destName);     		// Ajouter un destinataire
 
 		$mail->isHTML(true);                                  	 // Set email format to HTML
@@ -154,14 +154,14 @@ EOT;
 
 					$tokenModel->delete($myToken['id']);
 
-					$this->redirectToRoute('default_login');
+					$this->redirectToRoute('users_login');
 				}
 			}
 
 			// Sinon
 			$this->show('users/reset_password', ['user' => $this->getUser()]);
 		} else {
-			$this->redirectToRoute('default_login');
+			$this->redirectToRoute('users_login');
 		}
 	}
 

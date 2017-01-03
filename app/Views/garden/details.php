@@ -31,6 +31,9 @@
     <img src="<?= $this->assetUrl('/img/' . $pictures['URL']) ?>">
   </div>
 
+
+  
+
 <?php $this->stop('main_content') ?>
 
 
