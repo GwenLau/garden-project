@@ -9,7 +9,7 @@
 		['GET', 		'/gardens/list', 							'Gardens#displayAll', 			'garden_all'],
 		['GET|POST', 	'/users/dashboard', 						'Default#dashboard', 			'default_dashboard'],
 		['GET|POST',	'/users/add',								'Default#insertUser',			'default_add'],
-		['GET|POST',	'/users/profil',							'Default#profilDashboard',		'default_profil'],
+		['GET|POST',	'/users/profil',							'Default#manageProfile',		'default_profil'],
 		['GET|POST',	'/users/messagerie',						'Default#messagerie',			'default_messagerie'],
 		['GET|POST',	'/users/garden/[i:id]',						'Default#contact',				'default_contact'],
 		['GET|POST',	'/users/received',							'Default#received',				'default_received'],
@@ -19,4 +19,5 @@
 		['GET',			'/gardens/details/[i:id]',					'Gardens#details',				'garden_details'],
 		['GET|POST',	'/dashboard/gardens',						'Gardens#addGarden',			'users/dashboard_mesjardins'],
 		['GET|POST',	'/dashboard/gardens-manager',				'Gardens#displayListOfGardens',	'users/dashboard_mesjardins_manager'],
+		['GET|POST',	'/dashboard/gardens-actions',				'Gardens#actions',				'users/gardens_actions'],
 	);

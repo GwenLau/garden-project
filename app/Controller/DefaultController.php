@@ -160,18 +160,29 @@ EOT;
 		}
 	}
 
-	// Détails du dashboard
+	// Détails du dashboard : affichage des informations générales de l'utilisateurs
 	public function dashboard()
 	{
 		$this->allowTo(['user', 'admin']);
 
 		$this->show('users/dashboard', ['user' => $this->getUser()]);
 
+
 	}
-		
-	public function profilDashboard()
+	
+	// Fonction de gestion du profil de l'utilisateur
+	public function manageProfile()
 		{
 			$this->allowTo(['user', 'admin']);
+
+			
+			if(isset($_POST['save-new-avatar'])){
+				$this->addAvatar();
+			} else if(isset($_POST['save-new-email'])) {
+				$this->newEmail();
+			} else if(isset($_POST['save-new-password'])) {
+				$this->newPwd();
+			}
 
 			$this->show('users/profil', ['user' => $this->getUser()]);
 		}
@@ -257,116 +268,6 @@ EOT;
 			$this->show('users/add');
 	}
 
-// Fonction pour ajouter un avatar (Dashboard > Mon compte)
-	public function addAvatar()
-	{
-		
-		$UsersModel = new UsersModel();
-		$ImageManagerService = new ImageManagerService();
-
-		$this->allowTo(['user', 'admin']);
-
-		// Insertion d'un avatar
-		if(isset($_POST['save-new-avatar'])){
-			// Vérifier si le téléchargement du fichier n'a pas été interrompu
-		    if ($_FILES['my-avatar']['error'] != UPLOAD_ERR_OK) {
-		        echo 'Erreur lors du téléchargement.';
-		    } else {
-		        // Objet FileInfo
-		        $finfo = new finfo(FILEINFO_MIME_TYPE);
-
-		        // Récupération du Mime
-		        $mimeType = $finfo->file($_FILES['my-avatar']['tmp_name']);
-
-		        $extFoundInArray = array_search(
-		            $mimeType, array(
-		                'jpg' => 'image/jpeg',
-		                'png' => 'image/png',
-		                'gif' => 'image/gif',
-		            )
-		        );
-		        
-		        if ($extFoundInArray === false) {
-		            echo 'Le fichier n\'est pas une image';
-		        } else {
-		            // Renommer nom du fichier
-		            $shaFile = sha1_file($_FILES['my-avatar']['tmp_name']);
-		            $nbFiles = 0;
-		            $fileName = ''; // Le nom du fichier, sans le dossier
-		            do {
-		                $fileName = $shaFile . $nbFiles . '.' . $extFoundInArray;
-		                $path = './assets/uploads/users/' . $fileName;
-		                $nbFiles++;
-		            } while(file_exists($path));
-
-		            if(count($errors) === 0) {
-
-		            $moved = move_uploaded_file($_FILES['my-avatar']['tmp_name'], $path);
-		            if (!$moved) {
-		                echo 'Erreur lors de l\'enregistrement';
-		            } else {
-		            	$imageManagerService->resize($fullPath, null, 200, 200, true, $path . 'min/' . $fileNames, false);	
-		            	$usersModel->insert([
-		            			'avatar' => $fileName,
-		            		]);
-		            	}
-		        	}
-		    	}
-    		}
-    	}
-    	$this->show('users/profil', ['errors' => $errors]);
-
-	} // Fin de la fonction addAvatar
-
-	public function newEmail()
-	{
-		$this->allowTo(['user', 'admin']);
-		$error = null;
-		$newEmail = $_POST['new-email'];
-		
-
-		// Enregistrement d'un nouvel e-mail
-		if(isset($_POST['save-new-email'])){
-			// Vérifications du nouvel e-mail saisi
-			if(isset($_POST['new-email']) && !empty($_POST['new-email']) && filter_var($newEmail, FILTER_VALIDATE_EMAIL)){
-				$usersModel = new UsersModel();
-				$usersModel->updateEmail([
-					'email' => $newEmail,
-					]);
-			} else {
-				$error = 'L\'e-mail saisi n\'est pas valide';
-			};
-			$this->show('users/profil', [
-				'user' => $this->getUser(),
-				'error' => $error,
-			]);
-		}
-	}
-
-	public function newPwd()
-	{
-		$this->allowTo(['user', 'admin']);
-		$error = null;
-		$newPassword = $_POST['new-password'];
-
-		// Enregistrement d'un nouveau mot-de-passe	
-		if(isset($_POST['save-new-password'])){
-			// Vérifications du mot-de-passe saisi
-			if(isset($_POST['new-password']) && !empty($_POST['new-password']) && strlen($_POST['new-password'] >= 3) && $_POST['new-password'] === $_POST['confirm-new-password']) {
-				$newPassword = hashPassword($_POST['new-password']);
-				$usersModel = new UsersModel();
-				$usersModel->updatePassword([
-					'password' => $newPassword,
-					]);
-			} else {
-				$error = 'Le mot-de-passe saisi n\'est pas valide';
-			}
-			$this->show('users/profil', [
-				'user' => $this->getUser(),
-				'error' => $error,
-			]);
-		}	
-	}
 
 //david function contact proprio jardin
 	public function contact($idGarden)
@@ -432,6 +333,121 @@ EOT;
 
 		$this->show('users/search', ['allGardens' => $gardens, 'user' => $this->getUser()]);
 
+	}
+
+	// Fonction pour ajouter un avatar (Dashboard > Mon compte)
+	private function addAvatar()
+	{
+		
+		$UsersModel = new UsersModel();
+		$ImageManagerService = new ImageManagerService();
+		$fileName = '';
+		$errors = 
+
+		$this->allowTo(['user', 'admin']);
+
+		// Insertion d'un avatar
+		if(isset($_POST['save-new-avatar'])){
+			// Vérifier si le téléchargement du fichier n'a pas été interrompu
+		    if ($_FILES['my-avatar']['error'] != UPLOAD_ERR_OK) {
+		        $errors['my-avatar'] = 'Merci de choisir un fichier';
+		    } else {
+		        // Objet FileInfo
+		        $finfo = new \finfo(FILEINFO_MIME_TYPE);
+
+		        // Récupération du Mime
+		        $mimeType = $finfo->file($_FILES['my-avatar']['tmp_name']);
+
+		        $extFoundInArray = array_search(
+		            $mimeType, array(
+		                'jpg' => 'image/jpeg',
+		                'png' => 'image/png',
+		                'gif' => 'image/gif',
+		            )
+		        );
+		        
+		        if ($extFoundInArray === false) {
+		            $errors['my-avatar'] =  'Le fichier n\'est pas une image';
+		        } else {
+		            // Renommer nom du fichier
+		            $shaFile = sha1_file($_FILES['my-avatar']['tmp_name']);
+		            $nbFiles = 0;
+		        
+		            do {
+		                $fileName = $shaFile . $nbFiles . '.' . $extFoundInArray;
+		                $path = './assets/uploads/users/' . $fileName;
+		                $nbFiles++;
+		            } while(file_exists($path));
+
+		            if(count($errors) === 0) {
+
+		            $moved = move_uploaded_file($_FILES['my-avatar']['tmp_name'], $path);
+			            if (!$moved) {
+			                echo 'Erreur lors de l\'enregistrement';
+			            } 
+		        	}
+		    	}    		
+    		}
+
+    		if(count($errors) === 0) {
+    		$usersModel->insert([
+					'avatar'		=> $fileName,		
+				]);
+    		}
+    	}
+    	$this->show('users/profil', ['errors' => $errors]);
+
+	} // Fin de la fonction addAvatar
+
+	private function newEmail()
+	{
+		$this->allowTo(['user', 'admin']);
+		$error = null;
+		$newEmail = $_POST['new-email'];
+		
+
+		// Enregistrement d'un nouvel e-mail
+		if(isset($_POST['save-new-email'])){
+			// Vérifications du nouvel e-mail saisi
+			if(isset($_POST['new-email']) && !empty($_POST['new-email']) && filter_var($newEmail, FILTER_VALIDATE_EMAIL)){
+				$usersModel = new UsersModel();
+				$id = $_SESSION['id'];
+				$usersModel->update(['email' => $newEmail], $id);
+
+			} else {
+				$error = 'L\'e-mail saisi n\'est pas valide';
+			};
+			$this->show('users/profil', [
+				'user' => $this->getUser(),
+				'error' => $error,
+			]);
+		}
+	}
+
+	private function newPwd()
+	{
+		$this->allowTo(['user', 'admin']);
+		$error = null;
+		$newPassword = $_POST['new-password'];
+
+		// Enregistrement d'un nouveau mot-de-passe	
+		if(isset($_POST['save-new-password'])){
+			// Vérifications du mot-de-passe saisi
+			if(isset($_POST['new-password']) && !empty($_POST['new-password']) && strlen($_POST['new-password'] >= 3) && $_POST['new-password'] === $_POST['confirm-new-password']) {
+				$newPassword = hashPassword($_POST['new-password']);
+				$usersModel = new UsersModel();
+				$usersModel->update([
+					'password' => $newPassword,
+					'id' => $_SESSION['user_id'],
+					]);
+			} else {
+				$error = 'Le mot-de-passe saisi n\'est pas valide';
+			}
+			$this->show('users/profil', [
+				'user' => $this->getUser(),
+				'error' => $error,
+			]);
+		}	
 	}
 
 }

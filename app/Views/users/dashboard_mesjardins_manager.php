@@ -26,7 +26,7 @@
 									<tbody>
 
 									<?php foreach($gardens as $garden) : ?>
-										<tr>
+										<tr id="garden-<?= $garden['id'] ?>">
 											<td>
 												<strong><?= $garden['Name'] ?></strong>
 											</td>
@@ -34,14 +34,16 @@
 												<?= $garden['City'] ?>
 											</td>
 											<td>
-												<button type="button" class="btn btn-secondary btn-sm" id="<?= $garden['id'] ?>" name="update-garden">Modifier</button>
-												<button type="button" class="btn btn-danger btn-sm" id="<?= $garden['id'] ?>" name="delete-garden">X</button>
+												<button type="button" class="update-garden btn btn-secondary btn-sm" data-id="<?= $garden['id'] ?>" name="update-garden">Modifier</button>
+												<button type="button" class="delete-garden btn btn-danger btn-sm" data-id="<?= $garden['id'] ?>" name="delete-garden">X</button>
 											</td>
 										</tr>
 									<?php endforeach ?>
 									
 									</tbody>
 								</table>
+								<div class="garden-deleted hidden bg-danger">Le jardin a été supprimé.
+								</div>
 							</div>
 						</div>
 					</div>
@@ -52,3 +54,41 @@
 
 
 <?php $this->stop('main_content') ?>
+
+<?php $this->start('scripts') ?>
+<script>
+$(function() {
+	
+	/* Fonction pour la suppression des jardins */
+  $('.delete-garden').click(function(e){
+  		e.preventDefault();
+
+  		//récupère l'id du garder
+			var id = $(this).data('id');
+      
+      //ajax de suppression
+      $.ajax({
+          method: "POST",
+          url: '<?php echo $this->url('users/gardens_actions'); ?>',
+          data: { id : id },
+          dataType: 'json',
+          success: function(r) {
+          	if(r === true) {
+            	console.log($('#garden-' + id) );
+            	$('#garden-' + id).fadeOut('fast', function(){
+            		$(this).remove();
+            	});
+            	$('garden-deleted').removeClass('hidden');
+          	} else {
+          		//générer une erreur js
+          		alert('Une erreur s’est produite.');
+          	}
+          }
+      })
+  });
+
+});
+</script>
+<?php $this->stop('scripts') ?>
+
+

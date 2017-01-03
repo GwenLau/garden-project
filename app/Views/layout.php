@@ -15,14 +15,6 @@
 	<link href="https://fonts.googleapis.com/css?family=Lato|Roboto" rel="stylesheet">
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>">
 
-	<!-- CDN jQuery -->
-	<script src ="https://code.jquery.com/jquery-3.1.1.min.js"
-	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-	<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-	<script src ="<?= $this->assetUrl('js/bootstrap.min.js') ?>" defer></script> 
-	<script src ="<?= $this->assetUrl('js/script.js') ?>" defer></script> 
-
-  
 </head>
 <body>
 
@@ -117,5 +109,12 @@
     </div>
 	</footer>
 </div> -->
+<!-- CDN jQuery -->
+<script src ="https://code.jquery.com/jquery-3.1.1.min.js"
+integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script src ="<?= $this->assetUrl('js/bootstrap.min.js') ?>" defer></script> 
+<script src ="<?= $this->assetUrl('js/script.js') ?>" defer></script>
+<?= $this->section('scripts'); ?>  
 </body>
 </html>
