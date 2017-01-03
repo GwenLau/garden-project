@@ -5,19 +5,19 @@
 	<p>Retrouvez l'ensemble des détails de votre profil et gérer vos jardins à partager</p>
 	 -->
 			<div class="container">
-		    <div class="row profile">
-				<div class="col-md-3">
-					<?= $this->insert('users/sidebar_dashboard', ['user' => $user]) ?>
-				</div>
-				<div class="col-md-9">
-		            <div class="profile-content">
-					   
-							Bienvenue <?= $user['pseudo'] ?>, gérez votre profil, proposez un jardin ou faire une demande de réservation auprès d'un propriétaire 
+				    <div class="row profile">
+						<div class="col-md-3">
+							<?= $this->insert('users/sidebar_dashboard', ['user' => $user]) ?>
+						</div>
+							<div class="col-md-9">
+					            <div class="profile-content">
+								   
+										Bienvenue <?= $user['pseudo'] ?>, gérez votre profil, proposez un jardin ou faire une demande de réservation auprès d'un propriétaire 
 							
-		            </div>
-				</div>
+				            </div>
+						</div>
+					</div>
 			</div>
-		</div>
 		<center>
 		</center>
 		<br>

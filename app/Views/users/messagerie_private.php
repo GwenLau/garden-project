@@ -11,8 +11,6 @@
         </div>
         <div class="col-md-9">
             <div class="profile-content">
-
-
                 <form action="#" method="POST">
                     <div class="container">
                         <div id="loginbox" style="margin-top:50px;" class="col-md-6">
@@ -43,8 +41,6 @@
                                                 }
                                             });
                                         </script>
-
-
                                         <br /><br />
                                         <textarea placeholder="Votre message" name="message"></textarea>
                                         <br /><br />
@@ -54,8 +50,6 @@
                         </div>
                     </div>
                 </form>
-
-            
 
                 <div class="container">
                     <div class="row">
@@ -103,7 +97,6 @@
                         </div>
                     </div>
                 </div>
-
-        
+       
                 <?php $this->stop('main_content') ?>
 

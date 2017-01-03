@@ -108,7 +108,6 @@
 
 													<div class="col-sm-12 controls">
 													  <button  id="btn-login" name="insert-user" type="submit" class="btn btn-success" value="Ajouter un utilisateur">S'incrire </button>
-
 													</div>
 												</div>
 											</form>     

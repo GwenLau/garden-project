@@ -18,7 +18,6 @@
 		        <p><?= $Pic['Description'] ?></p>
 		        <p><a href="<?= $this->url('default_contact', ['id' => $Pic['gardenId']]) ?>" class="btn btn-primary" role="button">Contacter</a> <a href="#details.php" class="btn btn-default" role="button">Détails...</a>
 		        </p>
-
 		      </div>
 		    </div>
 		  </div>

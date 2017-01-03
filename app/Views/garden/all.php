@@ -20,21 +20,16 @@
 		      <div class="caption">
 		        <h3><?= $Pic['City'] ?></h3>
 
-		        <p><?= $Pic['Name'] ?></p>
-		        <p><?= $Pic['Description'] ?></p>
-		        <p><a href="<?= $this->url('default_contact', ['id' => $Pic['gardenId']]) ?>" class="btn btn-primary" role="button">Contacter</a> <a href="<?= $this->url('garden_details', ['id' => $Pic['gardenId']]) ?>" class="btn btn-default" role="button">Détails...</a>
-		        </p>
-
-		      
-		      
-
-
+			        <p><?= $Pic['Name'] ?></p>
+			        <p><?= $Pic['Description'] ?></p>
+			        <p><a href="<?= $this->url('default_contact', ['id' => $Pic['gardenId']]) ?>" class="btn btn-primary" role="button">Contacter</a> <a href="<?= $this->url('garden_details', ['id' => $Pic['gardenId']]) ?>" class="btn btn-default" role="button">Détails...</a>
+			        </p>
 		      </div>
 		    </div>
 		  </div>
 
 		<?php endforeach ?>
 
-</div>
+	</div>
 
 <?php $this->stop('main_content') ?>
