@@ -14,7 +14,7 @@
 		['GET|POST',	'/users/garden/[i:id]',						'Default#contact',			'default_contact'],
 		['GET|POST',	'/users/received',							'Default#received',			'default_received'],
 		['GET|POST', 	'/users/search', 							'Default#dashDisplayAll', 	'default_search'],
-		['GET', 		'/gardens/list', 							'Gardens#displayAll', 		'gardens_all'],
+	/*	['GET', 		'/gardens/list', 							'Gardens#displayAll', 		'gardens_all'],*/
 		['GET|POST', 	'/add_picture', 							'Picture#addPicture', 		'picture/add_picture'],
 		['GET',			'/garden/details/[i:id]',					'Gardens#details',			'garden_details'],
 		['GET|POST',	'/dashboard/gardens',						'Gardens#addGarden',	'users/dashboard_mesjardins'],
