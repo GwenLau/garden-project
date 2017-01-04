@@ -48,8 +48,9 @@
 		    <!-- Collect the nav links, forms, and other content for toggling -->
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		      <ul class="nav navbar-nav">
-		        <li class="active"><a href="<?= $this->url('default_add') ?>">Inscription <span class="sr-only">(current)</span></a></li>
-		        <li><a href="<?= $this->url('users_login') ?>">Connexion</a></li>
+		        <li><a style= "color:#FFF" href="<?= $this->url('default_add') ?>">Inscription <span class="sr-only">(current)</span></a></li>
+		        <li><a style= "color:#FFF" href="<?= $this->url('users_login') ?>">Connexion</a></li>
+
 		        
 		      </ul>
 		      <form class="navbar-form navbar-left">
@@ -57,7 +58,7 @@
 		      <ul class="nav navbar-nav navbar-right">
 		        <li class="dropdown">
 
-		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <?= $user['pseudo'] ?> <span class="caret"></span></a>
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style= "color:#FFF"> <?= $user['pseudo'] ?> <span class="caret"></span></a>
 
 		          <ul class="dropdown-menu">
 		            <li><a href="<?= $this->url('default_dashboard') ?>">Dashboard</a></li>

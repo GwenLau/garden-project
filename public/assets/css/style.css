@@ -30,10 +30,15 @@ nav {
   font-size: 15px;
 }
 
-.nav.navbar-nav.navbar-default a:hover {
+/* .nav.navbar-nav li.active a:hover {
+    background-color: #A2DED0;   
+    color: #FFF;
+  }  */ 
+
+.nav.navbar-nav span.sr-only li.active a:hover {
   background-color: #A2DED0;   
   color: #FFF;
-}
+}  
 
 .navbar.navbar-default.navbar-fixed-top {
   background-color: #16a085;
@@ -46,6 +51,8 @@ a.navbar-brand {
     float: left;
     font-size: 30px;
 }
+
+
 
 /*======================================
 ================= FOOTER ===============
