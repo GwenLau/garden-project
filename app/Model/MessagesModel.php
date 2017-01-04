@@ -7,6 +7,7 @@ use \W\Model\Model;
 class MessagesModel extends Model
 {	
 	public function findAllMessages($id_user)
+	
 	{
 		$sql =<<< EOT
 SELECT *

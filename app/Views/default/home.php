@@ -52,6 +52,7 @@
 <section id="concept" class="wrapper-video">
 	
 	<div class="container">
+
 		<h1 class="text-center">Une animation pour expliquer notre concept</h1>
 		<!-- video -->
 			<div class="row">
@@ -61,6 +62,7 @@
 					</div>
 				</div>
 			</div>
+
 	</div>
 </section>
 

@@ -25,6 +25,7 @@ img.slider {
   height: 100%;
 }
 
+<<<<<<< HEAD
 /*==============================
 =            VIDEO           =
 ==============================*/
@@ -36,6 +37,17 @@ img.slider {
 /*==============================
 =     GOOGLEMAP            =
 ==============================*/
+=======
+/* VIDEO SECTION */
+#concept {
+  background-color: #ecf0f1;
+  padding: 20px 0 10px 0;
+}
+
+/***
+GoogleMaps section
+***/
+>>>>>>> christine-step2
 
 #map {
   height: 300px;
@@ -204,7 +216,22 @@ a.navbar-brand {
   text-align: center;
 }
 
+<<<<<<< HEAD
 
+=======
+/* Carrousel */
+div#carousel.carousel.slide.carousel-fade {
+  padding: 0px;
+}
+
+/* .carousel-inner {
+  padding: 0px;
+  width: 120%;
+  margin-left: 0;
+  margin-right: -10%;
+  margin-top: -10%;
+} */
+>>>>>>> christine-step2
 
 /*==============================
 =            footer            =

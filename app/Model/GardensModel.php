@@ -5,9 +5,9 @@ namespace Model;
 use \W\Model\Model;
 
 class GardensModel extends Model
-
+	
 {
-		public function findAllAndChilds()
+	public function findAllAndChilds()
 	{
 		$sql =<<< EOT
 SELECT gardens.id AS gardenId, Description, Streetname, CityCode, Streetnumber, City, Name, gardens.id_user, URL, ALT
@@ -55,6 +55,21 @@ EOT;
 	}
 
 	
-
-
+	public function findGarden($id)
+	{
+		$sql =<<< EOT
+SELECT gardens.id AS gardenId, Description, Streetname, CityCode, Streetnumber, City, Name, users.id, pseudo, avatar, URL, ALT, position
+FROM gardens
+LEFT JOIN users ON users.id = gardens.id_user
+INNER JOIN pictures_gardens ON pictures_gardens.id_garden = gardens.id
+INNER JOIN pictures ON pictures.id = pictures_gardens.id_picture
+WHERE gardens.id = :id
+ORDER BY position
+EOT;
+		$stmt = $this->dbh->prepare($sql);
+		$stmt->bindParam(':id', $id, \PDO::PARAM_INT);
+		$stmt->execute();
+		return $stmt->fetch();
+	}
 }
+

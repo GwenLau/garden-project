@@ -2,23 +2,20 @@
 
 namespace Controller;
 
-
-
 use \W\Controller\Controller;
 use Service\ImageManagerService;
 use Model\GardensModel;
 use Model\PicturesModel;
 use Model\PicturesGardensModel;
+use Model\UsersModel;
+
 //fonction david recherche
-
-
 class GardensController extends Controller
 {
 	// Affichage de la liste des images
 	public function displayAll()
 	{
 
-	
 		$gardensModel = new GardensModel();
 
 		if(isset($_GET['s'])) {
@@ -38,18 +35,44 @@ class GardensController extends Controller
 		$this->show('garden/all', ['allGardens' => $gardens, 'user' => $this->getUser()]);
 	}
 
-//fonction david recherche
+//fonction Christine >> affichage du détail d'un jardin :
+//
+// AFFICHAGE DES 3 PHOTOS DU JARDIN : 
+// Afficher les 3 images d'un jardin avec :
+// 1) 1 image pleine page = image principale positionnée 1 en BDD 
+// 2) affichage de 2 images plus petites du jardin = images positionnées 2 et 3 en BDD
+// 
+// AFFICHAGE DE 4 CHAMPS DE TEXTE :
+// 1) le pseudo du propriétaire du jardin (table "users", champs "pseudo")
+// 2) le nom, la ville et la description du jardin (table "gardens", champs "name", "city" et "description")
+// 
+// PROBLEME : impossible de faire remonter les infos de Users Model > d'où création d'un autre modèle = OwnerModel + public function findOwner() >> Mais ça ne fonctionne toujours pas
+// Les seuls champs qui s'affichent sont ceux appelés par la fonction findGarden dans GardensModel
+// Ni les images, ni les infos users (pseudo et avatar) ne s'affichent.
+// 
+// Nous sommes bloqués depuis 2 jours. Jérôme (front end) n'a pas pu m'aider hier.
+// Je ne peux demander d'aide aux autres élèves qui sont occupés jusque vendredi.
+// Et nous sommes seuls jusque jeudi, la soutenance étant vendredi.
+// Si mon problème n'est pas résolu, je n'aurai pas grand chose à montrer.
+// Pourrais-tu stp aider, en regardant les documents envoyés ?
+// Possible de se faire un tchat ou call aussi pour débugger stp.
+// 
+// Par avance un grand merci pour ton aide.
 
-
-
-	// Détails d'une image
+	// Détails d'un jardin
 	public function details($id)
 	{
-		/*$this->allowTo(['user', 'admin']);*/
-		// $id contient l'ID entré dans l'url 
 		$gardensModel = new GardensModel();
-		$garden = $gardensModel->find($id); // Va cibler automatiquement la colonne `id` de la base de données
-		$this->show('garden/details', ['garden' => $garden]);
+		// $ownerModel = new OwnerModel();
+
+		$garden = $gardensModel->findGarden($id);
+		// $owner = $ownerModel->findOwner($id);
+		
+		//$user = Array(
+			//////'avatar'=>'test',
+			////'pseudo'=> 'tata'
+		//);
+		$this->show('garden/details', ['garden' => $garden, 'owner' => $owner, 'user' => $this->getUser()]);
 	}
 
 	public function displayAllInMap()
@@ -61,18 +84,14 @@ class GardensController extends Controller
 		echo json_encode($gardens);
 	}
 
-	
 	public function addGarden()
 	{
-
 		/*print_r($_FILES);*/
 		// $this->allowTo('admin');
 		$gardensModel = new GardensModel();
 		$picturesModel = new PicturesModel();
 		$picturesGardensModel = new PicturesGardensModel();
 		$imageManagerService = new ImageManagerService();
-
-		
 
 		if(isset($_POST['add-garden'])) {
 			$errors = [];
