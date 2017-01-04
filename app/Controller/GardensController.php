@@ -204,7 +204,7 @@ class GardensController extends Controller
 				}
 			}
 		}
-		$this->show('users/dashboard_mesjardins', ['errors' => $errors]);
+		$this->show('users/dashboard_mesjardins', ['errors' => $errors, 'user' => $this->getUser()]);
 	}
 
 	// Fonction pour l'affichage des jardins / utilisateur (pour la gestion de ses jardins)

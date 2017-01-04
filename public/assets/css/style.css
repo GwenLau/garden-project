@@ -31,7 +31,7 @@ nav {
 }
 
 .nav.navbar-nav.navbar-default a:hover {
-  background-color: #A2DED0;  
+  background-color: #A2DED0;   
   color: #FFF;
 }
 
@@ -45,7 +45,7 @@ a.navbar-brand {
     color: #FFF;
     float: left;
     font-size: 30px;
-} 
+}
 
 /*======================================
 ================= FOOTER ===============

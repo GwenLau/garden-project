@@ -11,5 +11,13 @@
 			<button type="submit" name="update-password">Modifier le mot de passe</button>
 		</form>
 	</section>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+
+	<br>
 
 <?php $this->stop('main_content') ?>
