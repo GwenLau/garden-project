@@ -5,16 +5,21 @@ namespace Model;
 use \W\Model\Model;
 
 class GardensModel extends Model
-
+	
 {
 
-		public function findAllAndChilds()
+
+	public function findAllAndChilds()
+
 	{
 		$sql =<<< EOT
-SELECT gardens.id AS gardenId, Description, Streetname, CityCode, Streetnumber, City, Name, id_user
+SELECT gardens.id AS gardenId, Description, Streetname, CityCode, Streetnumber, City, Name, gardens.id_user, URL, ALT
 FROM gardens
 LEFT JOIN users ON users.id = gardens.id_user
-GROUP BY gardens.id
+INNER JOIN pictures_gardens ON pictures_gardens.id_garden = gardens.id
+INNER JOIN pictures ON pictures.id = pictures_gardens.id_picture
+WHERE pictures_gardens.position = 1
+
 EOT;
 		$stmt = $this->dbh->prepare($sql);
 		$stmt->execute();
@@ -30,11 +35,16 @@ EOT;
 		$where = substr($where, 0, -3);
 
 		$sql =<<<EOT
-SELECT gardens.id AS gardenId, Description, Streetname, CityCode, Streetnumber, City, Name, id_user
+SELECT gardens.id AS gardenId, Description, Streetname, CityCode, Streetnumber, City, Name, gardens.id_user, URL, ALT
 FROM gardens
 LEFT JOIN users ON users.id = gardens.id_user
-WHERE $where
-GROUP BY gardens.id
+INNER JOIN pictures_gardens ON pictures_gardens.id_garden = gardens.id
+INNER JOIN pictures ON pictures.id = pictures_gardens.id_picture
+WHERE (
+	$where
+)
+AND pictures_gardens.position = 1
+
 EOT;
 
 		$stmt = $this->dbh->prepare($sql);
@@ -49,7 +59,7 @@ EOT;
 
 	public function listOfGardens($id_user)
 	{
-		$sql = 'SELECT id, Name, City FROM gardens WHERE id_user = 6';
+		$sql = 'SELECT id, Name, City FROM gardens WHERE id_user = :id_user';
 		$stmt = $this->dbh->prepare($sql);
 		$stmt->bindParam(':id_user', $id_user);
 		$stmt->execute();
@@ -64,9 +74,22 @@ EOT;
 	// 	$stmt->execute();
 	// 	return $stmt;
 	// }
-
-
 	
-
-
+	public function findGarden($id)
+	{
+		$sql =<<< EOT
+SELECT gardens.id AS gardenId, Description, Streetname, CityCode, Streetnumber, City, Name, users.id, pseudo, avatar, URL, ALT, position
+FROM gardens
+LEFT JOIN users ON users.id = gardens.id_user
+INNER JOIN pictures_gardens ON pictures_gardens.id_garden = gardens.id
+INNER JOIN pictures ON pictures.id = pictures_gardens.id_picture
+WHERE gardens.id = :id
+ORDER BY position
+EOT;
+		$stmt = $this->dbh->prepare($sql);
+		$stmt->bindParam(':id', $id, \PDO::PARAM_INT);
+		$stmt->execute();
+		return $stmt->fetch();
+	}
 }
+

@@ -1,8 +1,10 @@
-<?php $this->layout('layout', ['title' => 'Liste des Photos' , 'user' => $user]) ?>
+<?php $this->layout('layout', ['title' => '' , 'user' => $user]) ?>
 
 <?php $this->start('main_content') ?>
-	<h2>Liste des jardins à partager</h2>
-	<p>Retrouvez l'ensemble des détails ci-dessous et contactez le propriétaire</p>
+	<!-- <h2>Liste des jardins à partager</h2> -->
+	<p> <br> 
+	<br>
+	<br> </p>
 
 
 	<div class="row">
@@ -18,21 +20,17 @@
 		      <div class="caption">
 		        <h3><?= $Pic['City'] ?></h3>
 
-		        <p><?= $Pic['Name'] ?></p>
-		        <p><?= $Pic['Description'] ?></p>
-		        <p><a href="<?= $this->url('default_contact', ['id' => $Pic['gardenId']]) ?>" class="btn btn-primary" role="button">Contacter</a> <a href="#details.php" class="btn btn-default" role="button">Détails...</a>
-		        </p>
 
-		      
-		      
-
-
+			        <p><?= $Pic['Name'] ?></p>
+			        <p><?= $Pic['Description'] ?></p>
+			        <p><a href="<?= $this->url('default_contact', ['id' => $Pic['gardenId']]) ?>" class="btn btn-primary" role="button">Contacter</a> <a href="<?= $this->url('garden_details', ['id' => $Pic['gardenId']]) ?>" class="btn btn-default" role="button">Détails...</a>
+			        </p>	      
 		      </div>
 		    </div>
 		  </div>
 
 		<?php endforeach ?>
 
-</div>
+	</div>
 
 <?php $this->stop('main_content') ?>

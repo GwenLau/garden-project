@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'Votre compte']) ?>
+<?php $this->layout('layout', ['title' => 'Votre compte', 'user' => $user]) ?>
 
 <?php $this->start('main_content') ?>
 	

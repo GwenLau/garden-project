@@ -8,6 +8,9 @@ use \W\Model\UsersModel;
 use Model\RecoverytokensModel;
 use Model\GardensModel;
 use Service\ImageManagerService;
+// use Twilio\Rest\SplClassLoader;
+// use Twilio\Rest\Client;
+
 
 
 class DefaultController extends Controller
@@ -20,6 +23,7 @@ class DefaultController extends Controller
 	{
 		$gardensModel = new GardensModel();
 		$gardens = $gardensModel->findAll();
+
 
 		$this->show('default/home', ['gardens' => $gardens]);
 	}
@@ -48,10 +52,10 @@ class DefaultController extends Controller
 			} else {
 
 				// Echec de la connexion
-				$this->show('users/login', ['error' => true]);
+				$this->show('users/login', ['error' => true, 'user' => $this->getUser()]);
 			}
 		} else {
-			$this->show('users/login');
+			$this->show('users/login', ['user' => $this->getUser()]);
 		}
 	}
 
@@ -60,7 +64,7 @@ class DefaultController extends Controller
 		$authModel = new AuthentificationModel();
 		$authModel->logUserOut();
 		header('Location: login');
-        exit;
+		exit;
 	}
 
 	// Affichage du formulaire de demande de nouveau mot de passe
@@ -98,8 +102,9 @@ EOT;
 				$this->sendMail($user['email'], $user['lastname'] . ' ' . $user['firstname'], 'Réinitialisation du mot de passe', $messageHtml, $messagePlain);
 			}
 		} else {
-			$this->show('users/password_recovery');
+			$this->show('users/password_recovery', ['user' => $this->getUser()]);
 		}
+		
 	}
 
 	private function sendMail($destAddress, $destName, $subject, $messageHtml, $messagePlain)
@@ -109,15 +114,14 @@ EOT;
 		$mail->isSMTP();                                      	// On va se servir de SMTP
 		$mail->Host = 'smtp.gmail.com';  						// Serveur SMTP
 		$mail->SMTPAuth = true;                               	// Active l'autentification SMTP
-		$mail->Username = 'wf3.mailer@gmail.com';             	// SMTP username
-		$mail->Password = '$NJ27^^4q7';                   		// SMTP password
+		$mail->Username = 'youpigarden@gmail.com';/*wf3.mailer@gmail.com             	*/// SMTP username
+		$mail->Password = 'YoupiGarden0703';/*'$NJ27^^4q7';                 */  		// SMTP password
 		$mail->SMTPSecure = 'tls';                            	// TLS Mode
 		$mail->Port = 587;                                    	// Port TCP à utiliser
 		$mail->CharSet = 'UTF-8';
 
 		// $mail->SMTPDebug = 2;
-
-		$mail->setFrom('wf3.mail@gmail.com', 'Big Brother Bank Corp. (BBBC)', false);
+		$mail->setFrom('youpigarden@gmail.com', 'Youpi Garden', false);
 		$mail->addAddress($destAddress, $destName);     		// Ajouter un destinataire
 
 		$mail->isHTML(true);                                  	 // Set email format to HTML
@@ -149,14 +153,14 @@ EOT;
 
 					$tokenModel->delete($myToken['id']);
 
-					$this->redirectToRoute('default_login');
+					$this->redirectToRoute('users_login');
 				}
 			}
 
 			// Sinon
-			$this->show('users/reset_password');
+			$this->show('users/reset_password', ['user' => $this->getUser()]);
 		} else {
-			$this->redirectToRoute('default_login');
+			$this->redirectToRoute('users_login');
 		}
 	}
 
@@ -164,12 +168,19 @@ EOT;
 	public function dashboard()
 	{
 		$this->allowTo(['user', 'admin']);
-
+	
 		$this->show('users/dashboard', ['user' => $this->getUser()]);
-
 
 	}
 	
+	// Affichage des détails dans la sidebar
+	public function profilDashboard()
+		{
+			$this->allowTo(['user', 'admin']);
+
+			$this->show('users/profil', ['user' => $this->getUser()]);
+		}
+
 
 	public function messagerie()
 		{
@@ -185,25 +196,36 @@ EOT;
 						'id_receive' => $_POST['destinataire'],
 						'Message' => $_POST['message'],
 					]);
+					// $sid = "ACf25767309ce67abfed16cbacaab0a4f3"; // Your Account SID from www.twilio.com/console
+					// $token = "73c2331465d98fb87b03c4aea6afb761"; // Your Auth Token from www.twilio.com/console
+
+					// $client = new Client($sid, $token);
+					// $message = $client->messages->create(
+					//   '+33677062090', // Text this number
+					//   array(
+					// 	'from' => '+33644641630', // From a valid Twilio number
+					// 	'body' => 'Bonjour vous avez une demande de jardin YoupiGarden!'
+					//   )
+					// );
 				} else {
 					$error = "Veuillez compléter tous les champs";
 				}
 			}
 
-			// $id contient l'ID entré dans l'url 
-	/*		$picturesModel = new PicturesModel();
-			$picture = $picturesModel->find($id); // Va cibler automatiquement la colonne `id` de la base de données*/
 			$usersModel = new \W\Model\UsersModel();
 			$users = $usersModel->findAll();
+			$messagesModel = new \Model\MessagesModel();
+			$messages2 = $messagesModel->findAllMessages2($this->getUser()['id']);
 			$this->show('users/messagerie_private', [
 				'user' => $this->getUser(),
 				'dests' => $users,
-				'error' => $error
+				'error' => $error,
+				'send'  => $messages2,
 			]);
 		}
 
 
-		// Créer et insérer un nouvel utilisateur 
+	// Créer et insérer un nouvel utilisateur 
 	public function insertUser()
 	{
 		//$this->allowTo('admin');
@@ -228,6 +250,10 @@ EOT;
 			if(empty($_POST['pseudo'])) {
 				$errors['pseudo']['empty'] = true;
 			}
+
+			if(empty($_POST['num'])) {
+				$errors['num']['empty'] = true;
+			}
 			
 			if(count($errors) === 0) {
 				// Ajouter si OK
@@ -245,11 +271,11 @@ EOT;
 				// redirection vers connexion
 			}
 			else {
-				$this->show('users/add', ['errors' => $errors]);
+				$this->show('users/add', ['errors' => $errors, 'user' => $this->getUser()]);
 			}
 				
 		}
-			$this->show('users/add');
+			$this->show('users/add', ['user' => $this->getUser()]);
 	}
 
 
@@ -269,6 +295,17 @@ EOT;
 						'id_garden' => $idGarden,
 						'Message' => $_POST['message'],
 					]);
+					// $sid = "ACf25767309ce67abfed16cbacaab0a4f3"; // Your Account SID from www.twilio.com/console
+					// $token = "73c2331465d98fb87b03c4aea6afb761"; // Your Auth Token from www.twilio.com/console
+
+					// $client = new Client($sid, $token);
+					// $message = $client->messages->create(
+					//   '+33677062090', // Text this number
+					//   array(
+					// 	'from' => '+33644641630', // From a valid Twilio number
+					// 	'body' => 'Bonjour vous avez une demande de jardin YoupiGarden!'
+					//   )
+					// );
 				} else {
 					$error = "Veuillez compléter tous les champs";
 				}
@@ -277,12 +314,14 @@ EOT;
 			$gardenModel = new GardensModel();
 			$garden = $gardenModel->find($idGarden);
 			$ownerId = $garden['id_user'];
-			
-			$this->show('users/contact_private', [
+
+ 			$this->show('users/contact_private', [
 				'user' => $this->getUser(),
 				'error' => $error,
 				'destinataire' => $ownerId,
 			]);
+
+
 		}
 
 	public function received()
@@ -291,6 +330,17 @@ EOT;
 
 			$messagesModel = new \Model\MessagesModel();
 			$messages = $messagesModel->findAllMessages($this->getUser()['id']);
+			$sid = "ACf25767309ce67abfed16cbacaab0a4f3"; // Your Account SID from www.twilio.com/console
+			$token = "73c2331465d98fb87b03c4aea6afb761"; // Your Auth Token from www.twilio.com/console
+
+			/*$client = new Client($sid, $token);
+			$message = $client->messages->create(
+			  '+33677062090', // Text this number
+			  array(
+				'from' => '+33644641630', // From a valid Twilio number
+				'body' => 'Bonjour vous avez une demande de jardin YoupiGarden!'
+			  )
+			);*/
 			$this->show('users/messagerie_received', [
 				'user' => $this->getUser(),
 				'received' => $messages,
@@ -352,53 +402,53 @@ EOT;
 		// Insertion d'un avatar
 		if(isset($_POST['save-new-avatar'])){
 			// Vérifier si le téléchargement du fichier n'a pas été interrompu
-		    if ($_FILES['my-avatar']['error'] != UPLOAD_ERR_OK) {
-		        $errors['my-avatar'] = 'Merci de choisir un fichier';
-		    } else {
-		        // Objet FileInfo
-		        $finfo = new \finfo(FILEINFO_MIME_TYPE);
+			if ($_FILES['my-avatar']['error'] != UPLOAD_ERR_OK) {
+				$errors['my-avatar'] = 'Merci de choisir un fichier';
+			} else {
+				// Objet FileInfo
+				$finfo = new \finfo(FILEINFO_MIME_TYPE);
 
-		        // Récupération du Mime
-		        $mimeType = $finfo->file($_FILES['my-avatar']['tmp_name']);
+				// Récupération du Mime
+				$mimeType = $finfo->file($_FILES['my-avatar']['tmp_name']);
 
-		        $extFoundInArray = array_search(
-		            $mimeType, array(
-		                'jpg' => 'image/jpeg',
-		                'png' => 'image/png',
-		                'gif' => 'image/gif',
-		            )
-		        );
-		        
-		        if ($extFoundInArray === false) {
-		            $errors['my-avatar'] =  'Le fichier n\'est pas une image';
-		        } else {
-		            // Renommer nom du fichier
-		            $shaFile = sha1_file($_FILES['my-avatar']['tmp_name']);
-		            $nbFiles = 0;
-		        
-		            do {
-		                $fileName = $shaFile . $nbFiles . '.' . $extFoundInArray;
-		                $path = './assets/uploads/users/' . $fileName;
-		                $nbFiles++;
-		            } while(file_exists($path));
+				$extFoundInArray = array_search(
+					$mimeType, array(
+						'jpg' => 'image/jpeg',
+						'png' => 'image/png',
+						'gif' => 'image/gif',
+					)
+				);
+				
+				if ($extFoundInArray === false) {
+					$errors['my-avatar'] =  'Le fichier n\'est pas une image';
+				} else {
+					// Renommer nom du fichier
+					$shaFile = sha1_file($_FILES['my-avatar']['tmp_name']);
+					$nbFiles = 0;
+				
+					do {
+						$fileName = $shaFile . $nbFiles . '.' . $extFoundInArray;
+						$path = './assets/uploads/users/' . $fileName;
+						$nbFiles++;
+					} while(file_exists($path));
 
-		            if(count($errors) === 0) {
+					if(count($errors) === 0) {
 
-		            $moved = move_uploaded_file($_FILES['my-avatar']['tmp_name'], $path);
-			            if (!$moved) {
-			                echo 'Erreur lors de l\'enregistrement';
-			            } 
-		        	}
-		    	}    		
-    		}
+					$moved = move_uploaded_file($_FILES['my-avatar']['tmp_name'], $path);
+						if (!$moved) {
+							echo 'Erreur lors de l\'enregistrement';
+						} 
+					}
+				}    		
+			}
 
-    		if(count($errors) === 0) {
-    		$usersModel->insert([
+			if(count($errors) === 0) {
+			$usersModel->insert([
 					'avatar'		=> $fileName,		
 				]);
-    		}
-    	}
-    	$this->show('users/profil', ['errors' => $errors]);
+			}
+		}
+		$this->show('users/profil', ['errors' => $errors]);
 
 	} // Fin de la fonction addAvatar
 

@@ -1,6 +1,7 @@
 <?php
 
 	$w_routes = array(
+
 		['GET', 		'/', 										'Default#home', 				'default_home'],
 		['GET|POST',	'/login',									'Default#login',				'users_login'],
 		['GET',			'/logout',									'Default#logout',				'default_logout'],
@@ -16,8 +17,10 @@
 		['GET|POST', 	'/users/search', 							'Default#dashDisplayAll', 		'default_search'],
 		['GET', 		'/gardens/list', 							'Gardens#displayAll', 			'gardens_all'],
 		['GET|POST', 	'/add_picture', 							'Picture#addPicture', 			'picture/add_picture'],
-		['GET',			'/gardens/details/[i:id]',					'Gardens#details',				'garden_details'],
+		['GET',			'/garden/details/[i:id]',					'Gardens#details',				'garden_details'],
 		['GET|POST',	'/dashboard/gardens',						'Gardens#addGarden',			'users/dashboard_mesjardins'],
 		['GET|POST',	'/dashboard/gardens-manager',				'Gardens#displayListOfGardens',	'users/dashboard_mesjardins_manager'],
 		['GET|POST',	'/dashboard/gardens-actions',				'Gardens#actions',				'users/gardens_actions'],
+/*		['GET|POST',	'/users/profil',							'Default#profilDashboard',		'default_profil'], */
+
 	);

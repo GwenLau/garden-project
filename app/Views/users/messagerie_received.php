@@ -18,7 +18,7 @@
 				    <div class="row">
 				        <div class="col-md-6">
 				            <div class="alert alert-info">
-				                Historique de vos demandes jardins</div>
+				                Historique de demandes de jardins</div>
 				            <div class="alert alert-success" style="display:none;">
 				                <span class="glyphicon glyphicon-ok"></span> Drag table row and cange Order</div>
 				            <table class="table" width="100%">
@@ -55,72 +55,7 @@
 				                        </td>
 				                    </tr>
 				                    </tr><?php endforeach ?>
-				                    <!-- <tr>
-				                        <td>
-				                            Column content
-				                        </td>
-				                        <td>
-				                            Column content
-				                        </td>
-				                        <td>
-				                            Column content
-				                        </td>
-				                    </tr>
-				                    <tr class="success">
-				                        <td>
-				                            Column content
-				                        </td>
-				                        <td>
-				                            Column content
-				                        </td>
-				                        <td>
-				                            Column content
-				                        </td>
-				                    </tr>
-				                    <tr>
-				                        <td>
-				                            Column content
-				                        </td>
-				                        <td>
-				                            Column content
-				                        </td>
-				                        <td>
-				                            Column content
-				                        </td>
-				                    </tr>
-				                    <tr class="warning">
-				                        <td>
-				                            Column content
-				                        </td>
-				                        <td>
-				                            Column content
-				                        </td>
-				                        <td>
-				                            Column content
-				                        </td>
-				                    </tr>
-				                    <tr>
-				                        <td>
-				                            Column content
-				                        </td>
-				                        <td>
-				                            Column content
-				                        </td>
-				                        <td>
-				                            Column content
-				                        </td>
-				                    </tr>
-				                    <tr class="danger">
-				                        <td>
-				                            Column content
-				                        </td>
-				                        <td>
-				                            Column content
-				                        </td>
-				                        <td>
-				                            Column content
-				                        </td>
-				                    </tr> -->
+
 				                </tbody>
 				            </table>
 				        </div>

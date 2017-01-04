@@ -1,30 +1,53 @@
 
-<?php $this->layout('layout', ['title' => 'Liste des Photos']) ?>
+<?php $this->layout('layout', ['title' => 'Détail du jardin']) ?>
 <?php $this->start('main_content') ?>
 
-  <h2>Détails des jardins sélectionné</h2>
-  <p>Retrouvez l'ensemble des détails ci-dessous et contactez le propriétaire</p>
+  <?php print_r($garden) ?>
+  <h2>Détails des jardins sélectionnés</h2>
+  <p>Retrouvez l'ensemble des détails ci-dessous et contactez le propriétaire du jardin</p>
 
-<!-- 1/ Insérer le code de la fiche produit en html / bootstrap responsive -->
-<!-- 2/ Insérer le code de la fiche produit en php par rapport à la fonction décrite dans la fonction du controller -->
 
-  <?= $picture['Title'] ?>
-  <?= $picture['Author'] ?>
-  <?= $picture['ALT'] ?>
-  <?= $picture['Description'] ?>
 
-  <img src="<?= $this->assetUrl('/img/' . $picture['URL']) ?>">
+<!-- 3/ choisir le bon code pour insérer la photo du propriétaire du jardin $ownerInfos['URL']) ou -->
+<div id="avatar"><img src="<?= $this->assetUrl('uploads/users/' . $user['avatar']) ?>" alt="avatar"></div>
 
-<div class="row">
-  <div class="col-xs-6 col-md-3">
-    <a href="#" class="thumbnail">
-      <img src="..." alt="...">
-    </a>
+<div id="avatar"><img src="<?= $this->assetUrl('uploads/img/' . $ownerInfos['URL']) ?>">
+
+  <div><?= $ownerInfos['pseudo'] ?></div>
+
+  <div><?= $garden['Name'] ?></div>
+  <div><?= $garden['Description'] ?></div>
+  <div><?= $garden['City'] ?></div>
+  <div><?= $garden['id'] ?></div>
+
+
+  <div><?= $owner['avatar'] ?></div> 
+  <div><?= $owner['pseudo'] ?></div>
+
+  <div>
+
+    <img src="<?= $this->assetUrl('uploads/' . $pictures['URL']) ?>">
   </div>
-  ...
-</div>
+  
+  <div>
+  
+    <img src="<?= $this->assetUrl('/img/' . $pictures['URL']) ?>">
+    <img src="<?= $this->assetUrl('/img/' . $pictures['URL']) ?>">
+  </div>
+
+
+  
+
+
+  
 
 <?php $this->stop('main_content') ?>
 
 
+
+
+    <img src="<?= $this->assetUrl('/img/' . $pictures['URL']) ?>">
+  </div>
+
+<?php $this->stop('main_content') ?>
 

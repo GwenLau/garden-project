@@ -2,24 +2,21 @@
 
 namespace Controller;
 
-
-
 use \W\Controller\Controller;
 use Service\ImageManagerService;
 use Model\GardensModel;
 use Model\PicturesModel;
 use Model\PicturesGardensModel;
+use Model\UsersModel;
 
 
-
-
+//fonction david recherche
 class GardensController extends Controller
 {
 	// Affichage de la liste des images
 	public function displayAll()
 	{
 
-	
 		$gardensModel = new GardensModel();
 
 		if(isset($_GET['s'])) {
@@ -39,18 +36,22 @@ class GardensController extends Controller
 		$this->show('garden/all', ['allGardens' => $gardens, 'user' => $this->getUser()]);
 	}
 
-//fonction david recherche
+//fonction Christine >> affichage du détail d'un jardin :
 
-
-
-	// Détails d'une image
+	// Détails d'un jardin
 	public function details($id)
 	{
-		$this->allowTo(['user', 'admin']);
-		// $id contient l'ID entré dans l'url 
 		$gardensModel = new GardensModel();
-		$garden = $gardensModel->find($id); // Va cibler automatiquement la colonne `id` de la base de données
-		$this->show('garden_details', ['garden' => $garden]);
+		// $ownerModel = new OwnerModel();
+
+		$garden = $gardensModel->find($id);
+		// $owner = $ownerModel->findOwner($id);
+		
+		//$user = Array(
+			//////'avatar'=>'test',
+			////'pseudo'=> 'tata'
+		//);
+		$this->show('garden/details', ['garden' => $garden]);
 	}
 
 	// Fonction de récupération de tous les jardins enregistrées pour le projet (utilisation dans la Google Maps)
@@ -62,6 +63,7 @@ class GardensController extends Controller
 
 	}
 
+
 	// Fonction d'ajout d'un jardin
 	public function addGarden()
 	{
@@ -71,6 +73,7 @@ class GardensController extends Controller
 		$picturesModel = new PicturesModel();
 		$picturesGardensModel = new PicturesGardensModel();
 		$imageManagerService = new ImageManagerService();	
+
 
 		if(isset($_POST['add-garden'])) {
 			$errors = [];

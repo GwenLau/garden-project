@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'Inscription']) ?>
+<?php $this->layout('layout', ['title' => 'Inscription', 'user' => $user]) ?>
 
 <?php $this->start('main_content') ?>
 
@@ -50,8 +50,19 @@
                                                             <?php endif; ?>
                                                         <?php endif; ?>
                                                     </div>
+
+                                                    <div style="margin-bottom: 25px" class="input-group">
+															<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+															<input type="text" class="form-control" name="num" value="<?php if (isset($num)) echo $num ?>"
+																placeholder="Entrez votre Numéro de portable"">
+															 <?php if (isset($errors['num'])) :
+															if (isset($errors['num']['empty'])) : ?>
+																<div class="error">Entrez votre numéro de portable</div>
+															<?php endif; ?>
+														<?php endif; ?>
+													</div>
                                                     
-                                            <div style="margin-bottom: 25px" class="input-group">
+                                            		<div style="margin-bottom: 25px" class="input-group">
                                                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                                         <input  error type="text" id="login-username" type="text" class="form-control" name="email" value="<?php if (isset($email)) echo $email ?>" placeholder="E-mail"> 
                                                         <?php if (isset($errors['email'])) :

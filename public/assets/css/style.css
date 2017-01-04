@@ -2,33 +2,116 @@
 ================ GLOBAL ================
 ======================================*/
 
-
 * {
-  box-sizing: border-box;
   font-family: 'Lato';
 }
 
-h1 {
+// h1 {
+//   text-align: center;
+// }
+
+/*======================================
+=============== HEADER ==============
+======================================*/
+
+
+body {
+  background-color: #FFF;
+
+}
+
+nav {
+  width: 100%;
+  color: #FFF;
+}
+
+.nav.navbar-nav.navbar-default.navbar-fixed-top a {
+  color: #FFF;
+  font-size: 15px;
+}
+
+.nav.navbar-nav.navbar-default a:hover {
+  background-color: #A2DED0;  
+  color: #FFF;
+}
+
+.navbar.navbar-default.navbar-fixed-top {
+  background-color: #16a085;
+
+}
+
+a.navbar-brand {
+    font-family: 'Lobster', cursive;
+    color: #FFF;
+    float: left;
+    font-size: 30px;
+} 
+
+/*======================================
+================= FOOTER ===============
+======================================*/
+
+footer.main-footer {
+  padding: 30px 0px;
+  background-color: #16a085;
   text-align: center;
 }
+
+.main-footer h4 {
+  color: #FFF;
+  font-size: 24px;
+  margin: 0px 0px 15px;
+  font-family: 'Lobster', cursive;
+}
+
+footer>a {
+  color: #FFF;
+}
+
+footer>a:hover {
+  color: #A2DED0;
+}
+
+footer>p {
+  color: #FFF;
+}
+
+
 
 /*====================================== 
 =============== HOMEPAGE ===============
 ======================================*/
 
 
-/***
-GoogleMaps section
-***/
+/*==============================
+=            Carousel           =
+==============================*/
+div#carousel.carousel.slide.carousel-fade {
+  padding: 0px;
+  
+}
+
+img.slider {
+  width: 100%;
+  height: 100%;
+}
+
+/*==============================
+=            VIDEO           =
+==============================*/
+#concept {
+  background-color: #ecf0f1;
+  padding: 25px 0 25px 0;
+}
+
+/*==============================
+=     GOOGLEMAP            =
+==============================*/
 
 #map {
   height: 300px;
   width: 100%;
   margin: 20px;
-}
-
-iframe {
-  margin-left: 25%;
 }
 
 .presentation {
@@ -44,43 +127,16 @@ p.presentation {
 =============== DASHBOARD ==============
 ======================================*/
 
-
-body {
-  background-color: #FFF;
-
-}
-
-nav {
-  width: 100%;
-
-}
-
-.nav.navbar-nav a {
-  color: #084F40;
-  font-size: 15px;
-}
-
-.nav.navbar-nav a:hover {
-  background-color: #A2DED0;
-}
-
-nav.bg-success {
-  background-color: #16a085;
-}
-
-a.navbar-brand {
-    font-family: 'Lobster', cursive;
-    color: #FFF;
-    float: left;
-    font-size: 30px;
-
-}
-/* Profile container */
+/*==============================
+=     PROFIL            =
+==============================*/
 .profile {
   margin: 20px 0;
 }
 
-/* Profile sidebar */
+/*==============================
+=     PROFIL SIDEBAR           =
+==============================*/
 .profile-sidebar {
   padding: 20px 0 10px 0;
   background: #fff;
@@ -191,47 +247,4 @@ a.navbar-brand {
   text-align: center;
 }
 
-/* Carrousel */
-div#carousel.carousel.slide.carousel-fade {
-  padding: 0px;
-}
 
-/* .carousel-inner {
-  padding: 0px;
-  width: 120%;
-  margin-left: 0;
-  margin-right: -10%;
-  margin-top: -10%;
-} */
-
-
-
-
-/*======================================
-================= FOOTER ===============
-======================================*/
-
-footer.main-footer {
-  padding: 30px 0px;
-  background-color: #16a085;
-  text-align: center;
-}
-
-.main-footer h4 {
-  color: #FFF;
-  font-size: 24px;
-  margin: 0px 0px 15px;
-  font-family: 'Lobster', cursive;
-}
-
-footer>a {
-  color: #FFF;
-}
-
-footer>a:hover {
-  color: #A2DED0;
-}
-
-footer>p {
-  color: #FFF;
-}
