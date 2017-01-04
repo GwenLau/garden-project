@@ -170,22 +170,6 @@ EOT;
 
 	}
 	
-	// Fonction de gestion du profil de l'utilisateur
-	public function manageProfile()
-		{
-			$this->allowTo(['user', 'admin']);
-
-			
-			if(isset($_POST['save-new-avatar'])){
-				$this->addAvatar();
-			} else if(isset($_POST['save-new-email'])) {
-				$this->newEmail();
-			} else if(isset($_POST['save-new-password'])) {
-				$this->newPwd();
-			}
-
-			$this->show('users/profil', ['user' => $this->getUser()]);
-		}
 
 	public function messagerie()
 		{
@@ -335,6 +319,25 @@ EOT;
 
 	}
 
+	// Fonction de gestion du profil de l'utilisateur
+	public function manageProfile()
+		{
+			$id = $_SESSION['id'];
+			
+			$this->allowTo(['user', 'admin']);
+			
+			
+			if(isset($_POST['save-new-avatar'])){
+				$this->addAvatar($id);
+			} else if(isset($_POST['save-new-email'])) {
+				$this->newEmail($id);
+			} else if(isset($_POST['save-new-password'])) {
+				$this->newPwd($id);
+			}
+
+			$this->show('users/profil', ['user' => $this->getUser()]);
+		}
+
 	// Fonction pour ajouter un avatar (Dashboard > Mon compte)
 	private function addAvatar()
 	{
@@ -342,7 +345,7 @@ EOT;
 		$UsersModel = new UsersModel();
 		$ImageManagerService = new ImageManagerService();
 		$fileName = '';
-		$errors = 
+		$errors = '';
 
 		$this->allowTo(['user', 'admin']);
 

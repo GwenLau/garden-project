@@ -4,12 +4,7 @@
 		<section class="wrapper-hero">
 		<!-- slider image -->
 		<div id="carousel" class="carousel slide carousel-fade" data-ride="carousel">
-		  <!-- Indicators -->
-		  <!-- <ol class="carousel-indicators">
-		    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-		    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-		    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-		  </ol> -->
+		  
 
 		  <!-- Wrapper for slides -->
 		  <div class="carousel-inner" role="listbox">
@@ -24,15 +19,7 @@
 		    </div>
 		  </div>
 
-		  <!-- Controls -->
-		  <!-- <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-		    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-		    <span class="sr-only">Previous</span>
-		  </a>
-		  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-		    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-		    <span class="sr-only">Next</span>
-		  </a> -->
+		 
 		</div>
 
 
@@ -57,10 +44,8 @@
 	</div>
 </section>
 
-<section class="container">
-
-
 <!-- GL = Section Google Maps -->
+<section class="container">
 	<div class="row">
 		<div class="col-md-5">
 			<br />
@@ -73,15 +58,12 @@
 			<?php foreach($gardens as $garden) : ?>
 				<input type="hidden" data-lat="<?= $garden['lat'] ?>" data-lng="<?= $garden['lng'] ?>">
 			<?php endforeach ?>
+	
 			<div id="map"></div>
-
-    		<script async defer
-    		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAbFi6X_yxNJEkoPPrsb3GFbP-_7Mpglc&callback=initMap">
-    		</script>
-    
+	    	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAbFi6X_yxNJEkoPPrsb3GFbP-_7Mpglc&callback=initMap" async defer>
+	    	</script>   
 		</div>
 	</div>
-
 </section>
 
 <?php $this->stop('main_content') ?>

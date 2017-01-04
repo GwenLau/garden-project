@@ -14,6 +14,13 @@
 	<link href="https://fonts.googleapis.com/css?family=Lobster|Roboto+Condensed:400,400i,700,700i" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Lato|Roboto" rel="stylesheet">
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>">
+	
+	<!-- CDN jQuery -->
+	<script src ="https://code.jquery.com/jquery-3.1.1.min.js"
+	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+	<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+	<script src ="<?= $this->assetUrl('js/bootstrap.min.js') ?>" defer></script> 
+	<script src ="<?= $this->assetUrl('js/script.js') ?>" defer></script>
 
 </head>
 <body>
@@ -84,14 +91,14 @@
 
 
 <footer class="main-footer">
-		<h4>YoupiGarden !</h4>
-		<a href='#'><i class="fa fa-facebook fa-3x fa-fw"></i></a>
-              <a href='#'><i class="fa fa-twitter fa-3x fa-fw"></i></a>
-              <a href='#'><i class="fa fa-youtube-play fa-3x fa-fw"></i></a>
-		<p>6 rue Gino Raimondi<br />
-		54490, Piennes<br />
-		08 05 62 23 45</p>
-	</footer>
+	<h4>YoupiGarden !</h4>
+	<a href='#'><i class="fa fa-facebook fa-3x fa-fw"></i></a>
+    <a href='#'><i class="fa fa-twitter fa-3x fa-fw"></i></a>
+    <a href='#'><i class="fa fa-youtube-play fa-3x fa-fw"></i></a>
+	<p>6 rue Gino Raimondi<br />
+	54490, Piennes<br />
+	08 05 62 23 45</p>
+</footer>
 <!-- <div class="wrapper-footer">
 	<footer>
     <div class="footer">
@@ -109,12 +116,7 @@
     </div>
 	</footer>
 </div> -->
-<!-- CDN jQuery -->
-<script src ="https://code.jquery.com/jquery-3.1.1.min.js"
-integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-<script src ="<?= $this->assetUrl('js/bootstrap.min.js') ?>" defer></script> 
-<script src ="<?= $this->assetUrl('js/script.js') ?>" defer></script>
-<?= $this->section('scripts'); ?>  
+
+
 </body>
 </html>

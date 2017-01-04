@@ -12,7 +12,7 @@
 				<div class="col-md-9">
 		            <div class="profile-content">
 					   
-							Bienvenue <?= $user['pseudo'] ?>, gérez votre profil, proposez un jardin ou faire une demande de réservation auprès d'un propriétaire 
+							Bienvenue <?= $user['pseudo'] ?>, gérez votre profil, proposez un jardin ou faites une demande de réservation auprès d'un propriétaire 
 
 							
 

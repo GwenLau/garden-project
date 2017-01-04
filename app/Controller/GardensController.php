@@ -242,7 +242,7 @@ class GardensController extends Controller
 		$picturesGardensModel = new PicturesGardensModel();
 	
 
-		if(isset('delete-garden')){
+		if(isset($_POST['delete-garden'])){
 			// Récupération de l'id du jardin
 			$id = $_GET['id'];
 
