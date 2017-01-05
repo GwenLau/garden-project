@@ -25,16 +25,3 @@ class UsersModel extends Model
 		$stmt->execute();
 	}
 
-	// public function findOwnerInfos(){
-	// $sql =<<< EOT
-	// 	SELECT pseudo, avatar
-	// 	FROM users
-	// 	LEFT JOIN gardens ON gardens.id_user = users.id
-	// 	WHERE gardens.id = users.id;
-
-	// EOT;
-	// $stmt = $this->dbh->prepare($sql);
-	// $stmt->execute();
-	// return $stmt->fetchAll();
-	// }
-}

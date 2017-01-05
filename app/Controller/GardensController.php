@@ -36,21 +36,13 @@ class GardensController extends Controller
 		$this->show('garden/all', ['allGardens' => $gardens, 'user' => $this->getUser()]);
 	}
 
-//fonction Christine >> affichage du détail d'un jardin :
-
-	// Détails d'un jardin
+	//fonction Christine >> affichage du détail d'un jardin :
 	public function details($id)
 	{
-		$gardensModel = new GardensModel();
-		// $ownerModel = new OwnerModel();
 
-		$garden = $gardensModel->find($id);
-		// $owner = $ownerModel->findOwner($id);
+		$gardensModel = new GardensModel();
+		$garden = $gardensModel->findGarden($id);
 		
-		//$user = Array(
-			//////'avatar'=>'test',
-			////'pseudo'=> 'tata'
-		//);
 		$this->show('garden/details', ['garden' => $garden]);
 	}
 
@@ -58,7 +50,6 @@ class GardensController extends Controller
 	public function displayAllInMap()
 	{
 		$gardensModel = new GardensModel();
-
 		$gardens = $gardensModel->findAll();
 
 	}
