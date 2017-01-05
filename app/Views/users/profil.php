@@ -27,7 +27,6 @@
 
 								<!-- Affichage Champ "pseudo" -->
 								<p><strong>Pseudo :  </strong><?= $user['pseudo'] ?> 
-								
 
 								<!-- Affichage Champ "prénom" -->
 								<p><strong>Prénom :  </strong><?= $user['firstname'] ?> 

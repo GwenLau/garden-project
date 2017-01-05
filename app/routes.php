@@ -21,6 +21,7 @@
 		['GET|POST',	'/dashboard/gardens',						'Gardens#addGarden',			'users/dashboard_mesjardins'],
 		['GET|POST',	'/dashboard/gardens-manager',				'Gardens#displayListOfGardens',	'users/dashboard_mesjardins_manager'],
 		['GET|POST',	'/dashboard/gardens-actions',				'Gardens#actions',				'users/gardens_actions'],
+		['GET|POST',	'/dashboard/garden-delete',					'Gardens#deleteGarden',			'garden_delete'],
 /*		['GET|POST',	'/users/profil',							'Default#profilDashboard',		'default_profil'], */
 
 	);

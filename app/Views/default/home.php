@@ -70,7 +70,8 @@
 				<input type="hidden" data-lat="<?= $garden['lat'] ?>" data-lng="<?= $garden['lng'] ?>">
 			<?php endforeach ?>
 	
-			<div id="map"></div>
+			<div class="embed-responsive embed-responsive-16by9"><div id="map"></div></div>
+			<br />
 	    	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAbFi6X_yxNJEkoPPrsb3GFbP-_7Mpglc&callback=initMap" async defer>
 	    	</script>   
 		</div>

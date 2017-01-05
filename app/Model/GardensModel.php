@@ -61,7 +61,7 @@ EOT;
 	{
 		$sql = 'SELECT id, Name, City FROM gardens WHERE id_user = :id_user';
 		$stmt = $this->dbh->prepare($sql);
-		$stmt->bindParam(':id_user', $id_user);
+		$stmt->bindParam(':id_user', $id_user, \PDO::PARAM_INT);
 		$stmt->execute();
 		return $stmt->fetchAll();
 	}
@@ -90,6 +90,15 @@ EOT;
 		$stmt->bindParam(':id', $id, \PDO::PARAM_INT);
 		$stmt->execute();
 		return $stmt->fetch();
+	}
+
+	public function deleteGarden($id)
+	{
+		$sql = 'DELETE FROM gardens, pictures, pictures_gardens WHERE gardens.id = :id AND gardens.id = pictures_gardens.id_garden AND pictures.id = pictures_gardens.id_picture';
+		$stmt = $this->dbh->prepare($sql);
+		$stmt->bindParam(':id', $id, \PDO::PARAM_INT);
+		$stmt->execute();
+
 	}
 }
 

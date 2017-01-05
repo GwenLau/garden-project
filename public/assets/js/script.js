@@ -1,8 +1,7 @@
-$(function(){ /* Chargement du DOM */
+/* Google Maps */
 
-	/* Google Maps */
 
-	window.initMap = function()
+function initMap()
 	{
 		var container = document.getElementById('map');
 		var map = new google.maps.Map(container, {
@@ -29,7 +28,6 @@ $(function(){ /* Chargement du DOM */
 			});
 	}
 
-
 	/* Fonctions d'affichage pour l'actualisation des informations dans "Dashboard > Mon compte" */
 	
 	$("#update-avatar").click(function() {
@@ -52,12 +50,12 @@ $(function(){ /* Chargement du DOM */
   		e.preventDefault();
 
   		//récupère l'id du jardin
-			var id = $(this).data('id');
+		var id = $(this).data('id');
       
       	//ajax de suppression 
 	    $.ajax({
 	        method: "POST",
-	        url: 'users/gardens_actions',
+	        url: $('#gardenDeleteRoute').val(),
 	        data: { id : id },
 	        dataType: 'json',
 	        success: function(r) {
@@ -71,12 +69,16 @@ $(function(){ /* Chargement du DOM */
 	          		// Génération d'une erreur
 	          		alert('Une erreur s’est produite.');
 	          	}
+	        },
+	        error:function(r){
+	        	console.log(r.responseText);
 	        }
+
 	    });
+	    
     }); // fin de la fonction ajax
 
 
-});
 
 
 

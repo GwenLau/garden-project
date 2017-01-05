@@ -12,7 +12,6 @@ use Service\ImageManagerService;
 // use Twilio\Rest\Client;
 
 
-
 class DefaultController extends Controller
 {
 
@@ -25,7 +24,7 @@ class DefaultController extends Controller
 		$gardens = $gardensModel->findAll();
 
 
-		$this->show('default/home', ['gardens' => $gardens]);
+		$this->show('default/home', ['gardens' => $gardens, 'user' => $this->getUser()]);
 	}
 
 	public function login()

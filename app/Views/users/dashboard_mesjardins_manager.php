@@ -2,6 +2,7 @@
 
 <?php $this->start('main_content') ?>
 	
+		<input type="hidden" id="gardenDeleteRoute" value="<?= $this->url('garden_delete') ?>">
 		<div class="container">
 			<div class="row profile">
 				<div class="col-md-3">

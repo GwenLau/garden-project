@@ -54,7 +54,7 @@ class GardensController extends Controller
 		$this->show('garden/details', ['garden' => $garden]);
 	}
 
-	// Fonction de récupération de tous les jardins enregistrées pour le projet (utilisation dans la Google Maps)
+	// Fonction de récupération de tous les jardins enregistrés en bdd (utilisation dans la Google Maps)
 	public function displayAllInMap()
 	{
 		$gardensModel = new GardensModel();
@@ -97,7 +97,7 @@ class GardensController extends Controller
 
 			if(empty($errors)) {
 
-				// begin loop
+				// Boucle 
 				for($i = 0; $i < count($_FILES['my-file']['name']) ; $i++) {
 
 					// Vérification du fichier uploadé
@@ -143,7 +143,7 @@ class GardensController extends Controller
 		        		}
 		    		} // fin si fichier present
 	    		}
-	    		// end loop
+	    		// Fin de la boucle for
 	    	}
 
 	    	// Si une erreur sur un des fichiers
@@ -204,7 +204,7 @@ class GardensController extends Controller
 				}
 			}
 		}
-		$this->show('users/dashboard_mesjardins', ['errors' => $errors]);
+		$this->show('users/dashboard_mesjardins', ['errors' => $errors, 'gardens' => $gardens, 'user' => $this->getUser()]);
 	}
 
 	// Fonction pour l'affichage des jardins / utilisateur (pour la gestion de ses jardins)
@@ -213,7 +213,7 @@ class GardensController extends Controller
 		$this->allowTo(['user', 'admin']);
 
 		$gardensModel = new GardensModel();
-		$gardens = $gardensModel->listOfGardens($id);
+		$gardens = $gardensModel->listOfGardens($this->getUser()['id']);
 
 		$this->show('users/dashboard_mesjardins_manager', ['gardens' => $gardens, 'user' => $this->getUser()]);
 	}
@@ -236,7 +236,7 @@ class GardensController extends Controller
 	}
 
 	// Fonction de suppression d'un jardin en BDD
-	public function deleteGarden($id)
+	public function deleteGarden()
 	{
 		$this->allowTo(['user', 'admin']);
 
@@ -245,33 +245,44 @@ class GardensController extends Controller
 		$picturesGardensModel = new PicturesGardensModel();
 	
 
-		if(isset($_POST['delete-garden'])){
+		if(isset($_POST['id'])){
 			// Récupération de l'id du jardin
-			$id = $_GET['id'];
+			$id = $_POST['id'];
 
-			//sélection des photos sur la base de l'ID
-			$pictures = $picturesModel->findAll($id);
+			// Condition qui permet de vérifier que le jardin qui va être supprimé est celui de l'utilisateur connecté
+			if($gardensModel->find($gardens['id_user']) == $this->getUser['id']) {
 
-			//Boucle pour supprimer les fichiers images sur le serveur
-			foreach($pictures as $picture) {
+				//sélection des photos sur la base de l'ID
+				$picturesGardens = $picturesGardensModel->search([
+					'id_garden' => $id
+				]);
 
-				@unlink('uploads/' . $picture['URL']);
-				@unlink('uploads/min/' . $picture['URL']);
+				//Boucle pour supprimer les fichiers images sur le serveur
+				// Suppression du jardin dans la base de données en commençant par les photos
+				foreach($picturesGardens as $pictureGarden) {
+					$picture = $picturesModel->find($pictureGarden['id_picture']);
+
+					@unlink('assets/uploads/' . $picture['URL']);
+					@unlink('assets/uploads/min/' . $picture['URL']);
+
+					$picturesModel->delete($picture['id']);
+					$picturesGardensModel->delete($pictureGarden['id']);
+				}
+
+				
+				//$pictures = $picturesModel->delete($id);
+
+				//$picturesGardens = $picturesGardensModel->delete($id);
+
+				$gardensModel->delete($id);
+
+				//$this->show('users/dashboard_mesjardins_manager', ['gardens' => $gardens, 'user' => $this->getUser()]);
+			} else {
+				echo 'Error';
 			}
 
-			// Suppression du jardin dans la base de données en commençant par les photos
-			$pictures = $picturesModel->delete($id);
-
-			$picturesGardens = $picturesGardensModel->delete($id);
-
-			$gardens = $GardensModel->delete($id);
-
-			$this->show('users/dashboard_mesjardins_manager', ['gardens' => $gardens, 'user' => $this->getUser()]);
-
 		}
-
-	}
-		
+	}	
 }
 
 	
