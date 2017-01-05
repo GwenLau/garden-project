@@ -92,13 +92,5 @@ EOT;
 		return $stmt->fetch();
 	}
 
-	public function deleteGarden($id)
-	{
-		$sql = 'DELETE FROM gardens, pictures, pictures_gardens WHERE gardens.id = :id AND gardens.id = pictures_gardens.id_garden AND pictures.id = pictures_gardens.id_picture';
-		$stmt = $this->dbh->prepare($sql);
-		$stmt->bindParam(':id', $id, \PDO::PARAM_INT);
-		$stmt->execute();
-
-	}
 }
 
