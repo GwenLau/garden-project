@@ -41,7 +41,7 @@
 	
 	<div class="container">
 
-		<h1 class="text-center">Une animation pour expliquer notre concept</h1>
+		<h1 class="text-center">Notre concept</h1>
 		<!-- video -->
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
