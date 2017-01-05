@@ -89,7 +89,7 @@ EOT;
 		$stmt = $this->dbh->prepare($sql);
 		$stmt->bindParam(':id', $id, \PDO::PARAM_INT);
 		$stmt->execute();
-		return $stmt->fetch();
+		return $stmt->fetchAll();
 	}
 
 }

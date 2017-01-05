@@ -1,5 +1,5 @@
-/* Google Maps */
 
+/* Google Maps */
 
 function initMap()
 	{

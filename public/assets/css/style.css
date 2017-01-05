@@ -30,10 +30,15 @@ nav {
   font-size: 15px;
 }
 
-.nav.navbar-nav.navbar-default a:hover {
-  background-color: #A2DED0;  
+/* .nav.navbar-nav li.active a:hover {
+    background-color: #A2DED0;   
+    color: #FFF;
+  }  */ 
+
+.nav.navbar-nav span.sr-only li.active a:hover {
+  background-color: #A2DED0;   
   color: #FFF;
-}
+}  
 
 .navbar.navbar-default.navbar-fixed-top {
   background-color: #16a085;
@@ -45,7 +50,9 @@ a.navbar-brand {
     color: #FFF;
     float: left;
     font-size: 30px;
-} 
+}
+
+
 
 /*======================================
 ================= FOOTER ===============
@@ -95,6 +102,7 @@ img.slider {
   width: 100%;
   height: 100%;
 }
+
 
 /*==============================
 =            VIDEO           =
@@ -247,4 +255,22 @@ p.presentation {
   text-align: center;
 }
 
+/*==============================
+=            DETAILS           =
+==============================*/
+/*==============================
+=            Carousel           =
+==============================*/
+div#carousel-example-generic.carousel.slide.carousel-details {
+  padding: 0px;
+  
+}
 
+img.sliderdetails {
+  width: 50%;
+  height: 50%;
+}
+
+div.item.active.details {
+  width: 50%;
+}

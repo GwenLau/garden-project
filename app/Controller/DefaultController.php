@@ -8,8 +8,8 @@ use \W\Model\UsersModel;
 use Model\RecoverytokensModel;
 use Model\GardensModel;
 use Service\ImageManagerService;
-// use Twilio\Rest\SplClassLoader;
-// use Twilio\Rest\Client;
+use Twilio\Rest\SplClassLoader;
+use Twilio\Rest\Client;
 
 
 class DefaultController extends Controller
@@ -195,17 +195,22 @@ EOT;
 						'id_receive' => $_POST['destinataire'],
 						'Message' => $_POST['message'],
 					]);
-					// $sid = "ACf25767309ce67abfed16cbacaab0a4f3"; // Your Account SID from www.twilio.com/console
-					// $token = "73c2331465d98fb87b03c4aea6afb761"; // Your Auth Token from www.twilio.com/console
+					$userModel = new UsersModel();
+					$userInfos = $userModel->find($_POST['destinataire']);
+					$num = $userInfos['num'];
 
-					// $client = new Client($sid, $token);
-					// $message = $client->messages->create(
-					//   '+33677062090', // Text this number
-					//   array(
-					// 	'from' => '+33644641630', // From a valid Twilio number
-					// 	'body' => 'Bonjour vous avez une demande de jardin YoupiGarden!'
-					//   )
-					// );
+					 $sid = "ACf25767309ce67abfed16cbacaab0a4f3"; // Your Account SID from www.twilio.com/console
+					 $token = "73c2331465d98fb87b03c4aea6afb761"; // Your Auth Token from www.twilio.com/console
+
+					 $client = new Client($sid, $token);
+					 $message = $client->messages->create(
+					   $num, // Text this number
+					   array(
+					 	'from' => '+33644641630', // From a valid Twilio number
+					 	'body' => 'Bonjour vous avez une demande de jardin YoupiGarden!'
+					   )
+					 );
+					 $this->redirectToRoute('default_messagerie');
 				} else {
 					$error = "Veuillez compléter tous les champs";
 				}
@@ -294,17 +299,22 @@ EOT;
 						'id_garden' => $idGarden,
 						'Message' => $_POST['message'],
 					]);
-					// $sid = "ACf25767309ce67abfed16cbacaab0a4f3"; // Your Account SID from www.twilio.com/console
-					// $token = "73c2331465d98fb87b03c4aea6afb761"; // Your Auth Token from www.twilio.com/console
+					$userModel = new UsersModel();
+					$userInfos = $userModel->find($_POST['destinataire']);
+					$num = $userInfos['num'];
 
-					// $client = new Client($sid, $token);
-					// $message = $client->messages->create(
-					//   '+33677062090', // Text this number
-					//   array(
-					// 	'from' => '+33644641630', // From a valid Twilio number
-					// 	'body' => 'Bonjour vous avez une demande de jardin YoupiGarden!'
-					//   )
-					// );
+					 $sid = "ACf25767309ce67abfed16cbacaab0a4f3"; // Your Account SID from www.twilio.com/console
+					 $token = "73c2331465d98fb87b03c4aea6afb761"; // Your Auth Token from www.twilio.com/console
+
+					 $client = new Client($sid, $token);
+					 $message = $client->messages->create(
+					   $num, // Text this number
+					   array(
+					 	'from' => '+33644641630', // From a valid Twilio number
+					 	'body' => 'Bonjour vous avez une demande de jardin YoupiGarden!'
+					   )
+					 );
+					 $this->redirectToRoute('default_home');
 				} else {
 					$error = "Veuillez compléter tous les champs";
 				}
@@ -319,6 +329,7 @@ EOT;
 				'error' => $error,
 				'destinataire' => $ownerId,
 			]);
+
 
 
 		}
