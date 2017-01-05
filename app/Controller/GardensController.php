@@ -42,15 +42,9 @@ class GardensController extends Controller
 	public function details($id)
 	{
 		$gardensModel = new GardensModel();
-		// $ownerModel = new OwnerModel();
-
-		$garden = $gardensModel->find($id);
-		// $owner = $ownerModel->findOwner($id);
 		
-		//$user = Array(
-			//////'avatar'=>'test',
-			////'pseudo'=> 'tata'
-		//);
+		$garden = $gardensModel->findGarden($id);
+	
 		$this->show('garden/details', ['garden' => $garden]);
 	}
 

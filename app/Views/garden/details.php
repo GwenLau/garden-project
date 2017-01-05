@@ -2,52 +2,84 @@
 <?php $this->layout('layout', ['title' => 'Détail du jardin']) ?>
 <?php $this->start('main_content') ?>
 
-  <?php print_r($garden) ?>
+  <!-- <?php print_r($garden) ?> -->
   <h2>Détails des jardins sélectionnés</h2>
   <p>Retrouvez l'ensemble des détails ci-dessous et contactez le propriétaire du jardin</p>
 
 
 
 <!-- 3/ choisir le bon code pour insérer la photo du propriétaire du jardin $ownerInfos['URL']) ou -->
-<div id="avatar"><img src="<?= $this->assetUrl('uploads/users/' . $user['avatar']) ?>" alt="avatar"></div>
-
-<div id="avatar"><img src="<?= $this->assetUrl('uploads/img/' . $ownerInfos['URL']) ?>">
-
-  <div><?= $ownerInfos['pseudo'] ?></div>
-
-  <div><?= $garden['Name'] ?></div>
-  <div><?= $garden['Description'] ?></div>
-  <div><?= $garden['City'] ?></div>
-  <div><?= $garden['id'] ?></div>
 
 
-  <div><?= $owner['avatar'] ?></div> 
-  <div><?= $owner['pseudo'] ?></div>
+  <div>Propriétaire (pseudo)  : <?= $garden[0]['pseudo'] ?></div>
 
-  <div>
-
-    <img src="<?= $this->assetUrl('uploads/' . $pictures['URL']) ?>">
-  </div>
-  
-  <div>
-  
-    <img src="<?= $this->assetUrl('/img/' . $pictures['URL']) ?>">
-    <img src="<?= $this->assetUrl('/img/' . $pictures['URL']) ?>">
-  </div>
+  <div><?= $garden[0]['Name'] ?></div>
+  <div>Description du jardin: <?= $garden[0]['Description'] ?></div>
+  <div>Localisation : <?= $garden[0]['City'] ?></div>
 
 
-  
+ 
+
+   <!-- Carousel
+    ================================================== -->
+    <div id="carousel-example-generic" class="carousel slide carousel-details" data-ride="carousel">
+  <!-- Indicators -->
 
 
-  
-
-<?php $this->stop('main_content') ?>
+          <ol class="carousel-indicators">
 
 
+          <?php foreach ($garden as $gardenPicture => $value): ?>
+            <?php if ($gardenPicture == 0): ?>
+              <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <?php else : ?>
+            <li data-target="#carousel-example-generic" data-slide-to="<?= $key ?>"></li>
+           <?php endif ?>
+          <?php endforeach ?>
+          </ol>
 
 
-    <img src="<?= $this->assetUrl('/img/' . $pictures['URL']) ?>">
-  </div>
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner" role="listbox">
+          <?php foreach ($garden as $gardenPicture => $img): ?>
+            <?php if ($gardenPicture == 0): ?>
+              <div class="item active details">
+              <img class="sliderdetails" src="<?= $this->assetUrl('/uploads/' . $img['URL']) ?>" alt="">
+              <div class="carousel-caption">
+                <?= $img['alt'] ?>
+              </div>
+            </div>
+            <?php else : ?>
+            <div class="item details">
+              <img class="sliderdetails" src="<?= $this->assetUrl('/uploads/' . $img['URL']) ?>" alt="">
+              <div class="carousel-caption">
+                <?= $img['alt'] ?>
+              </div>
+            </div>
+            <?php endif; ?>
+          <?php endforeach ?>
+          </div>
 
-<?php $this->stop('main_content') ?>
+
+          <!-- Controls
+          <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+                  </div> -->
+
+
+
+
+          <p><a href="<?= $this->url('default_contact', ['id' => $Pic['gardenId']]) ?>" class="btn btn-primary" role="button">Contacter</a> </p>
+          
+
+        <?php $this->stop('main_content') ?>
+
+
+
 

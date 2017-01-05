@@ -103,6 +103,7 @@ img.slider {
   height: 100%;
 }
 
+
 /*==============================
 =            VIDEO           =
 ==============================*/
@@ -254,4 +255,22 @@ p.presentation {
   text-align: center;
 }
 
+/*==============================
+=            DETAILS           =
+==============================*/
+/*==============================
+=            Carousel           =
+==============================*/
+div#carousel-example-generic.carousel.slide.carousel-details {
+  padding: 0px;
+  
+}
 
+img.sliderdetails {
+  width: 50%;
+  height: 50%;
+}
+
+div.item.active.details {
+  width: 50%;
+}
