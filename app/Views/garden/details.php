@@ -17,7 +17,9 @@
   <div>Description du jardin: <?= $garden[0]['Description'] ?></div>
   <div>Localisation : <?= $garden[0]['City'] ?></div>
 
-
+ <br>
+ <br>
+ <br>
  
 
    <!-- Carousel
@@ -59,7 +61,10 @@
             <?php endif; ?>
           <?php endforeach ?>
           </div>
-
+ <br>
+ <br>
+ <br>
+ 
 
           <!-- Controls
           <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
@@ -75,7 +80,7 @@
 
 
 
-          <p><a href="<?= $this->url('default_contact', ['id' => $Pic['gardenId']]) ?>" class="btn btn-primary" role="button">Contacter</a> </p>
+          <!-- <p><a href="<?= $this->url('default_contact', ['id' => $Pic['gardenId']]) ?>" class="btn btn-primary" role="button">Contacter</a> </p> -->
           
 
         <?php $this->stop('main_content') ?>

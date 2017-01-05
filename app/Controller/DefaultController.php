@@ -211,7 +211,7 @@ EOT;
 					 	'body' => 'Bonjour vous avez une demande de jardin YoupiGarden!'
 					   )
 					 );
-					 $this->redirectToRoute('default_home');
+					 $this->redirectToRoute('default_messagerie');
 				} else {
 					$error = "Veuillez compléter tous les champs";
 				}
